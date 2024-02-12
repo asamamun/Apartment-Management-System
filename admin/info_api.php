@@ -13,6 +13,7 @@ if(isset($_GET['id']) && isset($_GET['get']) && isset($_GET['set'])){
     $get = trim($_GET['get'], "s");
     $db->where($get.'_id', $_GET['id']);
     $rows = $db->get($_GET['set']);
+    echo "<option>Select</option>";
     foreach ($rows as $row) {
         echo "<option value='{$row['id']}'>{$row['bn_name']}</option>";
     }

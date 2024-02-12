@@ -8,8 +8,8 @@ if(isset($_GET['id'])){
     $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
     if($id){
         $db->where('id', $id);
-        if($db->delete('sub_categories')){
-            header("location: subcat_all.php");
+        if($db->delete('apartment_members')){
+            header("location: mem_all.php");
         }else{
             echo "something went wrong!! contact the administrator";
             exit;

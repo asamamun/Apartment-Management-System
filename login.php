@@ -9,7 +9,7 @@ if(isset($_POST['login'])){
     $db->where("email", $_POST['email']);
     $row = $db->getOne ("users");
     if($row){
-        if(password_verify($_POST['pass1'],$row['password'])){
+        if(password_verify($_POST['password'],$row['password'])){
             $_SESSION['loggedin'] = true;
             $_SESSION['userid'] = $row['id'];
             $_SESSION['username'] = $row['name'];
@@ -17,11 +17,9 @@ if(isset($_POST['login'])){
             $_SESSION['role'] = $row['role'];
             if($row['role'] == "2"){
                 header('Location:admin/');
-            }
-            elseif($row['role'] == "1"){
-                header('Location:index.php');
-            }
-            else{
+            }elseif($row['role'] == "1"){
+                header('Location:profile.php');
+            }else{
                 header('Location:index.php');  
             }
         }
@@ -34,43 +32,33 @@ if(isset($_POST['login'])){
     }
 }
 ?>
-<?php require __DIR__ . '/components/header.php';?>
-</head>
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Registration or Sign Up form </title> 
+    <link rel="stylesheet" href="<?= settings()['homepage'] ?>assets/registration.css">
+   </head>
 <body>
-<div class="container">
-<?php require __DIR__ . '/components/menubar.php';?>
-<h1>Login page</h1>
-<?php require __DIR__ . '/components/dismissalert.php';?>
-<!--  -->
-<form class="row g-3 needs-validation" novalidate method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
-  <div class="col-md-12 form-floating">
-    <input type="email" class="form-control" id="email" name="email" required placeholder="yourname@domain.com">
-    <label for="email" class="form-label">Email</label>
-    <div class="invalid-feedback">
-      Please provide a valid email.
-    </div>
-    <div class="valid-feedback">
-      Email Valid!!
-    </div>
+  <div class="wrapper">
+    <h2>Registration</h2>
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+      <div class="input-box">
+        <input type="email" name="email" placeholder="Enter your name" required>
+      </div>
+      <div class="input-box">
+        <input type="password" name="password" placeholder="Enter your phone/mobile number." required>
+      </div>
+      <div class="input-box button">
+        <input type="Submit" value="login" name="login">
+      </div>
+      <div class="text">
+        <h3>Already have an account? <a href="login.php">Login now</a></h3>
+      </div>
+    </form>
   </div>
-  <div class="col-md-12 form-floating">    
-    <input type="password" minlength="5" class="form-control" id="pass1" name="pass1" required placeholder="password">
-    <label for="pass1" class="form-label">Password</label>
-    <div class="invalid-feedback">
-      Please provide a valid password.
-    </div>
-  </div>
-  <div class="col-12">
-    <button class="btn btn-primary" type="submit" name="login" value="Sign In">Login </button>
-  </div>
-</form>
-<!--  -->
-<?php
-// echo testfunc();
-?>
-</div>
-<script>
+</body>
+</html>
 
-</script>
-<?php require __DIR__ . '/components/footer.php';?>
-    

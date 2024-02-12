@@ -13,12 +13,12 @@ $db = new MysqliDb ();
 if(isset($_POST['submit'])){
     $data = [
         'member_name'=> $db->escape($_POST['member_name']),
-        'apt_no'=> $db->escape($_POST['apt_no']),
+        'apt_id'=> $db->escape($_POST['apt_id']),
         'dob'=> $db->escape($_POST['dob']),
         'nid'=> $db->escape($_POST['nid']),
-        'image'=> $myfn->imageInsert('image'),
+        'images'=> $myfn->imageInsert('images'),
     ];
-    if($db->insert("appt_members", $data)){
+    if($db->insert("apartment_members", $data)){
         header("location: mem_all.php");
     }
 else{
@@ -46,10 +46,10 @@ else{
                 <div class="col-md-8">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="mb-3 mt-3">
-                            <label for="apt_no" class="form-label">Apartments:</label>
-                            <select class="form-control" id="apt_no"  name="apt_no"  required>
+                            <label for="apt_id" class="form-label">Apartments:</label>
+                            <select class="form-control" id="apt_id"  name="apt_id"  required>
 <?php
-$apt_rows = $db->get("apartments");
+$apt_rows = $db->orderBy('apt_no', 'ASC')->get("apartments");
 foreach($apt_rows as $apt_row){
     echo "<option value='{$apt_row['id']}'>{$apt_row['apt_no']}</option>";
 }
@@ -71,7 +71,7 @@ foreach($apt_rows as $apt_row){
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="image" class="form-label">Image:</label>
-                            <input type="file" class="form-control" id="image"  name="image">
+                            <input type="file" class="form-control" id="image"  name="images">
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit" value="">Create New Members</button>
                     </form>

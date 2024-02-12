@@ -12,7 +12,8 @@ $db = new MysqliDb ();
 if(isset($_POST['submit'])){
   $data = [
       'sub_name'=> $db->escape($_POST['sub_name']),
-      'cat_id'=> $db->escape($_POST['cat_id'])
+      'cat_id'=> $db->escape($_POST['cat_id']),
+      'type' => $db->escape($_POST['sub_type'])
   ];
   if($db->insert("sub_categories", $data)){
       header("location: subcat_all.php");
@@ -56,6 +57,14 @@ foreach($cat_rows as $cat_row){
                         <div class="mb-3 mt-3">
                             <label for="sub_name" class="form-label">Sub Category Name:</label>
                             <input type="text" class="form-control" id="sub_name"  name="sub_name"  required>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="sub_type" class="form-label">Sub Category Type:</label>
+                            <select class="form-control" id="sub_type"  name="sub_type"  required>
+                                <option>Select</option>
+                                <option value="1">income</option>
+                                <option value="0">expense</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit" value="">Create New Sub Category</button>
                     </form>

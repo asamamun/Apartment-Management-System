@@ -8,8 +8,8 @@ if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
+$db = new MysqliDb ();
 ?>
-<?=$_SESSION['photo']; ?>
 <?php require __DIR__.'/components/header.php'; ?>
     </head>
     <body class="sb-nav-fixed">
@@ -27,28 +27,37 @@ if(!Admin::Check()){
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-body">Total Income</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <?php
+                                            /* $sql = "SELECT SUM(amount) as amount FROM income_expence WHERE type=1";
+                                            //$db->where('type', 1);
+                                            $income = $db->query($sql);
+                                            echo $income[0]["amount"]." Tk"; */
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-body">Expence</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <?php
+                                            /* $sql = "SELECT SUM(amount) as amount FROM income_expence WHERE type=0";
+                                            //$db->where('type', 1);
+                                            $expense = $db->query($sql);
+                                            echo $expense[0]["amount"]." Tk"; */
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
+                                    <div class="card-body">Balance</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <?php
+                                            /* echo $income[0]["amount"] - $expense[0]["amount"]." Tk"; */
+                                        ?>
                                     </div>
                                 </div>
                             </div>

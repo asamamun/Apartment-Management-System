@@ -1,4 +1,5 @@
 <?php
+//date_default_timezone_set("Asia/Dhaka");
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -8,15 +9,19 @@ if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
+$myfn = new myfn\myfn;
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
     $idtoupdate = $_POST['id'];
     $data = [
-        'sub_name' => $_POST['sub_name'],
-        'cat_id' => $_POST['cat_id']
+        'member_name'=> $db->escape($_POST['member_name']),
+        'apt_id'=> $db->escape($_POST['apt_id']),
+        'dob'=> $db->escape($_POST['dob']),
+        'nid'=> $db->escape($_POST['nid']),
+        'images'=> $myfn->imageInsert('images'),
     ];
     $db->where ('id', $idtoupdate);
-    if ($db->update ('sub_categories', $data))
+    if ($db->update ('apartment_members', $data))
         $message = "User Updated successfully";
     else{
         $message = "Something went wrong, ".$db->getLastError();
@@ -29,7 +34,7 @@ if(isset($_GET['id'])){
         // $result = $conn->query($selectQuery);
         // $row = $result->fetch_assoc();
         $db->where ('id', $id);
-        $row = $db->getOne('sub_categories');
+        $row = $db->getOne('apartment_members');
 // var_dump($row);
     }
     
@@ -58,26 +63,38 @@ if(isset($_GET['id'])){
                             <input type="hidden" class="form-control" id="id"  name="id"  value="<?= $row['id'] ?>">
                         </div>
                         <div class="mb-3 mt-3">
-                            <label for="cat_id" class="form-label">Category Name:</label>
-                            <select class="form-control" id="cat_id"  name="cat_id"  required>
+                            <label for="apt_id" class="form-label">Category Name:</label>
+                            <select class="form-control" id="apt_id"  name="apt_id"  required>
 <?php
-$cat_rows = $db->get("categories");
-foreach($cat_rows as $cat_row){
-    if($cat_row['id'] == $row['cat_id']){
-        echo "<option value='{$cat_row['id']}' selected>{$cat_row['cat_name']}</option>";
+$apt_rows = $db->get("apartments");
+foreach($apt_rows as $apt_row){
+    if($apt_row['id'] == $row['apt_id']){
+        echo "<option value='{$apt_row['id']}' selected>{$apt_row['apt_no']}</option>";
     }else{
-        echo "<option value='{$cat_row['id']}'>{$cat_row['cat_name']}</option>";
+        echo "<option value='{$apt_row['id']}'>{$apt_row['apt_no']}</option>";
     }
 }
 ?>
                                 
-                            </select>
+                                </select>
                         </div>
                         <div class="mb-3 mt-3">
-                            <label for="sub_name" class="form-label">sub category Name:</label>
-                            <input type="text" class="form-control" id="sub_name"  name="sub_name"  value="<?= $row['sub_name'] ?>" required>
+                            <label for="member_name" class="form-label">Members Name:</label>
+                            <input type="text" class="form-control" id="member_name"  name="member_name" value="<?= $row['member_name'] ?>"required>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="submit" value="update">Submit</button>
+                        <div class="mb-3 mt-3">
+                            <label for="dob" class="form-label">Date of Birth:</label>
+                            <input type="date" class="form-control" id="dob"  name="dob" value="<?php echo $myfn->only_date($row['dob']); ?>"  required>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="nid" class="form-label">National ID:</label>
+                            <input type="number" class="form-control" id="nid"  name="nid" value="<?= $row['nid'] ?>"  required>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="images" class="form-label">Image:</label>
+                            <input type="file" class="form-control" id="images"  name="images">
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="submit" value="update">Update</button>
                     </form>
                 </div>
                 <div class="col-md-2"></div>

@@ -8,13 +8,14 @@ if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
+$myfn = new myfn\myfn;
 $db = new MysqliDb ();
 $mem_rows = $db->get('apartments');
 $mem_arr = array();
 foreach($mem_rows as $mem_value){
     $mem_arr[$mem_value['id']] = $mem_value['apt_no'];
 }
-$rows = $db->get('appt_members');
+$rows = $db->orderBy('apt_id', 'ASC')->get('apartment_members');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
     </head>
@@ -53,11 +54,11 @@ foreach($rows as $row){
     echo <<<html
 <tr>
     <td>{$row['id']}</td>
-    <td>{$mem_arr[$row['apt_no']]}</td>
+    <td>{$mem_arr[$row['apt_id']]}</td>
     <td>{$row['member_name']}</td>
-    <td>{$row['dob']}</td>
+    <td>{$myfn->only_date($row['dob'])}</td>
     <td>{$row['nid']}</td>
-    <td>{$row['image']}</td>
+    <td><img src="{$row['images']}" width="40" height="40"/></td>
     <td>{$row['status']}</td>
     <td>{$row['created_at']}</td>
     <td>

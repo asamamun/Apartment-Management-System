@@ -79,13 +79,14 @@ if(isset($_GET['id'])){
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="mobile" class="form-label">Mobile:</label>
-                            <input type="phone" class="form-control" id="mobile"  name="mobile"  value="<?= $row['mobile'] ?>" required>
+                            <input type="phone" class="form-control" id="mobile"  name="mobile"  value="<?= $row['mobile'] ?>">
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="pass2" class="form-label">Type:</label>
                             <select name="role" id="role" class="form-control">
                                 <option value="1" <?= ($row['role'] =="1")?"selected":"" ?>>User</option>
                                 <option value="2" <?= ($row['role'] =="2")?"selected":"" ?>>Admin</option>
+                                <option value="0" <?= ($row['role'] =="0")?"selected":"" ?>>Block</option>
                             </select>
                         </div>
                         <div class="mb-3 mt-3">

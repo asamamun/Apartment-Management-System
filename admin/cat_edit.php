@@ -11,9 +11,10 @@ if(!Admin::Check()){
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
     $idtoupdate = $_POST['id'];
-    $cat_name = $_POST['cat_name'];
+    $cat_name = $db->escape($_POST['cat_type']);
     $data = [
         'cat_name' => $cat_name,
+        'type' => $cat_name,
     ];
     $db->where ('id', $idtoupdate);
     if ($db->update ('categories', $data))
@@ -60,6 +61,13 @@ if(isset($_GET['id'])){
                         <div class="mb-3 mt-3">
                             <label for="cat_name" class="form-label">Category Name:</label>
                             <input type="text" class="form-control" id="cat_name"  name="cat_name"  value="<?= $row['cat_name'] ?>" required>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="cat_type" class="form-label">Category Type:</label>
+                            <select class="form-control" id="cat_type"  name="cat_type"  required>
+                                <option value="1" <?= $row['type'] == 1 ? "selected" : ''; ?>>income</option>
+                                <option value="0" <?= $row['type'] == 0 ? "selected" : ''; ?>>expense</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit" value="update">Submit</button>
                     </form>

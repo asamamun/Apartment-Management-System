@@ -1,4 +1,5 @@
 <?php
+$pagename = "jhdsfhkasj";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,6 +10,9 @@ if(!Admin::Check()){
     exit;
 }
 $db = new MysqliDb ();
+if(isset($_GET["role"])){
+    $db->where('role', $_GET["role"]);
+}
 $users = $db->get('users');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
@@ -20,28 +24,49 @@ $users = $db->get('users');
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            DataTable Example
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Created At</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <hr />
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Created At</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Created At</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+<?php
 foreach($users as $user){
     // echo $user['name']."(".$user['email'].")<br>";
+    $isblock = null;
+    if($user['role'] == 0){
+        $isblock = "<a class='dropdown-item' href='users_func.php?id={$user['id']}'>Unblock</a>";
+    }else{
+        $isblock = "<a class='dropdown-item' href='users_func.php?id={$user['id']}'><i class='bi bi-ban'></i> block</a>";
+    }
     echo <<<html
 <tr>
     <td>{$user['id']}</td>
@@ -50,14 +75,18 @@ foreach($users as $user){
     <td>{$user['role']}</td>
     <td>{$user['created_at']}</td>
     <td>
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <div class="btn btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
-                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">option</span>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="users_edit.php?id={$user['id']}">Edit</a></li>
-                    <li><a class="dropdown-item" href="users_pass.php?id={$user['id']}">Password</a></li>
-                    <li><a class="dropdown-item" href="users_img.php?id={$user['id']}">Photo</a></li>
-                    <li><a class="dropdown-item" href="users_delete.php?id={$user['id']}">Delete</a></li>
+                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Option</span>
+                <ul class="dropdown-menu" style="background-color:#E0E3EA">
+                    <li><a class="dropdown-item" href="users_edit.php?id={$user['id']}"><i class="bi bi-pencil-square"></i> Edit</a></li>
+                    <li><a class="dropdown-item" href="users_pass.php?id={$user['id']}"><i class="bi bi-lock-fill"></i> Password</a></li>
+                    <li><a class="dropdown-item" href="users_img.php?id={$user['id']}"><i class="bi bi-file-earmark-image"></i> Photo</a></li>
+                    <li><a class="dropdown-item" href="users_mail.php?id={$user['id']}"><i class="bi bi-envelope"></i> Send Mail</a></li>
+                    <li><a class="dropdown-item" href="users_profile.php?id={$user['id']}"><i class="bi bi-person-bounding-box"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="users_payment.php?id={$user['id']}"><i class="bi bi-credit-card-2-back-fill"></i> Payment</a></li>
+                    <li>{$isblock}</li>
+                    <li><a class="dropdown-item" href="users_delete.php?id={$user['id']}" onClick="return confirm('Are You Sure To Delete File.')"><i class="bi bi-archive-fill"></i> Delete</a></li>
                 </ul>
             </div>
         </div>
@@ -66,8 +95,9 @@ foreach($users as $user){
 html;
 }
 ?>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- changed content  ends-->

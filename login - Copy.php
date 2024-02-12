@@ -13,6 +13,7 @@ if(isset($_POST['login'])){
             $_SESSION['loggedin'] = true;
             $_SESSION['userid'] = $row['id'];
             $_SESSION['username'] = $row['name'];
+            $_SESSION['photo'] = $row['image'];
             $_SESSION['role'] = $row['role'];
             if($row['role'] == "2"){
                 header('Location:admin/');
@@ -23,7 +24,6 @@ if(isset($_POST['login'])){
             else{
                 header('Location:index.php');  
             }
-
         }
         else{
             $message = "Passwords do not match";
@@ -32,24 +32,17 @@ if(isset($_POST['login'])){
     else{
         $message = "Invalid Account";
     }
-
 }
 ?>
-
 <?php require __DIR__ . '/components/header.php';?>
-
 </head>
 <body>
-  <h1><?= config('test.course') ?></h1>
 <div class="container">
-<?php require __DIR__ . '/components/menubar.php';?>
 <h1>Login page</h1>
 <?php require __DIR__ . '/components/dismissalert.php';?>
 <!--  -->
 <form class="row g-3 needs-validation" novalidate method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
-
   <div class="col-md-12 form-floating">
-    
     <input type="email" class="form-control" id="email" name="email" required placeholder="yourname@domain.com">
     <label for="email" class="form-label">Email</label>
     <div class="invalid-feedback">

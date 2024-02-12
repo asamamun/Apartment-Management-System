@@ -14,6 +14,9 @@ $cat_arr = array();
 foreach($cat_rows as $cat_value){
     $cat_arr[$cat_value['id']] = $cat_value['cat_name'];
 }
+if(isset($_GET["type"])){
+    $db->where("type", $_GET["type"]);
+}
 $rows = $db->get('sub_categories');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
@@ -25,31 +28,47 @@ $rows = $db->get('sub_categories');
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            DataTable Example
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Cat Name</th>
-                                        <th>Sub Name</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <hr />
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Cat Name</th>
+                                            <th>Sub Name</th>
+                                            <th>Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Cat Name</th>
+                                            <th>Sub Name</th>
+                                            <th>Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+<?php
 foreach($rows as $row){
-    // echo $user['name']."(".$user['email'].")<br>";
+    $type = $row['type'] == 1 ? 'Income' : 'expanse';
     echo <<<html
 <tr>
     <td>{$row['id']}</td>
     <td>{$cat_arr[$row['cat_id']]}</td>
     <td>{$row['sub_name']}</td>
+    <td>{$type}</td>
     <td>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
@@ -65,8 +84,9 @@ foreach($rows as $row){
 html;
 }
 ?>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- changed content  ends-->

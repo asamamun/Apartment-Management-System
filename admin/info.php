@@ -80,8 +80,20 @@ $row = $db->getOne('rules');
                                     <select class="form-control" id="unions" name="union"></select>
                                 </div>
                                 <div class="mb-3 mt-3">
-                                    <label for="details" class="form-label">Info:</label>
-                                    <textarea class="form-control" id="details" name="details"><?= $row['details']??"" ?></textarea>
+                                    <label for="address" class="form-label">Address:</label>
+                                    <textarea class="form-control" id="address" name="address"><?= $row['address']??"" ?></textarea>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="help_line" class="form-label">Help line</label>
+                                    <input type="text" class="form-control" id="help_line" name="help_line" value="<?= $row['help_line']?? "" ?>">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="<?= $row['email']?? "" ?>">
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label for="google_map" class="form-label">Google Map</label>
+                                    <input type="text" class="form-control" id="google_map" name="google_map" value="<?= $row['google_map']?? "" ?>">
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="submit" value="update">Submit</button>
                             </form>

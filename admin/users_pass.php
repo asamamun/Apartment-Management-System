@@ -69,7 +69,8 @@ if(isset($_GET['id'])){
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="passmatch" class="form-label">Retype Password:</label>
-                            <input type="password" class="form-control" id="passmatch"  name="passmatch">
+                            <input type="password" class="form-control" id="passmatch"  name="passmatch" onkeyup="passMatch()">
+                            <span id="passmsg"></span>
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit">Reset Password</button>
                     </form>
@@ -90,6 +91,29 @@ if(isset($_GET['id'])){
         <script src="<?= settings()['adminpage'] ?>assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="<?= settings()['adminpage'] ?>assets/js/datatables-simple-demo.js"></script>
+<script>
+function passMatch(){
+    let result = null;
+    let password=document.getElementById('password').value;
+    let passmatch=document.getElementById('passmatch').value;
+    if(password == passmatch){
+        result = `
+<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+  <strong>ok!</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+`;
+    }else{
+        result = `
+<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+  <strong>Password not match!!</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+`;    
+    }
+    return document.getElementById('passmsg').innerHTML = result;
+}
+</script>
     </body>
 </html>
     

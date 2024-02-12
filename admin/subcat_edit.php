@@ -12,8 +12,9 @@ $db = new MysqliDb ();
 if(isset($_POST['submit'])){
     $idtoupdate = $_POST['id'];
     $data = [
-        'sub_name' => $_POST['sub_name'],
-        'cat_id' => $_POST['cat_id']
+        'sub_name' => $db->escape($_POST['sub_name']),
+        'cat_id' => $db->escape($_POST['cat_id']),
+        'type' => $db->escape($_POST['sub_type'])
     ];
     $db->where ('id', $idtoupdate);
     if ($db->update ('sub_categories', $data))
@@ -76,6 +77,13 @@ foreach($cat_rows as $cat_row){
                         <div class="mb-3 mt-3">
                             <label for="sub_name" class="form-label">sub category Name:</label>
                             <input type="text" class="form-control" id="sub_name"  name="sub_name"  value="<?= $row['sub_name'] ?>" required>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="sub_type" class="form-label">Sub Category Type:</label>
+                            <select class="form-control" id="sub_type"  name="sub_type"  required>
+                                <option value="1" <?= $row['type'] == 1 ? "selected" : ''; ?>>income</option>
+                                <option value="0" <?= $row['type'] == 0 ? "selected" : ''; ?>>expense</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit" value="update">Submit</button>
                     </form>
