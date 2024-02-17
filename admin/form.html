@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+<style>
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.form{
+    background-color: mintcream;
+    border-radius: 5px;
+    box-shadow: -1px 3px 11px 0px rgba(0,0,0,0.75);
+}
+label{
+    font-weight: bold;
+    font-size: 1.2 em;
+}
+</style>
+</head>
+<body>
+
+        <!-- user -->
+    <section class="p-3 p-md-3 p-xl-5">
+        <div class="container">
+            <div class="col-sm-7">
+              <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body">
+                  <div class="row">
+     
+                      <form action="" method="post" class="row g-3 form">
+             <div class="col-sm-3">
+                 <label for="username">User Name :</label>
+             </div>
+             <div class="col-sm-8">
+                 <input type="text" class="form-control" id="username" name="username" required>
+             </div>
+             <div class="col-sm-3">
+                 <label for="phone">Phone :</label>
+             </div>
+             <div class="col-sm-8">
+                 <input type="phone" class="form-control" id="phone" name="phone" required>
+             </div>
+             <div class="col-sm-3">
+                 <label for="email">Email :</label>
+             </div>
+             <div class="col-sm-8">
+                 <input type="email" class="form-control" id="email" name="email" required>
+             </div>
+             <div class="col-sm-3">
+                 <label for="password">Password :</label>
+             </div>
+             <div class="col-sm-8">
+                 <input type="password" class="form-control" id="password" name="password" required>
+             </div>
+             <div class="col-sm-3">
+             <label for="role">Type :</label>
+             </div>
+             <div class="col-sm-8">
+             <select name="role" id="role" class="form-select" required>
+                 <option disabled selected>Open this menu</option>
+                 <option value="1">User</option>
+                 <option value="2">Admin</option>
+             </select>
+             </div>
+             <div class="col-sm-3">
+             <label for="address">Address :</label>
+             </div>
+             <div class="col-sm-8">
+                 <textarea class="form-control" id="address" name="address"></textarea>
+             </div>
+             <div class="col-sm-2">
+                 <button type="submit" class="btn btn-secondary mb-3" name="submit" value="category">Create</button>
+             </div>
+         </form>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+    
+
+        <!-- info -->
+<section class="p-3 p-md-3 p-xl-5">
+    <div class="container">
+        <div class="col-sm-7">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body">
+              <div class="row">
+                  <form action="" method="post" enctype="multipart/form-data" class="row g-3 form">
+                  <div class="">
+             <input type="hidden" class="form-control" id="id" name="id" required>
+         </div>
+         <div class="col-sm-3">
+             <label for="apt_no">Country :</label>
+         </div>
+         <div class="col-sm-8">
+             <input type="text" class="form-control" id="country" name="country" value="Bangladesh">
+         </div>
+                  <div class="col-sm-3">
+             <label for="divisions">Divisions :</label>
+         </div>
+         <div class="col-sm-8">
+         <select class="form-select" id="divisions"  name="divisions"  onChange="getApi('divisions', 'districts')">
+         <option>select</option>
+                 <?php
+                 $div_rows = $db->get("divisions");
+                 foreach ($div_rows as $div_row) {
+                     echo "<option value='{$div_row['id']}'>{$div_row['bn_name']}</option>";
+                 }
+                 ?>
+                </select>                     
+          </select>
+         </div>
+         <div class="col-sm-3">
+             <label for="districts">District :</label>
+         </div>
+         <div class="col-sm-8">
+         <select class="form-select" id="districts" name="district" onChange="getApi('districts', 'upazillas')"></select>
+         </div>
+         <div class="col-sm-3">
+             <label for="upazillas">Upazila :</label>
+         </div>
+         <div class="col-sm-8">
+         <select class="form-select" id="upazillas" name="upazillas" onChange="getApi('upazillas', 'unions')"></select>
+         </div>
+         <div class="col-sm-3">
+             <label for="unions">Union :</label>
+         </div>
+         <div class="col-sm-8">
+         <select class="form-select" id="unions" name="unions"></select>
+         </div>
+         <div class="col-sm-3">
+         <label for="details">Info :</label>
+         </div>
+         <div class="col-sm-8">
+             <textarea class="form-control" id="details" name="details"></textarea>
+         </div>
+         <div class="col-sm-2">
+             <button type="submit" class="btn btn-secondary mb-3" name="submit" value="category">Create</button>
+         </div>
+     </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+
+
+    <!-- category -->
+  <section class="p-3 p-md-3 p-xl-5">
+    <div class="container">
+        <div class="col-sm-8">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body">
+              <div class="row">
+ 
+                  <form action="" method="post" class="row g-3 form">
+         <div class="col-sm-3">
+             <label for="">Category Name</label>
+         </div>
+         <div class="col-sm-7">
+             <input type="text" class="form-control" id="cat_name" name="cat_name" placeholder="Enter Category Name" required>
+         </div>
+         <div class="col-sm-2">
+             <button type="submit" class="btn btn-secondary mb-3" name="submit" value="category">Add</button>
+         </div>
+     </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+        <!-- appt -->
+
+        <section class="p-3 p-md-3 p-xl-5">
+            <div class="container">
+                <div class="col-sm-7">
+                  <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body">
+                      <div class="row">
+                          <form action="" method="post" class="row g-3 form">
+                 <div class="col-sm-3">
+                     <label for="username">User Name :</label>
+                 </div>
+                 <div class="col-sm-8">
+                 <select class="form-select" id="user_id"  name="user_id"  required>
+                     <?php
+                     $user_rows = $db->get("users");
+                     foreach($user_rows as $user_row){
+                         echo "<option value='{$user_row['id']}'>{$user_row['name']}</option>";
+                     }
+                     
+                     ?>                       
+                  </select>
+                 </div>
+                 <div class="col-sm-3">
+                     <label for="apt_no">Apartment :</label>
+                 </div>
+                 <div class="col-sm-8">
+                     <input type="text" class="form-control" id="apt_no" name="apt_no" required>
+                 </div>
+                 <div class="col-sm-3">
+                     <label for="flat_size">Flat Size :</label>
+                 </div>
+                 <div class="col-sm-8">
+                     <input type="text" class="form-control" id="flat_size" name="flat_size">
+                 </div>
+                 <div class="col-sm-3">
+                 <label for="info">Info :</label>
+                 </div>
+                 <div class="col-sm-8">
+                     <textarea class="form-control" id="info" name="info"></textarea>
+                 </div>
+                 <div class="col-sm-2">
+                     <button type="submit" class="btn btn-secondary mb-3" name="submit" value="category">Create</button>
+                 </div>
+             </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </section>
+
+</body>
+</html>

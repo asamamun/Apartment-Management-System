@@ -1,9 +1,12 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "";
 date_default_timezone_set("Asia/Dhaka");
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -39,14 +42,14 @@ if(isset($_POST['submit'])){
         if(isset($message)) echo $message;
         ?>
         <div class="container p-4">
-            <h1 class="mt-4">Dashboard</h1>
+            <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
             <hr />
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active"><h3><?=$pagetitle;?></h3></li>
             </ol>
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-8 border border-info rounded p-4">
                     <form action="" method="post">
                         <div class="mb-3 mt-3">
                             <label for="cat_id" class="form-label">Category (optional)</label>
@@ -85,13 +88,7 @@ foreach ($div_rows as $div_row) {
 <?php require __DIR__.'/components/footer.php'; ?>
             </div>
         </div>
-        <script src="<?= settings()['adminpage'] ?>assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-area-demo.js"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/datatables-simple-demo.js"></script>
+        <?php require __DIR__.'/components/script.php'; ?>
 <script>
 function getApi(get, set) {
     let str = document.getElementById(get).value;

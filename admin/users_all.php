@@ -1,5 +1,6 @@
 <?php
 $pagename = "jhdsfhkasj";
+$pagetitle = "Housing Society";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,6 +10,7 @@ if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
+$myfn = new myfn\myfn();
 $db = new MysqliDb ();
 if(isset($_GET["role"])){
     $db->where('role', $_GET["role"]);
@@ -25,15 +27,14 @@ $users = $db->get('users');
                 <main>
                     <!-- changed content -->
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
                         <hr />
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active"><?=$pagetitle; ?></li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                                <a class="btn btn-primary" href="users_create.php"><i class="fas fa-plus"></i></a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -63,9 +64,9 @@ foreach($users as $user){
     // echo $user['name']."(".$user['email'].")<br>";
     $isblock = null;
     if($user['role'] == 0){
-        $isblock = "<a class='dropdown-item' href='users_func.php?id={$user['id']}'>Unblock</a>";
+        $isblock = "<a class='dropdown-item' href='users_func.php?block_id={$user['id']}&role=1'>Unblock</a>";
     }else{
-        $isblock = "<a class='dropdown-item' href='users_func.php?id={$user['id']}'><i class='bi bi-ban'></i> block</a>";
+        $isblock = "<a class='dropdown-item' href='users_func.php?block_id={$user['id']}&role=0'><i class='bi bi-ban'></i> block</a>";
     }
     echo <<<html
 <tr>
@@ -84,7 +85,7 @@ foreach($users as $user){
                     <li><a class="dropdown-item" href="users_img.php?id={$user['id']}"><i class="bi bi-file-earmark-image"></i> Photo</a></li>
                     <li><a class="dropdown-item" href="users_mail.php?id={$user['id']}"><i class="bi bi-envelope"></i> Send Mail</a></li>
                     <li><a class="dropdown-item" href="users_profile.php?id={$user['id']}"><i class="bi bi-person-bounding-box"></i> Profile</a></li>
-                    <li><a class="dropdown-item" href="users_payment.php?id={$user['id']}"><i class="bi bi-credit-card-2-back-fill"></i> Payment</a></li>
+                    <li><a class="dropdown-item" href="users_bills.php?id={$user['id']}"><i class="bi bi-credit-card-2-back-fill"></i> Bills</a></li>
                     <li>{$isblock}</li>
                     <li><a class="dropdown-item" href="users_delete.php?id={$user['id']}" onClick="return confirm('Are You Sure To Delete File.')"><i class="bi bi-archive-fill"></i> Delete</a></li>
                 </ul>
@@ -101,17 +102,12 @@ html;
                         </div>
                     </div>
                     <!-- changed content  ends-->
+                    <?=$myfn->msg('msg'); ?>
                 </main>
 <!-- footer -->
 <?php require __DIR__.'/components/footer.php'; ?>
             </div>
         </div>
-        <script src="<?= settings()['adminpage'] ?>assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-area-demo.js"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/datatables-simple-demo.js"></script>
+        <?php require __DIR__.'/components/script.php'; ?>
     </body>
 </html>

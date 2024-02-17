@@ -11,7 +11,7 @@ if(isset($_GET['id'])){
     if($id){
         $db->where('id', $id);
         if($db->delete('apartments')){
-            header("location: appt_all.php");
+            header("location: ".$_SERVER["HTTP_REFERER"]);
         }else{
             echo "something went wrong!! contact the administrator";
             exit;

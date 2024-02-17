@@ -1,4 +1,6 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "নতুন ব্যাবহারকারী তৈরী করুন খেয়াল রাখতে হবে সাবধানে ব্যাবহারকারীর টাইপ সিলেক্ট করতে হবে।";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -20,7 +22,8 @@ if(isset($_POST['reg'])){
       'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
   ];
   if($db->insert("users",$data)){
-      header("location: users_all.php");
+        $myfn->msg('msg',"Regitration Sucessfull!!");
+        header("location: users_profile.php?id={$db->getInsertId()}");
   }else{
       $myfn->msg('msg',"Regitration failed!!");
   }
@@ -40,10 +43,10 @@ if(isset($_POST['reg'])){
                         <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
                         <hr />
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active"><h5 style="color:green;"><?=$pagetitle; ?></h5></li>
                         </ol>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8 border border-info rounded p-4">
                                 <fieldset>
                                     <!-- <legend>Personalia:</legend> -->
                                     <form action="" method="post">
@@ -83,7 +86,9 @@ if(isset($_POST['reg'])){
                                     </form>
                                 </fieldset>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <img src="stroage/VV-Society-Logo.avif" alt="Admin" width="100%"/>
+                            </div>
                         </div>
                     </div>
                     <?=$myfn->msg('msg'); ?>

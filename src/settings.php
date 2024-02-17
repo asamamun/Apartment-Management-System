@@ -6,7 +6,8 @@ if (!function_exists('settings')) {
         return [
             'root'  => $root,
             'companyname'=> 'Housing Society',
-            'logo'=>$root."admin/assets/img/logo.svg",
+            'title'=> 'Housing Society',
+            'logo'=>$root."admin/stroage/VV-Society-Logo.avif",
             'homepage'=> $root,
             'adminpage'=>$root.'admin/',
             'hostname'=> 'localhost',

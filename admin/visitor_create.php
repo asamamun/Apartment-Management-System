@@ -20,14 +20,14 @@ if(isset($_POST['submit'])){
         'purpose'=> $db->escape($_POST['purpose'])
     ];
     if($db->insert("visitors", $data)){
-        header("location: visitor_all.php");
+        $myfn->msg('msg', "Dane");
+        header("location: visitor_today.php");
     }
 else{
-    $message = "insert failed!!";
+    $myfn->msg('msg', "insert failed!!");
 }
 }
-    ?>
-
+?>
 <?php require __DIR__.'/components/header.php'; ?>
     </head>
     <body class="sb-nav-fixed">
@@ -37,8 +37,7 @@ else{
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <?php
-        if(isset($message)) echo $message;
+        <?=$myfn->msg('msg'); ?>
         ?>
         <hr>
         <div class="container p-4">

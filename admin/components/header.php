@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title><?=isset($pagetitle) && $pagetitle != null ? $pagetitle : settings()['title']; ?></title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <!-- <link href="<?= settings()['adminpage'] ?>assets/css/bootstrap.min.css" rel="stylesheet" /> -->
         <link href="<?= settings()['adminpage'] ?>assets/css/styles.css" rel="stylesheet" />

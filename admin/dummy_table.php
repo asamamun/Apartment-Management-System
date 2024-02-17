@@ -1,4 +1,6 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -24,15 +26,14 @@ $users = $db->get('users');
                 <main>
                     <!-- changed content -->
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
                         <hr />
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active"><h3><?=$pagetitle;?></h3></li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                                <a class="btn btn-primary" href="cat_create.php"><i class="fas fa-plus"></i></a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -76,12 +77,6 @@ $users = $db->get('users');
 <?php require __DIR__.'/components/footer.php'; ?>
             </div>
         </div>
-        <script src="<?= settings()['adminpage'] ?>assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-area-demo.js"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/datatables-simple-demo.js"></script>
+        <?php require __DIR__.'/components/script.php'; ?>
     </body>
 </html>

@@ -1,15 +1,17 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
 $db = new MysqliDb ();
-$rows = $db->get('categories');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
     </head>
@@ -20,60 +22,75 @@ $rows = $db->get('categories');
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            DataTable Example
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-foreach($rows as $row){
-    // echo $user['name']."(".$user['email'].")<br>";
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
+                        <hr />
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active"><h3><?=$pagetitle;?></h3></li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <a class="btn btn-primary" href="cat_create.php"><i class="fas fa-plus"></i></a>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Sub-Category</th>
+                                            <th>Admin</th>
+                                            <th>Amount</th>
+                                            <th>Payment</th>
+                                            <th>Create</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Sub-Category</th>
+                                            <th>Admin</th>
+                                            <th>Amount</th>
+                                            <th>Payment</th>
+                                            <th>Create</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+<?php
+$sql= "SELECT expences.*, users.name as admin, categories.cat_name as catname, sub_categories.sub_name as subname
+FROM expences
+LEFT JOIN users
+ON expences.smt_id=users.id
+LEFT JOIN categories
+ON expences.cat_id=categories.id
+LEFT JOIN sub_categories
+ON expences.sub_id=sub_categories.id
+WHERE 1";
+$rows = $db->query($sql);
+foreach ($rows as $row) {
     echo <<<html
 <tr>
-    <td>{$row['id']}</td>
-    <td>{$row['cat_name']}</td>
-    <td>
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <div class="btn-group" role="group">
-                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">option</span>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="cat_edit.php?id={$row['id']}">Edit</a></li>
-                    <li><a class="dropdown-item" href="cat_delete.php?id={$row['id']}">Delete</a></li>
-                </ul>
-            </div>
-        </div>
-    </td>
+    <td>{$row['catname']}</td>
+    <td>{$row['subname']}</td>
+    <td>{$row['admin']}</td>
+    <td>{$row['amount']}</td>
+    <td>{$row['payment_at']}</td>
+    <td>{$row['created_at']}</td>
 </tr>
 html;
 }
 ?>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    <?=$myfn->msg('msg'); ?>
                     <!-- changed content  ends-->
                 </main>
-<!-- footer -->
-<?php require __DIR__.'/components/footer.php'; ?>
+                <!-- footer -->
+                <?php require __DIR__.'/components/footer.php'; ?>
             </div>
         </div>
-        <script src="<?= settings()['adminpage'] ?>assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-area-demo.js"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="<?= settings()['adminpage'] ?>assets/js/datatables-simple-demo.js"></script>
+        <?php require __DIR__.'/components/script.php'; ?>
     </body>
 </html>

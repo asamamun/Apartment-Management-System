@@ -15,6 +15,6 @@ if(isset($_GET['id'])){
             exit;
         }
     }
-    $conn->close();
+    $$db->close();
 }
 ?>

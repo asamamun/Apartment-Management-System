@@ -1,0 +1,3 @@
+https://github.com/ThingEngineer/PHP-MySQLi-Database-Class
+https://github.com/php-pds/skeleton_research
+https://github.com/php-pds/skeleton

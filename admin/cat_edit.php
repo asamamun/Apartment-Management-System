@@ -1,8 +1,11 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -45,37 +48,38 @@ if(isset($_GET['id'])){
         <?php require __DIR__.'/components/sidebar.php'; ?>
             <div id="layoutSidenav_content">
                 <main>
-                    <!-- changed content -->
-                    <?php
-        if(isset($message)) echo $message;
-        ?>
-        <hr>
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <div class="mb-3 mt-3">
-                            <input type="hidden" class="form-control" id="id"  name="id"  value="<?= $row['id'] ?>">
+                    <div class="container p-4">
+                        <h1 class="mt-4">Category Edit</h1>
+                        <hr />
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active"><h3><?=$pagetitle;?></h3></li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8 border border-info rounded p-4">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3 mt-3">
+                                        <input type="hidden" class="form-control" id="id"  name="id"  value="<?= $row['id'] ?>">
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="cat_name" class="form-label">Category Name:</label>
+                                        <input type="text" class="form-control" id="cat_name"  name="cat_name"  value="<?= $row['cat_name'] ?>" required>
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <label for="cat_type" class="form-label">Category Type:</label>
+                                        <select class="form-control" id="cat_type"  name="cat_type"  required>
+                                            <option value="1" <?= $row['type'] == 1 ? "selected" : ''; ?>>income</option>
+                                            <option value="0" <?= $row['type'] == 0 ? "selected" : ''; ?>>expense</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" name="submit" value="update">Submit</button>
+                                </form>
+                            </div>
+                            <div class="col-md-2"></div>
                         </div>
-                        <div class="mb-3 mt-3">
-                            <label for="cat_name" class="form-label">Category Name:</label>
-                            <input type="text" class="form-control" id="cat_name"  name="cat_name"  value="<?= $row['cat_name'] ?>" required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="cat_type" class="form-label">Category Type:</label>
-                            <select class="form-control" id="cat_type"  name="cat_type"  required>
-                                <option value="1" <?= $row['type'] == 1 ? "selected" : ''; ?>>income</option>
-                                <option value="0" <?= $row['type'] == 0 ? "selected" : ''; ?>>expense</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary" name="submit" value="update">Submit</button>
-                    </form>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
+                    </div>
         <!-- changed content  ends-->
+                    <?=$myfn->msg('msg'); ?>
                 </main>
 <!-- footer -->
 <?php require __DIR__.'/components/footer.php'; ?>

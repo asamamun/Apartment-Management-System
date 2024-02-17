@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2024 at 06:38 PM
+-- Generation Time: Feb 16, 2024 at 04:06 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -101,7 +101,9 @@ CREATE TABLE `bills` (
 
 INSERT INTO `bills` (`id`, `bill_name`, `items_id`, `amount`, `created_at`) VALUES
 (1, 'januyari', '1, 2, 3', 6456, '2024-02-10 14:45:11'),
-(2, 'fabruary', '4', 500, '2024-02-10 14:45:36');
+(2, 'fabruary', '4', 500, '2024-02-10 14:45:36'),
+(3, 'bari vara', '1, 2, 3, 4', 6956, '2024-02-12 18:07:33'),
+(4, 'barivara', '1, 2, 3', 6456, '2024-02-13 07:18:33');
 
 -- --------------------------------------------------------
 
@@ -292,12 +294,20 @@ CREATE TABLE `employees` (
   `image` text NOT NULL,
   `joindate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `salary` varchar(11) NOT NULL,
-  `extra` varchar(255) NOT NULL,
-  `option_one` varchar(255) NOT NULL,
-  `option_two` varchar(255) NOT NULL,
+  `extra` varchar(255) DEFAULT NULL,
+  `option_one` varchar(255) DEFAULT NULL,
+  `option_two` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `emp_name`, `designation`, `shift`, `nid`, `phone`, `image`, `joindate`, `salary`, `extra`, `option_one`, `option_two`, `created_at`, `status`) VALUES
+(1, 'MD. kamal', 'darowan', 'm', '12414', '4654', 'logo.png', '2024-02-16 14:08:59', '12000', '', '', '', '2024-02-16 14:08:59', 1),
+(2, 'Tanha gazi', 'suipar', 'N', '211241', '35252', 'sfa', '2024-02-16 15:00:31', '300000', NULL, NULL, NULL, '2024-02-16 15:00:31', 1);
 
 -- --------------------------------------------------------
 
@@ -308,10 +318,18 @@ CREATE TABLE `employees` (
 CREATE TABLE `emp_salary` (
   `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
-  `details` text NOT NULL,
+  `details` text DEFAULT NULL,
   `amount` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `emp_salary`
+--
+
+INSERT INTO `emp_salary` (`id`, `emp_id`, `details`, `amount`, `created_at`) VALUES
+(0, 1, 'dfsf', 34234, '2024-02-16 14:21:35'),
+(0, 1, 'eweweq', 34234, '2024-02-16 14:57:10');
 
 -- --------------------------------------------------------
 
@@ -380,10 +398,12 @@ CREATE TABLE `incomes` (
   `id` int(11) NOT NULL,
   `bill_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who submit by',
   `type` int(11) DEFAULT NULL COMMENT '1=nogd, 2=bank',
   `info` text DEFAULT NULL,
   `amount` int(11) NOT NULL,
   `payment_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `pay_id` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -392,17 +412,16 @@ CREATE TABLE `incomes` (
 -- Dumping data for table `incomes`
 --
 
-INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `type`, `info`, `amount`, `payment_at`, `created_at`, `status`) VALUES
-(1, 2, 1, NULL, NULL, 500, '2024-02-11 13:54:53', '2024-02-10 14:45:36', 1),
-(2, 2, 6, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(3, 2, 1, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(4, 2, 1, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(5, 2, 1, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(6, 2, 7, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(7, 2, 7, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(8, 2, 8, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(9, 2, 11, NULL, NULL, 500, NULL, '2024-02-10 14:45:36', 0),
-(10, 1, 1, NULL, NULL, 6456, NULL, '2024-02-10 14:45:53', 0);
+INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `smt_id`, `type`, `info`, `amount`, `payment_at`, `pay_id`, `created_at`, `status`) VALUES
+(20, 4, 1, 12, 1, 'dsfads', 6456, '2024-02-13 02:18:02', 'txt23971707808739', '2024-02-13 07:18:33', 1),
+(21, 4, 6, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(22, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(23, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(24, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(25, 4, 7, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(26, 4, 7, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(27, 4, 8, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(28, 4, 11, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0);
 
 -- --------------------------------------------------------
 
@@ -413,7 +432,7 @@ INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `type`, `info`, `amount`, `pa
 CREATE TABLE `meetings` (
   `id` int(11) NOT NULL,
   `ttitle` text NOT NULL,
-  `date` int(11) NOT NULL,
+  `meet_date` timestamp NULL DEFAULT NULL COMMENT 'meeting date',
   `members` text NOT NULL,
   `details` longtext NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -5611,14 +5630,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `mobile`, `address_one`, `address_two`, `password`, `image`, `visited_at`, `created_at`, `role`, `status`) VALUES
-(1, 'mr. user', 'user@gmail.com', '01776678594', 0, 'badda, dhaka', '', '$2y$10$lgLzOpkG6xiRYWvQrJWZkevJG0SgixsXfv6DEnsvLhqZI3I4AcJbG', 'stroage/img/1707402601525612699Screenshot_3.jpg', '2024-02-05 16:04:02', '2024-02-05 16:04:02', 1, 1),
-(6, 'tanha basar', 'tanha@gmail.com', '45345', NULL, 'kaji para, dhaka', NULL, '$2y$10$StlDZsKiwQkfV5OQVCQZOOS8M8q4YYU7onWOdbG4QlyvJKmV0g3ee', NULL, '2024-02-09 04:51:54', '2024-02-09 04:51:54', 1, 0),
-(7, 'maria', 'maria@gmail.com', '12314235', NULL, 'basa jani na, koy nai.', NULL, '$2y$10$eEckc96GXgX2JngXbJJbJ.35Iosz9VKDLovbp2Sj6ooB7lw7Qto4G', NULL, '2024-02-09 04:54:07', '2024-02-09 04:54:07', 2, 0),
+(1, 'mr. user', 'user@gmail.com', '01776678594', 0, 'badda, dhaka', '', '$2y$10$lgLzOpkG6xiRYWvQrJWZkevJG0SgixsXfv6DEnsvLhqZI3I4AcJbG', 'stroage/img/1708063449133972658.jpg', '2024-02-05 16:04:02', '2024-02-05 16:04:02', 1, 1),
+(6, 'tanha basar', 'tanha@gmail.com', '45345', NULL, 'kaji para, dhaka', NULL, '$2y$10$StlDZsKiwQkfV5OQVCQZOOS8M8q4YYU7onWOdbG4QlyvJKmV0g3ee', 'stroage/img/1708063481904991044.jpg', '2024-02-09 04:51:54', '2024-02-09 04:51:54', 1, 0),
+(7, 'maria', 'maria@gmail.com', '12314235', NULL, 'basa jani na, koy nai.', NULL, '$2y$10$eEckc96GXgX2JngXbJJbJ.35Iosz9VKDLovbp2Sj6ooB7lw7Qto4G', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:54:07', '2024-02-09 04:54:07', 2, 0),
 (8, 'asif', 'asif@gmail.com', '231241', NULL, 'kaji para', NULL, '$2y$10$1Z9.O9PFYXrNhqe063pmpe5OP7c8JILrK4snZbhHkCujZVqLr7BHG', NULL, '2024-02-09 04:54:46', '2024-02-09 04:54:46', 1, 0),
 (9, 'towhid', 'towhid@gmail.com', '16515', NULL, 'seorapara', NULL, '$2y$10$avDi2Cxa4gwEGP3hHKJ0P.JUWCOHR4pq9aLHFAfIRQnFgOOv8l7ou', NULL, '2024-02-09 04:55:31', '2024-02-09 04:55:31', 0, 0),
 (10, 'sabbir', 'sabbir@gmail.com', '65195498', NULL, 'mirpur', NULL, '$2y$10$OjaE4aerGe0JUw3M9XCdze4tmASOiVHD28Ph1SBDuwNh3xQInCxKK', NULL, '2024-02-09 04:56:13', '2024-02-09 04:56:13', 1, 0),
 (11, 'rafi', 'rafi@gmail.com', '41241', NULL, 'kauyar cor', NULL, '$2y$10$eEPFR4n8FheuLFrsEDGkm.g8gMFw.zVY8gr.qX3IamAAnP0N4sC8S', NULL, '2024-02-09 04:57:23', '2024-02-09 04:57:23', 1, 0),
-(12, 'admin', 'admin@gmail.com', '3423423', 3423423, 'fgfdgdfg', NULL, '$2y$10$D.QrfO/uTesTAEwf6o3PmuB3GfKoED6hkBZXakdwptJGGeZU8fN3C', 'stroage/img/1707661501949850213.jpg', '2024-02-11 14:23:46', '2024-02-11 14:23:46', 2, 0);
+(12, 'admin', 'admin@gmail.com', '3423423', 3423423, 'fgfdgdfg', NULL, '$2y$10$D.QrfO/uTesTAEwf6o3PmuB3GfKoED6hkBZXakdwptJGGeZU8fN3C', 'stroage/img/1707661501949850213.jpg', '2024-02-11 14:23:46', '2024-02-11 14:23:46', 2, 0),
+(13, 'israt', 'israt@gmail.com', '5646546', NULL, 'ghfhghgfhg', NULL, '$2y$10$ykoqK9rXRLePmb9oB7mxFu1eN2XiofI1RHXjLVAg6eX8PzJvnwZh6', NULL, '2024-02-16 05:23:48', '2024-02-16 05:23:48', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -5637,6 +5657,16 @@ CREATE TABLE `visitors` (
   `entry_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `exit_time` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `apt_id`, `visitor_name`, `address`, `persons`, `phone`, `purpose`, `entry_time`, `exit_time`) VALUES
+(17, 3, 'fgbf', 'rwerwe', 234, '23423423', 'vcvbsd', '2024-02-13 03:56:27', NULL),
+(18, 2, 'rtert', 'ertert', 5, '5432453', 'gfhfh', '2024-02-13 03:56:56', NULL),
+(19, 2, 'gfdgd', 'gdfgd', 1, '4564', 'cdvdf', '2024-02-13 03:58:43', NULL),
+(20, 1, 'gdfgdfg', 'dfgdfg', 5, '52', 'fhhfg', '2024-02-13 03:59:47', NULL);
 
 --
 -- Indexes for dumped tables
@@ -5735,7 +5765,8 @@ ALTER TABLE `garages`
 ALTER TABLE `incomes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `bill_id` (`bill_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `meetings`
@@ -5817,7 +5848,7 @@ ALTER TABLE `apartment_members`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `bill_items`
@@ -5853,7 +5884,7 @@ ALTER TABLE `divisions`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -5877,7 +5908,7 @@ ALTER TABLE `garages`
 -- AUTO_INCREMENT for table `incomes`
 --
 ALTER TABLE `incomes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `meetings`
@@ -5925,13 +5956,13 @@ ALTER TABLE `upazillas`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
@@ -5979,7 +6010,8 @@ ALTER TABLE `garages`
 --
 ALTER TABLE `incomes`
   ADD CONSTRAINT `incomes_ibfk_1` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `incomes_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `incomes_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `incomes_ibfk_3` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sub_categories`

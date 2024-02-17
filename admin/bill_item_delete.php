@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -64,9 +65,9 @@ $rows = $db->query($sql);
 foreach ($rows as $row) {
     $isblock = null;
     if($row['status'] == 0){
-        $isblock = "<a class='btn' href='users_func.php?id={$row['id']}'>Unblock</a>";
+        $isblock = "<a class='btn btn-danger' href='bill_func.php?block_id={$row['id']}&status=1'>Unblock</a>";
     }else{
-        $isblock = "<a class='btn' href='users_func.php?id={$row['id']}'>Block</a>";
+        $isblock = "<a class='btn btn-danger' href='bill_func.php?block_id={$row['id']}&status=0'>Block</a>";
     }
     echo <<<html
 <tr>

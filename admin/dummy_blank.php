@@ -1,8 +1,15 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+use App\auth\Admin;
+if(!Admin::Check()){
+    header('HTTP/1.1 503 Service Unavailable');
+    exit;
+}
 $myfn = new myfn\myfn();
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
@@ -19,7 +26,7 @@ $myfn = new myfn\myfn();
                         <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
                         <hr />
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active"><h3><?=$pagetitle;?></h3></li>
                         </ol>
                             //code
                     </div>

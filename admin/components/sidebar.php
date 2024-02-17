@@ -3,7 +3,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">                          
                             <a class="nav-link" href="../index.php" title="homepage" target="_blank">
-                                <img src="<?= settings()['logo'] ?>" alt="site link">
+                                <img src="<?= settings()['logo'] ?>" alt="site link" width="50">
                                 <div class="sb-nav-link-icon"></h3>&copy; Hackers Group</h3></div>
                             </a>
                             <a class="nav-link" href="index.php">
@@ -92,7 +92,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="cat_all.php">All</a>
                                     <a class="nav-link" href="cat_all.php?type=1">incomes</a>
-                                    <a class="nav-link" href="cat_all.php?type=1">expences</a>
+                                    <a class="nav-link" href="cat_all.php?type=0">expences</a>
                                     <a class="nav-link" href="cat_create.php">Add</a>
                                 </nav>
                             </div>
@@ -116,7 +116,7 @@
                             </a>
                             <div class="collapse" id="collapseLayoutsubIncome" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="bill_item_all.php">All</a>
+                                    <a class="nav-link" href="bill_item_all.php">Active Items</a>
                                     <a class="nav-link" href="bill_item_delete.php">Delete Items</a>
                                     <a class="nav-link" href="bill_item_create.php">Add</a>
                                 </nav>
@@ -132,6 +132,17 @@
                                     <a class="nav-link" href="bill_create.php">Add</a>
                                 </nav>
                             </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsubIncomes" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Incomes
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayoutsubIncomes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="income_complete.php">Complete Bill</a>
+                                    <a class="nav-link" href="income_due.php">Due Bill</a>
+                                </nav>
+                            </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsubExpanse" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Expanse
@@ -141,6 +152,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="expanse_all.php">All</a>
                                     <a class="nav-link" href="expanse_create.php">Add</a>
+                                    <a class="nav-link" href="expanse_salary.php">Salary</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Others</div>
@@ -188,6 +200,7 @@
                                             <a class="nav-link" href="dummy_blank.php">Blank</a>
                                             <a class="nav-link" href="dummy_table.php">Table</a>
                                             <a class="nav-link" href="dummy_form.php">Form</a>
+                                            <a class="nav-link" href="dummy_asif_form.php">Asif Form</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">

@@ -1,8 +1,11 @@
 <?php
+$pagename = "Categories";
+$pagetitle = "";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -24,15 +27,14 @@ $rows = $db->get('categories');
                 <main>
                     <!-- changed content -->
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4"><?=$pagename;?></h1>
                         <hr />
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active"><h3><?=$pagetitle;?></h3></li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                                <a class="btn btn-primary" href="cat_create.php"><i class="fas fa-plus"></i></a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">

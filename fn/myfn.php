@@ -29,21 +29,18 @@ class myfn{
             session_start();
         }
         if($set != false){
-            /* if(type($get) == 'array'){
-                $_SESSION[$set] = $get;
-            }else{
-                $_SESSION[$set] = $get;
-            } */
             $_SESSION[$get] = $set;
         }else{
             if(isset($_SESSION[$get])){
+                $session = $_SESSION[$get];
                 $result = <<<html
 <div class="alert alert-info alert-dismissible fade show" role="alert" style="position: absolute; top:2%; right:2%;">
-    <strong>msg: </strong>{$_SESSION[$get]}
+    <strong><i class="bi bi-envelope"></i> </strong>{$session}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 html;
-                unset($_SESSION[$get]);
+                //unset($_SESSION[$get]);
+                //$_SESSION[$get] = "No Message Found";
                 return $result;
             }else{
                 return false;

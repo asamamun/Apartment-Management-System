@@ -7,6 +7,7 @@
 <script src="<?= settings()['adminpage'] ?>assets/js/datatables-simple-demo.js"></script>
 <script src="<?= settings()['adminpage'] ?>assets/jquery-3.7.1.js"></script>
 <script src="<?= settings()['adminpage'] ?>assets/jQueryTE/jquery-te-1.4.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $("textarea").jqte();
 </script>

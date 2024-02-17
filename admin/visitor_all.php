@@ -9,7 +9,7 @@ if(!Admin::Check()){
     exit;
 }
 $myfn = new myfn\myfn;
-$db = new MysqliDb ();
+$db = new MysqliDb();
 $vst_rows = $db->get('apartments');
 $vst_arr = array();
 foreach($vst_rows as $vst_value){
