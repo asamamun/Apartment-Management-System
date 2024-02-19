@@ -20,6 +20,11 @@ class myfn{
 		return date('d/m/Y', strtotime($date1));
 	}
 
+    public function inputDate($date){
+        $date1 = strtr($date, '/', '-');
+		return date('Y-m-d', strtotime($date1));
+	}
+
     public function getPageName($set){
         return ucwords(implode(" ", explode("_", trim(basename($set), ".php"))));
     }
@@ -40,13 +45,10 @@ class myfn{
 </div>
 html;
                 //unset($_SESSION[$get]);
-                //$_SESSION[$get] = "No Message Found";
                 return $result;
             }else{
                 return false;
             }
         }
     }
-
-
 }

@@ -148,7 +148,7 @@ $db = new MysqliDb ();
         </div>
         <?php require __DIR__.'/components/script.php'; ?>
 <script>
-Swal.fire({
+/* Swal.fire({
   //title: "Custom width, padding, color, background.",
   width: 200,
   position: "top-end",
@@ -160,7 +160,7 @@ Swal.fire({
     center center
     no-repeat
   `
-});
+}); */
 </script>
     </body>
 </html>

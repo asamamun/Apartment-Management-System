@@ -43,19 +43,19 @@ if(isset($_POST['login'])){
    </head>
 <body>
   <div class="wrapper">
-    <h2>Registration</h2>
+    <h2>Login</h2>
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
       <div class="input-box">
-        <input type="email" name="email" placeholder="Enter your name" required>
+        <input type="email" name="email" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
-        <input type="password" name="password" placeholder="Enter your phone/mobile number." required>
+        <input type="password" name="password" placeholder="Enter your password" required>
       </div>
       <div class="input-box button">
         <input type="Submit" value="login" name="login">
       </div>
       <div class="text">
-        <h3>Already have an account? <a href="login.php">Login now</a></h3>
+        <h3>Don't have an account? <a href="registration.php">Registration now</a></h3>
       </div>
     </form>
   </div>

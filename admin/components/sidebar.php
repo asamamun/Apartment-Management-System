@@ -80,6 +80,7 @@
                                 <a class="nav-link" href="visitor_create.php">Add</a>
                                     <a class="nav-link" href="visitor_today.php">Today</a>
                                     <a class="nav-link" href="visitor_all.php">All</a>
+                                    <a class="nav-link" href="visitor_search.php">Search</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Interface</div>
@@ -168,22 +169,50 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Rules
                             </a>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsersapptmemNotice" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Notices
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                complain
+                            <div class="collapse" id="collapseUsersapptmemNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="notice_all.php">All</a>
+                                    <a class="nav-link" href="notice_create.php">Add</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsersComplain" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Complain
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <div class="collapse" id="collapseUsersComplain" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="complain_all.php">All</a>
+                                    <a class="nav-link" href="complain_create.php">Add</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsersapptmemMeetings" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Meetings
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="blank.php">
+                            <div class="collapse" id="collapseUsersapptmemMeetings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="meet_all.php">All</a>
+                                    <a class="nav-link" href="meet_create.php">Add</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsersapptmemEvents" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Events
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapseUsersapptmemEvents" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="event_all.php">All</a>
+                                    <a class="nav-link" href="event_create.php">Add</a>
+                                </nav>
+                            </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages

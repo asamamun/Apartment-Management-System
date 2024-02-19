@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2024 at 04:06 PM
+-- Generation Time: Feb 18, 2024 at 09:14 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,7 @@ CREATE TABLE `apartments` (
 --
 
 INSERT INTO `apartments` (`id`, `apt_no`, `user_id`, `flat_size`, `info`) VALUES
-(1, 'A1', 1, '1600', 'none'),
+(1, 'A1', 1, '1600', 'empty'),
 (2, 'B2', 6, '1500', 'nothing'),
 (3, 'A2', 1, '1300', 'nothing'),
 (4, 'A3', 1, '1400', 'nothing'),
@@ -79,7 +79,9 @@ INSERT INTO `apartment_members` (`id`, `apt_id`, `member_name`, `dob`, `nid`, `i
 (6, 4, 'sabber', '2020-06-09 18:00:00', '3231231', 'stroage/img/1707457854398513654deatheface_11eh7vkq_e1.jpg', '2024-02-09 05:50:54', 1),
 (7, 4, 'koli', '2022-06-08 18:00:00', '67576576', 'stroage/img/1707457899816776821RYUI.JPG', '2024-02-09 05:51:39', 1),
 (8, 3, 'sathi', '2024-02-12 18:00:00', '2312312', 'stroage/img/1707458439808317839Don\'t lie.JPG', '2024-02-09 06:00:39', 1),
-(9, 1, 'adib', '2024-02-14 18:00:00', '234234', 'stroage/img/1707458663710952189Harry_Potter_5_Wallpaper_09_e1.jpg', '2024-02-09 06:04:23', 1);
+(9, 1, 'adib', '2024-02-14 18:00:00', '234234', 'stroage/img/1707458663710952189Harry_Potter_5_Wallpaper_09_e1.jpg', '2024-02-09 06:04:23', 1),
+(10, 9, 'ertertert', '2024-02-22 18:00:00', '43534534', 'stroage/img/1708236201333472413.webp', '2024-02-18 06:03:21', 1),
+(11, 4, 'jhgghghcgh', '2024-02-15 18:00:00', '564', 'stroage/img/1708241688109326953.jpg', '2024-02-18 07:34:48', 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +150,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `cat_name`, `type`) VALUES
-(1, 'Bulding', 1);
+(1, 'Bulding', 1),
+(2, 'salary', 0);
 
 -- --------------------------------------------------------
 
@@ -342,7 +345,7 @@ CREATE TABLE `events` (
   `title` text NOT NULL,
   `details` longtext NOT NULL,
   `images` text NOT NULL,
-  `pinned` int(11) NOT NULL DEFAULT 0,
+  `pinned` int(11) NOT NULL COMMENT 'pinned=1/unpinned=0',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -356,11 +359,19 @@ CREATE TABLE `expences` (
   `id` int(11) NOT NULL,
   `cat_id` int(11) NOT NULL,
   `sub_id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL,
   `details` text NOT NULL,
   `amount` int(11) NOT NULL,
   `payment_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `expences`
+--
+
+INSERT INTO `expences` (`id`, `cat_id`, `sub_id`, `smt_id`, `details`, `amount`, `payment_at`, `created_at`) VALUES
+(1, 2, 6, 12, 'fdsfsf', 324, '2024-02-17 03:07:01', '2024-02-17 03:07:01');
 
 -- --------------------------------------------------------
 
@@ -431,12 +442,19 @@ INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `smt_id`, `type`, `info`, `am
 
 CREATE TABLE `meetings` (
   `id` int(11) NOT NULL,
-  `ttitle` text NOT NULL,
+  `title` text NOT NULL,
   `meet_date` timestamp NULL DEFAULT NULL COMMENT 'meeting date',
   `members` text NOT NULL,
   `details` longtext NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `meetings`
+--
+
+INSERT INTO `meetings` (`id`, `title`, `meet_date`, `members`, `details`, `created_at`) VALUES
+(1, 'asdasd', '2024-02-28 10:52:00', '4', 'asdasfa', '2024-02-18 07:52:21');
 
 -- --------------------------------------------------------
 
@@ -477,7 +495,7 @@ CREATE TABLE `plot_info` (
 --
 
 INSERT INTO `plot_info` (`id`, `country`, `division`, `district`, `upazila`, `union`, `address`, `image`, `help_line`, `email`, `google_map`) VALUES
-(1, 'bangladesh', '1', '2', '4', '5', 'fdgsdfgdsfgdsfg', 'stroage/img/1707315363684321713036.jpg', '54453', 'isadf@gmail.com', 'dsafasdfas');
+(1, 'bangladesh', '1', '2', '4', '5', 'fdgsdfgdsfgdsfg', 'stroage/img/1708138583470945729pexels-eberhard-grossgasteiger-640781.jpg, stroage/img/170813859873514480pexels-pixabay-50594.jpg', '54453', 'isadf@gmail.com', 'dsafasdfas');
 
 -- --------------------------------------------------------
 
@@ -521,7 +539,8 @@ INSERT INTO `sub_categories` (`id`, `sub_name`, `cat_id`, `type`) VALUES
 (2, 'Sequrity', 1, 1),
 (3, 'water', 1, 1),
 (4, 'clener', 1, 1),
-(5, 'maintenance', 1, 1);
+(5, 'maintenance', 1, 1),
+(6, 'Watchman', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -5632,7 +5651,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `mobile`, `address_one`, `address_two`, `password`, `image`, `visited_at`, `created_at`, `role`, `status`) VALUES
 (1, 'mr. user', 'user@gmail.com', '01776678594', 0, 'badda, dhaka', '', '$2y$10$lgLzOpkG6xiRYWvQrJWZkevJG0SgixsXfv6DEnsvLhqZI3I4AcJbG', 'stroage/img/1708063449133972658.jpg', '2024-02-05 16:04:02', '2024-02-05 16:04:02', 1, 1),
 (6, 'tanha basar', 'tanha@gmail.com', '45345', NULL, 'kaji para, dhaka', NULL, '$2y$10$StlDZsKiwQkfV5OQVCQZOOS8M8q4YYU7onWOdbG4QlyvJKmV0g3ee', 'stroage/img/1708063481904991044.jpg', '2024-02-09 04:51:54', '2024-02-09 04:51:54', 1, 0),
-(7, 'maria', 'maria@gmail.com', '12314235', NULL, 'basa jani na, koy nai.', NULL, '$2y$10$eEckc96GXgX2JngXbJJbJ.35Iosz9VKDLovbp2Sj6ooB7lw7Qto4G', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:54:07', '2024-02-09 04:54:07', 2, 0),
+(7, 'maria', 'maria@gmail.com', '12314235', 0, 'basa jani na, koy nai.', '', '$2y$10$eEckc96GXgX2JngXbJJbJ.35Iosz9VKDLovbp2Sj6ooB7lw7Qto4G', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:54:07', '2024-02-09 04:54:07', 2, 0),
 (8, 'asif', 'asif@gmail.com', '231241', NULL, 'kaji para', NULL, '$2y$10$1Z9.O9PFYXrNhqe063pmpe5OP7c8JILrK4snZbhHkCujZVqLr7BHG', NULL, '2024-02-09 04:54:46', '2024-02-09 04:54:46', 1, 0),
 (9, 'towhid', 'towhid@gmail.com', '16515', NULL, 'seorapara', NULL, '$2y$10$avDi2Cxa4gwEGP3hHKJ0P.JUWCOHR4pq9aLHFAfIRQnFgOOv8l7ou', NULL, '2024-02-09 04:55:31', '2024-02-09 04:55:31', 0, 0),
 (10, 'sabbir', 'sabbir@gmail.com', '65195498', NULL, 'mirpur', NULL, '$2y$10$OjaE4aerGe0JUw3M9XCdze4tmASOiVHD28Ph1SBDuwNh3xQInCxKK', NULL, '2024-02-09 04:56:13', '2024-02-09 04:56:13', 1, 0),
@@ -5749,7 +5768,8 @@ ALTER TABLE `events`
 ALTER TABLE `expences`
   ADD PRIMARY KEY (`id`),
   ADD KEY `expences_ibfk_1` (`cat_id`),
-  ADD KEY `sub_id` (`sub_id`);
+  ADD KEY `sub_id` (`sub_id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `garages`
@@ -5842,7 +5862,7 @@ ALTER TABLE `apartments`
 -- AUTO_INCREMENT for table `apartment_members`
 --
 ALTER TABLE `apartment_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `bills`
@@ -5860,7 +5880,7 @@ ALTER TABLE `bill_items`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `complain`
@@ -5896,7 +5916,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `expences`
 --
 ALTER TABLE `expences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `garages`
@@ -5914,7 +5934,7 @@ ALTER TABLE `incomes`
 -- AUTO_INCREMENT for table `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `notices`
@@ -5938,7 +5958,7 @@ ALTER TABLE `rules`
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `unions`
@@ -5997,7 +6017,8 @@ ALTER TABLE `emp_salary`
 --
 ALTER TABLE `expences`
   ADD CONSTRAINT `expences_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `expences_ibfk_2` FOREIGN KEY (`sub_id`) REFERENCES `sub_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `expences_ibfk_2` FOREIGN KEY (`sub_id`) REFERENCES `sub_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `expences_ibfk_3` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `garages`

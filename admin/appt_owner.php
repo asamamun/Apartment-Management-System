@@ -15,17 +15,18 @@ $users = $db->query($sql);
 <?php require __DIR__.'/components/header.php'; ?>
     </head>
     <body class="sb-nav-fixed">
-    <?php require __DIR__.'/components/navbar.php'; ?>
+<?php require __DIR__.'/components/navbar.php'; ?>
         <div id="layoutSidenav">
-        <?php require __DIR__.'/components/sidebar.php'; ?>
+<?php require __DIR__.'/components/sidebar.php'; ?>
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
+                    <div class="container-fluid px-4">
+                    <h1>Owner Info</h1><hr />
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example
+                            Apartment Owner Info
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -41,21 +42,36 @@ $users = $db->query($sql);
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-foreach($users as $user){
+<?php
+// foreach($users as $user){
     // echo $user['name']."(".$user['email'].")<br>";
-    if($user['role'] == 0){
-        $isblock = "<li><a class='dropdown-item' href='users_func.php?id={$user['id']}''>Unblock</a></li>";
-    }else{
-        $isblock = "<li><a class='dropdown-item' href='users_func.php?id={$user['id']}''>block</a></li>";
-    }
+    // if($user['role'] == 0){
+    //  $isblock = "<li><a class='dropdown-item' href='users_func.php?id={$user['id']}''>Unblock</a></li>";
+     
+//    }else{
+//        $isblock = "<li><a class='dropdown-item' href='users_func.php?id={$user['id']}''>block</a></li>";
+//     }
+//{$isblock} 88 number line
+
+    foreach($users as $user){
+        if($user['role'] == 0){
+            $rolesel= "<span class='text-warning'><b> Deactive </b></span>";}
+    if($user['role'] == 2){
+       $rolesel= "<span class='text-danger'><b> Admin </b></span>";
+     
+    }elseif($user['role'] == 1){
+        $rolesel = "<span class='text-success '><b> User </b></span>";
+   }
+   
+    
+//    <td>{$user['role']}</td>
     echo <<<html
 <tr>
     <td>{$user['id']}</td>
     <td>{$user['apt_no']}</td>
     <td>{$user['name']}</td>
     <td>{$user['email']}</td>
-    <td>{$user['role']}</td>
+    <td> $rolesel</td>
     <td>{$user['created_at']}</td>
     <td>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -68,7 +84,7 @@ foreach($users as $user){
                     <li><a class="dropdown-item" href="users_mail.php?id={$user['id']}">Send Mail</a></li>
                     <li><a class="dropdown-item" href="users_profile.php?id={$user['id']}">Profile</a></li>
                     <li><a class="dropdown-item" href="users_payment.php?id={$user['id']}">Payment</a></li>
-                    {$isblock}
+                    <li><a class="dropdown-item" href="users_role.php?id={$user['id']}">Role</a></li>
                     <li><a class="dropdown-item" href="users_delete.php?id={$user['id']}">Delete</a></li>
                 </ul>
             </div>
@@ -79,8 +95,9 @@ html;
 }
 ?>
                                 </tbody>
-                            </table>
+                    </table>
                         </div>
+                      </div>
                     </div>
                     <!-- changed content  ends-->
                 </main>

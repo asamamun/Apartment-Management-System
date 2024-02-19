@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -25,11 +26,12 @@ $rows = $db->get('garages');
                 <div id="layoutSidenav_content">
                     <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
+                    <div class="container-fluid px-4">
+                    <h1>Garage Details</h1><hr />
                         <div class="card mb-4">
                             <div class="card-header">
                              <i class="fas fa-table me-1"></i>
-                                 DataTable Example
+                             Details 
                             </div>
                         <div class="card-body">
                             <table class="table">
@@ -41,6 +43,14 @@ $rows = $db->get('garages');
                                    <th>Action</th>
                                 </tr>
                               </thead>
+                              <tfoot>
+                              <tr>
+                                   <th>ID</th>
+                                   <th>User</th>
+                                   <th>Garage No</th>
+                                   <th>Action</th>
+                                </tr>
+                              </tfoot>
                              <tbody>
 <?php
     foreach($rows as $row){
@@ -68,6 +78,7 @@ html;
                               </tbody>
                             </table>
                         </div>
+                    </div>
                     </div>
                     <!-- changed content  ends-->
                 </main>

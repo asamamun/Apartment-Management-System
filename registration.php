@@ -39,10 +39,10 @@ if(isset($_POST['reg'])){
         <input type="text" name="username" placeholder="Enter your name" required>
       </div>
       <div class="input-box">
-        <input type="phone" name="phone" placeholder="Enter your phone/mobile number." required>
+        <input type="phone" name="phone" placeholder="Enter your phone/mobile number" required>
       </div>
       <div class="input-box">
-        <input type="text" name="email" placeholder="Enter your email." required>
+        <input type="text" name="email" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
         <textarea name="address" placeholder="Address" required></textarea>

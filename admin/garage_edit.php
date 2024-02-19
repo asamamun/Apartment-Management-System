@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -17,10 +18,13 @@ if(isset($_POST['submit'])){
         'user_id' => $_POST['user_id'],
     ];
     $db->where ('id', $idtoupdate);
-    if ($db->update ('garages', $data))
-        $message = "User Updated successfully";
+    if ($db->update ('garages', $data)){
+    $myfn->msg('msg','done');
+    header("location:garage_all.php");
+    exit;
+    }
     else{
-        $message = "Something went wrong, ".$db->getLastError();
+        $myfn->msg('msg','fail');
     }
 }
 if(isset($_GET['id'])){
@@ -46,46 +50,76 @@ if(isset($_GET['id'])){
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
+                    <div class="container-fluid px-4">
                     <?php
         if(isset($message)) echo $message;
         ?>
         <hr>
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <div class="mb-3 mt-3">
-                            <input type="hidden" class="form-control" id="id"  name="id"  value="<?= $row['id'] ?>">
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="user_id" class="form-label">User Name:</label>
-                            <select class="form-control" id="user_id"  name="user_id"  required>
+        <style>
+            .form{
+                background-color: mintcream;
+                border-radius: 5px;
+                box-shadow: -4px 3px 11px 0px rgba(0,0,0,0.75);
+            }
+            label{
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+            .h2{
+                text-align: center;
+                color: gray;
+            }
+            
+        </style>
+
+
+
+<section class="p-3 p-md-3 p-xl-5">
+                                <div class="container">
+                                    <div class="col-sm-7">
+                                    <div class="card border-0 shadow-sm rounded-4">
+                                        <div class="card-body">
+                                        <div class="row">
+                                            <form action="" method="post" class="row g-3 form">
+                                            <h2 class="h2">Update Garage info</h2><hr>
+                                                <div class="col-sm-3">
+                                                <label for="user_id" class="form-label">User Name:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <select class="form-control" id="user_id"  name="user_id"  required>
 <?php
 $user_rows = $db->get("users");
 foreach($user_rows as $user_row){
-    if($user_row['id'] == $row['user_id']){
-        echo "<option value='{$user_row['id']}' selected>{$user_row['name']}</option>";
-    }else{
-        echo "<option value='{$user_row['id']}'>{$user_row['name']}</option>";
-    }
+    echo "<option value='{$user_row['id']}'>{$user_row['name']}</option>";
 }
 ?>
                                 
-                            </select>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="gar_no" class="form-label">Garage No:</label>
-                            <input type="text" class="form-control" id="gar_no"  name="gar_no"  value="<?= $row['gar_no'] ?>" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary" name="submit" value="update">Update</button>
-                    </form>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-        <!-- changed content  ends-->
-                </main>
+                            </select>                       
+                         </div>
+                                                <div class="col-sm-3">
+                                                <label for="gar_no" class="form-label">Garage No:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="gar_no"  name="gar_no"  required>
+                                                </div>
+                                                
+                                                
+                                                <div class="col-sm-2">
+                                                    <button type="submit" class="btn btn-secondary mb-3" name="submit" value="update">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </section>
+                            </div>
+                            <?=$myfn->msg('msg'); ?>
+<!-- changed content  ends-->
+        </main>
+           
+       
 <!-- footer -->
 <?php require __DIR__.'/components/footer.php'; ?>
             </div>

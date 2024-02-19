@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -24,12 +25,13 @@ $rows = $db->get('apartments');
             <?php require __DIR__.'/components/sidebar.php'; ?>
                 <div id="layoutSidenav_content">
                     <main>
-                    <!-- changed content -->
-                    <h1>All Users</h1><hr />
+                      <!-- changed content -->
+                      <div class="container-fluid px-4">
+                    <h1>Apartment Details </h1><hr />
                         <div class="card mb-4">
                             <div class="card-header">
                              <i class="fas fa-table me-1"></i>
-                                 DataTable Example
+                             Details
                             </div>
                         <div class="card-body">
                             <table class="table">
@@ -37,10 +39,22 @@ $rows = $db->get('apartments');
                                 <tr>
                                    <th>ID</th>
                                    <th>User</th>
-                                   <th> Appartment No</th>
+                                   <th>Appartment No</th>
+                                   <th>flat_size</th>
+                                   <th>info</th>
                                    <th>Action</th>
                                 </tr>
                               </thead>
+                              <tfoot>
+                                <tr>
+                                   <th>ID</th>
+                                   <th>User</th>
+                                   <th>Appartment No</th>
+                                   <th>flat_size</th>
+                                   <th>info</th>
+                                   <th>Action</th>
+                                </tr>
+                              </tfoot>
                              <tbody>
 <?php
     foreach($rows as $row){
@@ -50,13 +64,15 @@ $rows = $db->get('apartments');
       <td>{$row['id']}</td>
       <td>{$apt_arr[$row['user_id']]}</td>
       <td>{$row['apt_no']}</td>
+      <td>{$row['flat_size']}</td>
+      <td>{$row['info']}</td>
       <td>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
                 <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">option</span>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="appt_edit.php?id={$row['id']}">Edit</a></li>
-                    <li><a class="dropdown-item" href="app_delete.php?id={$row['id']}">Delete</a></li>
+                    <li><a class="dropdown-item" href="appt_delete.php?id={$row['id']}">Delete</a></li>
                   </ul>
             </div>
         </div>
@@ -69,6 +85,7 @@ html;
                             </table>
                         </div>
                     </div>
+                 </div>
                     <!-- changed content  ends-->
                 </main>
 <!-- footer -->

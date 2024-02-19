@@ -3,12 +3,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
-$myfn = new myfn\myfn;
 $db = new MysqliDb ();
 $mem_rows = $db->get('apartments');
 $mem_arr = array();
@@ -26,11 +26,12 @@ $rows = $db->orderBy('apt_id', 'ASC')->get('apartment_members');
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
+                    <div class="container-fluid px-4">
+                    <h1>Apartment member Details </h1><hr />
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example
+                            member Details
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -47,8 +48,21 @@ $rows = $db->orderBy('apt_id', 'ASC')->get('apartment_members');
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>apt_no</th>
+                                        <th>member_name</th>
+                                        <th>dob</th>
+                                        <th>nid</th>
+                                        <th>image</th>
+                                        <th>status</th>
+                                        <th>created_at</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
                                 <tbody>
-                                <?php
+<?php
 foreach($rows as $row){
     // echo $user['name']."(".$user['email'].")<br>";
     echo <<<html
@@ -79,6 +93,7 @@ html;
                                 </tbody>
                             </table>
                         </div>
+                    </div>
                     </div>
                     <!-- changed content  ends-->
                 </main>
