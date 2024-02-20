@@ -51,8 +51,38 @@ $row = $db->getOne("plot_info");
 <?php require __DIR__ . '/components/menubar.php';?>
 
   <!-- ======= Hero Section ======= -->
-
   <section id="hero" class="d-flex align-items-center">
+  <div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <img src="<?= settings()['homepage'] ?>assets/maria/assets/img/b17.jpg" class="img-fluid " alt="">
+    </div>
+    <div class="carousel-item">
+    <img src="<?= settings()['homepage'] ?>assets/maria/assets/img/b13.jpg"  class="img-fluid " alt="">
+    </div>
+    <div class="carousel-item">
+      <!-- <img src="..." class="d-block w-100" alt="..."> -->
+      <img src="<?= settings()['homepage'] ?>assets/maria/assets/img/b15.jpg"  class="img-fluid " alt="">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</section> 
+
+
+  <!-- <section id="hero" class="d-flex align-items-center">
 
     <div class="container">
       <div class="row">
@@ -73,7 +103,7 @@ $row = $db->getOne("plot_info");
       </div>
     </div>
 
-  </section>
+  </section> -->
   <!-- End Hero -->
 
   <main id="main">
@@ -260,17 +290,17 @@ $row = $db->getOne("plot_info");
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/in1.jpg" class="img-fluid" alt=""></div>
             <div class="portfolio-info">
               <h4>App 2</h4>
               <p>App</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/in2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/in3.jpg" class="img-fluid" alt=""></div>
             <div class="portfolio-info">
               <h4>Card 2</h4>
               <p>Card</p>

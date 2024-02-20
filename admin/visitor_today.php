@@ -32,12 +32,12 @@ $rows = $db->query($sql);
                         <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
                         <hr />
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <!-- <li class="breadcrumb-item active">Today's Visitors</li> -->
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                                Today's Visitors Info
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -69,10 +69,10 @@ $rows = $db->query($sql);
 <?php
 foreach($rows as $row){
     if($row['exit_time'] == null){
-        $ifnull="style='background-color:red'";
-        $extButton = "<td><a class='btn btn-info' href='visitor_func.php?id={$row['id']}&func=exit_func'>Exit</a></td>";
+        $ifnull="style='background-color:#ff6060'";
+        $extButton = "<td><a class='btn btn-sm btn-success' href='visitor_func.php?id={$row['id']}&func=exit_func'>Exit</a></td>";
     }else{
-        $ifnull="style='background-color:green'";
+        $ifnull="style='background-color:#52bf91'";
         $extButton = "<td></td>";
     }
     echo <<<html

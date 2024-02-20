@@ -10,7 +10,7 @@ if(!Admin::Check()){
 }
 $myfn = new myfn\myfn;
 $db = new MysqliDb();
-$vst_rows = $db->get('apartments');
+$vst_rows = $db->get('apartments'); 
 $vst_arr = array();
 foreach($vst_rows as $vst_value){
     $vst_arr[$vst_value['id']] = $vst_value['apt_no'];
@@ -26,11 +26,12 @@ $rows = $db->orderBy('entry_time', 'DESC')->get('visitors');
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
+                    <div class="container-fluid px-4">
+                    <h1>All Visitors</h1><hr />
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example
+                            Visitors Info
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -49,9 +50,11 @@ $rows = $db->orderBy('entry_time', 'DESC')->get('visitors');
                                 <?php
 foreach($rows as $row){
     if($row['exit_time'] == null){
-        $ifnull="style='background-color:red'";
+        // $ifnull="style='background-color:red'"; 
+        $ifnull="style='background-color:#ff6060'";
     }else{
-        $ifnull="style='background-color:green'";
+        // $ifnull="style='background-color:green'";
+        $ifnull="style='background-color:#52bf91'";
     }
     echo <<<html
 <tr {$ifnull}>
@@ -69,6 +72,7 @@ html;
                                 </tbody>
                             </table>
                         </div>
+                    </div>
                     </div>
                     <!-- changed content  ends-->
                 </main>

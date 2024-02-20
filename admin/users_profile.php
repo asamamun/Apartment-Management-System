@@ -16,6 +16,7 @@ $row = $db->getOne('users');
     <title>Document</title>
     <link rel="stylesheet" href="<?= settings()['homepage'] ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= settings()['homepage'] ?>assets/profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="container">
@@ -197,5 +198,6 @@ html;
 
         </div>
     </div>
+    <?=$myfn->msg('msg'); ?>
 </body>
 </html>

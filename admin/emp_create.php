@@ -3,12 +3,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
-$myfn = new myfn\myfn;
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
     $data = [
@@ -41,64 +41,106 @@ else{
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
+                    <div class="container-fluid px-4">
+                    <?=$myfn->msg('msg'); ?>
                     <?php
         if(isset($message)) echo $message;
         ?>
-        <hr>
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <form action="" method="post" enctype="multipart/form-data">
-                    <div class="mb-3 mt-3">
-                            <input type="hidden" class="form-control" id="id"  name="id" >
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="emp_name" class="form-label">Employee Name:</label>
-                            <input type="text" class="form-control" id="emp_name"  name="emp_name"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="designation" class="form-label">Designation:</label>
-                            <input type="text" class="form-control" id="designation"  name="designation"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="shift" class="form-label">Shift:</label>
-                            <input type="text" class="form-control" id="shift"  name="shift"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="nid" class="form-label">National ID:</label>
-                            <input type="number" class="form-control" id="nid"  name="nid"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="phone" class="form-label">Phone:</label>
-                            <input type="text" class="form-control" id="phone"  name="phone"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="image" class="form-label">Image:</label>
-                            <input type="file" class="form-control" id="image"  name="images">
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="salary" class="form-label">Salary:</label>
-                            <input type="number" class="form-control" id="salary"  name="salary"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="extra" class="form-label">Extra:</label>
-                            <input type="number" class="form-control" id="extra"  name="extra"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="option_one" class="form-label">Option_one:</label>
-                            <input type="text" class="form-control" id="option_one"  name="option_one"  required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="option_two" class="form-label">Option_two:</label>
-                            <input type="text" class="form-control" id="option_two"  name="option_two"  required>
-                        </div>
-                        <button type="submit" class="btn btn-primary" name="submit" value="">Create New Employee</button>
-                    </form>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
+<style>
+            .form{
+                background-color: mintcream;
+                border-radius: 5px;
+                box-shadow: -4px 3px 11px 0px rgba(0,0,0,0.75);
+            }
+            label{
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+            .h2{
+                text-align: center;
+                color: gray;
+            }
+        </style>
+        <section class="p-3 p-md-3 p-xl-5">
+                                <div class="container">
+                                  <div class="col-sm-7">
+                                    <div class="card border-0 shadow-sm rounded-4">
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <form action="" method="post" class="row g-3 form" enctype="multipart/form-data">
+                                            <h2 class="h2">Create Employee </h2><hr> 
+                                            <div class="col-sm-3">
+                                                <label for="emp_name">Employee Name:</label>
+                                             </div>
+                                            <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="emp_name"  name="emp_name" required>
+                                              </div>
+                                                <div class="col-sm-3">
+                                                    <label for="designation">Designation:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="designation"  name="designation"  required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                <label for="shift">Shift:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="shift"  name="shift"  required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="nid">National ID:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="number" class="form-control" id="nid"  name="nid" required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="phone">Phone:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="phone"  name="phone"  required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="image">Image:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="file" class="form-control" id="image"  name="image"  required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="salary">Salary:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="number" class="form-control" id="salary"  name="salary"  required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="extra">Extra:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="extra"  name="extra"  required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="option_one">Option_one:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="option_one"  name="option_one"   required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="option_one">Option_two:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="option_two"  name="option_two"   required>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <button type="submit" class="btn btn-secondary mb-3" name="submit" value="category">Create New Employee</button>
+                                                </div>
+                                             </form>
+                                         </div>
+                                       </div>
+                                     </div>
+                                  </div>
+                                </div>
+                            </section> 
+                         </div>
+        <?=$myfn->msg('msg');?>
         <!-- changed content  ends-->
                 </main>
 <!-- footer -->

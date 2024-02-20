@@ -45,9 +45,9 @@ if(isset($_POST['submit'])){
     }
     label{
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
-    .h2{
+    .h3{
         text-align: center;
         color: gray;
     }
@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
                                         <div class="card-body">
                                         <div class="row">
                                             <form action="" method="post" class="row g-3 form">
-                                            <h2 class="h2">Create Notice</h2><hr>
+                                            <h3 class="h3">Create Notice</h3><hr>
                                                 <div class="col-sm-3">
                                                     <label for="title">Title :</label>
                                                 </div>

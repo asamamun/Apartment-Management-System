@@ -36,15 +36,33 @@ class myfn{
         if($set != false){
             $_SESSION[$get] = $set;
         }else{
-            if(isset($_SESSION[$get])){
+            if(isset($_SESSION[$get]) && $_SESSION[$get] != false){
                 $session = $_SESSION[$get];
-                $result = <<<html
+                if(strpos($session, 'success')){
+                    $msgs = "success";
+                }elseif(strpos($session, 'error')){
+                    $msgs = "error";
+                }else{
+                    $msgs = "question";
+                }
+                /* $result = <<<html
 <div class="alert alert-info alert-dismissible fade show" role="alert" style="position: absolute; top:2%; right:2%;">
     <strong><i class="bi bi-envelope"></i> </strong>{$session}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+html; */
+$result = <<<html
+<script>
+Swal.fire({
+    position: "top-end",
+    icon: "{$msgs}",
+    title: "{$session}",
+    showConfirmButton: false,
+    timer: 1500
+});
+</script>
 html;
-                //unset($_SESSION[$get]);
+                unset($_SESSION[$get]);
                 return $result;
             }else{
                 return false;

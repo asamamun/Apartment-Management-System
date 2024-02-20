@@ -19,7 +19,7 @@ $keywords = $_GET['keywords'] ?? "";
 $sql = "SELECT 	* FROM apartment_members WHERE `member_name` LIKE '%$keywords%'";
 $rows = $db->query($sql);
 ?>
-<?php require __DIR__.'/components/header.php'; ?>
+<?php require __DIR__.'/components/header.php'; ?> 
     </head>
     <body class="sb-nav-fixed">
     <?php require __DIR__.'/components/navbar.php'; ?>
@@ -28,11 +28,12 @@ $rows = $db->query($sql);
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <h1>All Users</h1><hr />
+                    <div class="container-fluid px-4">
+                    <h1>Apartment member Details </h1><hr />
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            DataTable Example
+                            member Details
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -49,6 +50,19 @@ $rows = $db->query($sql);
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>apt_no</th>
+                                        <th>member_name</th>
+                                        <th>dob</th>
+                                        <th>nid</th>
+                                        <th>image</th>
+                                        <th>status</th>
+                                        <th>created_at</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
                                 <tbody>
                                 <?php
 foreach($rows as $row){
@@ -81,6 +95,7 @@ html;
                                 </tbody>
                             </table>
                         </div>
+                    </div>
                     </div>
                     <!-- changed content  ends-->
                 </main>

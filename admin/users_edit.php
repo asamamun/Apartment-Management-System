@@ -27,9 +27,10 @@ if(isset($_POST['username'])){
     ];
     $db->where ('id', $idtoupdate);
     if ($db->update ('users', $data))
-        $message = "User Updated successfully";
+        $myfn->msg('msg', "User Updated successfully");
     else{
         $message = "Something went wrong, ".$db->getLastError();
+        $myfn->msg('msg', $message);
     }
 }
 if(isset($_GET['id'])){
@@ -107,7 +108,6 @@ $pagetitle = $row['name'];
                             <div class="col-md-2"></div>
                         </div>
                     </div>
-                    <?=$myfn->msg('msg', "hello"); ?>
                     <?=$myfn->msg('msg'); ?>
                     <!-- changed content  ends-->
                 </main>

@@ -25,7 +25,6 @@ if(isset($_POST['submit'])){
         header("location:appt_all.php");
         exit;
     }
-
     else{
         $myfn->msg('msg','fail');
        
@@ -60,7 +59,6 @@ if(isset($_GET['id'])){
 <?php
         if(isset($message)) echo $message;
 ?>
-        <hr>
         <style>
             .form{
                 background-color: mintcream;

@@ -11,6 +11,38 @@ if(!Admin::Check()){
 $db = new MysqliDb ();
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
+
+
+<style>
+    .col1{
+        /* background-color: rgb(167,216,222); */
+        /* background-color: #a296c5; */
+        /* background-color: 	#fdd5df; */
+        background-color: #4c3a6e;
+     
+    }
+    .col2{
+        /* background-color: rgb(167,216,222); */
+        /* background-color: #a296c5; */
+        /* background-color: 	#fdd5df; */
+        background-color: 	#42558d;
+    
+    }
+    .col3{
+        /* background-color: rgb(167,216,222); */
+        /* background-color: #a296c5; */
+        /* background-color: 	#fdd5df; */
+        background-color: 			#97da70;
+    
+    }
+    .col4{
+        /* background-color: rgb(167,216,222); */
+        /* background-color: #a296c5; */
+        /* background-color: 	#fdd5df; */
+        background-color: 	#bd85c4;
+    
+    }
+</style>
     </head>
     <body class="sb-nav-fixed">
     <?php require __DIR__.'/components/navbar.php'; ?>
@@ -20,15 +52,17 @@ $db = new MysqliDb ();
                 <main>
                     <!-- changed content -->
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Welcome</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active"><h3>Housing Society</h3></li>
                         </ol>
-                        <div class="row">
+                        <!-- <div class="row"> -->
+                        <div class="row justify-content-center">
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Total Income</div>
+                                <div class="card col1 text-white  mb-4">
+                                    <div class="card-body"><h3>Total Income</h3></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                         <?php
                                             /* $sql = "SELECT SUM(amount) as amount FROM income_expence WHERE type=1";
                                             //$db->where('type', 1);
@@ -39,9 +73,10 @@ $db = new MysqliDb ();
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Expence</div>
+                                <div class="card col2 text-white mb-4">
+                                    <div class="card-body"><h3>Expence</h3></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                         <?php
                                             /* $sql = "SELECT SUM(amount) as amount FROM income_expence WHERE type=0";
                                             //$db->where('type', 1);
@@ -52,9 +87,10 @@ $db = new MysqliDb ();
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Balance</div>
+                                <div class="card col3 text-white mb-4">
+                                    <div class="card-body"><h3>Balance</h3></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                         <?php
                                             /* echo $income[0]["amount"] - $expense[0]["amount"]." Tk"; */
                                         ?>
@@ -62,10 +98,10 @@ $db = new MysqliDb ();
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
+                                <div class="card col4 text-white mb-4">
+                                    <div class="card-body"><h3>Danger Card</h3></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <!-- <a class="small text-white stretched-link" href="#">View Details</a> -->
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -148,7 +184,7 @@ $db = new MysqliDb ();
         </div>
         <?php require __DIR__.'/components/script.php'; ?>
 <script>
-/* Swal.fire({
+Swal.fire({
   //title: "Custom width, padding, color, background.",
   width: 200,
   position: "top-end",
@@ -160,7 +196,7 @@ $db = new MysqliDb ();
     center center
     no-repeat
   `
-}); */
+});
 </script>
     </body>
 </html>

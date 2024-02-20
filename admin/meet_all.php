@@ -3,17 +3,18 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
 $db = new MysqliDb ();
-$meet_rows = $db->get('apartment_members');
-$meet_row = array();
-foreach($meet_rows as $meet_value){
-    $meet_arr[$meet_value['id']] = $meet_value['member_name'];
-}
+// $meet_rows = $db->get('apartment_members');
+// $meet_row = array();
+// foreach($meet_rows as $meet_value){
+//     $meet_arr[$meet_value['id']] = $meet_value['member_name'];
+// }
 $rows = $db->get('meetings');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
@@ -39,7 +40,6 @@ $rows = $db->get('meetings');
                                    <th>ID</th>
                                    <th>Title</th>
                                    <th>Date & Time</th>
-                                   <!-- <th>Members</th> -->
                                    <th>Details</th>
                                    <th>Created At</th>
                                    <th>Action</th>
@@ -50,7 +50,6 @@ $rows = $db->get('meetings');
                                    <th>ID</th>
                                    <th>Title</th>
                                    <th>Date & Time</th>
-                                   <!-- <th>Members</th> -->
                                    <th>Details</th>
                                    <th>Created At</th>
                                    <th>Action</th>
@@ -74,7 +73,7 @@ $rows = $db->get('meetings');
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="meet_edit.php?id={$row['id']}">Edit</a></li>
                     <li><a class="dropdown-item" href="meet_delete.php?id={$row['id']}">Delete</a></li>
-                    <li><a class="dropdown-item" href="meet_mem.php?id={$meet_arr[$row['members']]}">Members</a></li>
+                    <li><a class="dropdown-item" href="meet_mem.php?id={$row['id']}">Members</a></li>
                   </ul>
             </div>
         </div>

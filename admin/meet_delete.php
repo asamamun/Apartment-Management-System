@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 if(isset($_GET['id'])){
     require __DIR__ . '/../vendor/autoload.php';
+    $myfn = new myfn\myfn();
     $db = new MysqliDb ();
     $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
     if($id){

@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -99,7 +100,9 @@ html;
                         </div>
                       </div>
                     </div>
+                    <?=$myfn->msg('msg'); ?>
                     <!-- changed content  ends-->
+                 
                 </main>
 <!-- footer -->
 <?php require __DIR__.'/components/footer.php'; ?>

@@ -10,35 +10,31 @@ if(!Admin::Check()){
 }
 $myfn = new myfn\myfn;
 $db = new MysqliDb ();
-if(isset($_POST['submit'])){
-    $idtoupdate = $_POST['id'];
-    // $apt_no = $_POST['apt_no'];
-    $data = [
-        'title'=> $db->escape($_POST['title']),
-        'details'=> $db->escape($_POST['details']),
-        'images'=> $myfn->imageInsert('images'),
-        'pinned'=> $db->escape($_POST['role']),
-      ];
-    $db->where ('id', $idtoupdate);
-    if ($db->update ('events', $data))
-        $message = "Event Updated successfully";
-    else{
-        $message = "Something went wrong, ".$db->getLastError();
-    }
-}
 if(isset($_GET['id'])){
     $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
     if($id){
-        // $selectQuery = "select id,username,create_at from users where id=$id limit 1";
-        // $result = $conn->query($selectQuery);
-        // $row = $result->fetch_assoc();
         $db->where ('id', $id);
         $row = $db->getOne('events');
-// var_dump($row);
-    }
-    
+    }   
 }
-    ?>
+if(isset($_POST['submit'])){
+    $idtoupdate = $_POST['id'];
+    $data = [
+        'title'=> $db->escape($_POST['title']),
+        'details'=> $db->escape($_POST['details']),
+        'images'=> isset($_FILES['images']['name']) && $_FILES['images']['name'] != "" ? $myfn->imageInsert('images') : $row['images'],
+        'pinned'=> $db->escape($_POST['role']),
+    ];
+    $db->where ('id', $idtoupdate);
+    if($db->update('events', $data)){
+        $myfn->msg('msg', 'done');
+        header("location: event_all.php");
+        exit;
+    }else{
+        $myfn->msg('msg', 'fail');
+    }
+}
+?>
 
 <?php require __DIR__.'/components/header.php'; ?>
     </head>
@@ -60,21 +56,21 @@ if(isset($_GET['id'])){
     }
     label{
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
-    .h2{
+    .h3{
         text-align: center;
         color: gray;
     }
 </style>
         <section class="p-3 p-md-3 p-xl-5">
                                 <div class="container">
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-5" style="display: inline-block;">
                                     <div class="card border-0 shadow-sm rounded-4">
                                         <div class="card-body">
                                         <div class="row">
-                                            <form action="" method="post" class="row g-3 form">
-                                            <h2 class="h2">Update Event</h2><hr>    
+                                            <form action="" method="post" class="row g-3 form" enctype="multipart/form-data">
+                                            <h3 class="h3">Update Event</h3><hr>    
                                             <input type="hidden" class="form-control" id="id" name="id" value="<?= $row['id'] ?>" required>
                                             <div class="col-sm-3">
                                                     <label for="title">Title :</label>
@@ -92,7 +88,7 @@ if(isset($_GET['id'])){
                                                     <label for="image">Image :</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <input type="file" class="form-control" id="image" name="image" required>
+                                                    <input type="file" class="form-control" id="image" name="images">
                                                 </div>
                                                 <div class="col-sm-3">
                                                 <label for="role">Event Type :</label>
@@ -112,6 +108,14 @@ if(isset($_GET['id'])){
                                     </div>
                                     </div>
                                 </div>
+                                <div class="col-sm-5 mt-3" style="float: right;">
+                                    <div class="card border-0 shadow-sm rounded-4">
+                                        <div class="card-body">
+                                            <img src="<?=$row['images']; ?>" width="100%" height="300"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 </div>
                             </section>
         <!-- changed content  ends-->

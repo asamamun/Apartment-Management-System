@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn();
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
@@ -15,14 +16,16 @@ if(isset($_POST['submit'])){
     $data = [
             'title'=> $db->escape($_POST['title']),
             'meet_date'=> $db->escape($_POST['date']." ".$_POST['time']),
-            'members'=> $db->escape($_POST['member_name']),
             'details'=> $db->escape($_POST['details']),
+            'members'=> $db->escape($_POST['members']),
     ];
     $db->where ('id', $idtoupdate);
-    if ($db->update ('meetings', $data))
-        $message = "User Updated successfully";
-    else{
-        $message = "Something went wrong, ".$db->getLastError();
+    if($db->update('meetings', $data)){
+        $myfn->msg('msg', 'done');
+        header("location: meet_all.php");
+        exit;
+    }else{
+        $myfn->msg('msg', 'fail');
     }
 }
 if(isset($_GET['id'])){
@@ -59,9 +62,9 @@ if(isset($_GET['id'])){
     }
     label{
         font-weight: bold;
-        font-size: 1.2 em;
+        font-size: 1.1em;
     }
-    .h2{
+    .h3{
         text-align: center;
         color: gray;
     }
@@ -73,9 +76,9 @@ if(isset($_GET['id'])){
                                         <div class="card-body">
                                         <div class="row">
                                             <form action="" method="post" class="row g-3 form">
-                                            <h2 class="h2">Update Meeting</h2><hr>
+                                            <h3 class="h3">Update Meeting</h3><hr>
                                             <div class="mb-3 mt-3">
-                            <input type="hidden" class="form-control" id="id"  name="id"  value="<?= $row['id'] ?>">
+                                                    <input type="hidden" class="form-control" id="id"  name="id"  value="<?= $row['id'] ?>">
                                             </div>    
                                             <div class="col-sm-3">
                                                     <label for="title">Title :</label>
@@ -96,23 +99,16 @@ if(isset($_GET['id'])){
                                                     <input type="time" class="form-control" id="time" name="time" value="<?= $row['meet_date'] ?>" required>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                <label for="member_name">Members :</label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                <select name="member_name" id="member_name" class="form-select" required>
-                                                <?php
-                                                    $member_rows = $db->get("apartment_members");
-                                                    foreach($member_rows as $member_row){
-                                                        echo "<option value='{$member_row['id']}'>{$member_row['member_name']}</option>";
-                                                    }
-                                                ?>
-                                                </select>
-                                                </div>
-                                                <div class="col-sm-3">
                                                 <label for="details">Details :</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <textarea class="form-control" id="details" name="details" value="<?= $row['details'] ?>"></textarea>
+                                                    <textarea class="form-control" id="details" name="details"><?= $row['details'] ?></textarea>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                <label for="members">Members :</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <textarea class="form-control" id="members" name="members"><?= $row['members'] ?></textarea>
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <button type="submit" class="btn btn-secondary mb-3" name="submit">Submit</button>

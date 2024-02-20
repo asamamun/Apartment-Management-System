@@ -21,6 +21,14 @@ $sql = "SELECT * FROM visitors WHERE entry_time BETWEEN '$start_date' AND '$end_
 $rows = $db->query($sql);
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
+<style>
+
+    h2{
+        border-radius: 20px;
+        background-color:  lemonchiffon;
+       border-color: lightcoral;
+    }
+</style>
     </head>
     <body class="sb-nav-fixed">
     <?php require __DIR__.'/components/navbar.php'; ?>
@@ -30,19 +38,20 @@ $rows = $db->query($sql);
                 <main>
                     <!-- changed content -->
                     <div class="container-fluid px-4">
-                    <h1>All Users</h1><hr />
+                    <h1>All Visitors</h1><hr />
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Date Range Search
-                        </div>
-                        
-    <form method="post" action="visitor_search.php">
-        From: <input type="date" name="start_date">
-        To:<input type="date" name="end_date">
-        <input type="submit" name="search" value="Search">
+                            <i class="fas fa-table me-1" ></i>
+                         Date to date Search
+                            <form method="post" action="visitor_search.php" style="text-align:right;">
+        <label for="start_date">From:</label>
+        <input type="date" name="start_date" id="start_date">
+        <label for="end_date">To:</label>
+     <input type="date" name="end_date" id="end_date">
+     <label for="Search"></label>
+        <input type="submit" name="search" value="Search" style="text-align:right; border-radius: 10px; background-color:LavenderBlush;border-color: #FF1493; ">                                
     </form>
-
+                        </div>
                         <div class="card-body">
                             <table class="table">
                                 <thead>

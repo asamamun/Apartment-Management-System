@@ -16,7 +16,6 @@ if(isset($_POST['submit'])){
       'user_id'=> $db->escape($_POST['user_id']),
       'flat_size'=> $db->escape($_POST['flat_size']),
       'info'=> $db->escape($_POST['info'])
-
          ];
   if($db->insert("apartments",$data)){
       header("location: appt_all.php");
@@ -36,6 +35,7 @@ if(isset($_POST['submit'])){
                 <main>
                     <!-- changed content -->
                     <div class="container-fluid px-4">
+                    <?=$myfn->msg('msg'); ?>
         <?php
         if(isset($message)) echo $message;
         ?>
@@ -54,7 +54,6 @@ if(isset($_POST['submit'])){
                 color: gray;
                }
         </style>
-        <hr>
         <section class="p-3 p-md-3 p-xl-5">
                                 <div class="container">
                                   <div class="col-sm-7">
@@ -69,7 +68,7 @@ if(isset($_POST['submit'])){
                                                 <div class="col-sm-8">
                                                 <select class="form-control" id="user_id"  name="user_id"  required>
 <?php
-$user_rows = $db->get("users");
+$user_rows = $db->get("users"); 
 foreach($user_rows as $user_row){
     echo "<option value='{$user_row['id']}'>{$user_row['name']}</option>";
 }
@@ -107,7 +106,7 @@ foreach($user_rows as $user_row){
                             </section>
 
                   </div>
-
+                  <?=$myfn->msg('msg'); ?>
         <!-- changed content  ends-->
                 </main>
 <!-- footer -->

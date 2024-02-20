@@ -16,7 +16,6 @@ $db = new MysqliDb();
 if (isset($_POST['submit'])) {
     
     echo $_POST['dob'];
-    exit;
     $idtoupdate = $_POST['id'];
     $data = [
         'member_name' => $db->escape($_POST['member_name']),

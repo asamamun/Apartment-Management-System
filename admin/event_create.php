@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
   $data = [
     'title'=> $db->escape($_POST['title']),
     'details'=> $db->escape($_POST['details']),
-    'images'=> $myfn->imageInsert($_POST['images']),
+    'images'=> $myfn->imageInsert('images'),
     'pinned'=> $db->escape($_POST['role']),
   ];
   if($db->insert('events', $data)){
@@ -47,9 +47,9 @@ if(isset($_POST['submit'])){
     }
     label{
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
-    .h2{
+    .h3{
         text-align: center;
         color: gray;
     }
@@ -60,8 +60,8 @@ if(isset($_POST['submit'])){
                                     <div class="card border-0 shadow-sm rounded-4">
                                         <div class="card-body">
                                         <div class="row">
-                                            <form action="" method="post" class="row g-3 form">
-                                            <h2 class="h2">Create Event</h2><hr>    
+                                            <form action="" method="post" class="row g-3 form" enctype="multipart/form-data">
+                                            <h3 class="h3">Create Event</h3><hr>    
                                             <div class="col-sm-3">
                                                     <label for="title">Title :</label>
                                                 </div>

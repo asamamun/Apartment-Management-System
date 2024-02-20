@@ -1,4 +1,4 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand " style="background-color: 	#91caea;">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="index.html"><?= settings()['companyname']?></a>
     <!-- Sidebar Toggle-->

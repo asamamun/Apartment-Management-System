@@ -55,7 +55,6 @@ else{
                 color: gray;
             }
         </style>
-        <hr>
         <section class="p-3 p-md-3 p-xl-5">
                                 <div class="container">
                                     <div class="col-sm-7">

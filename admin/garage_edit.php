@@ -54,7 +54,6 @@ if(isset($_GET['id'])){
                     <?php
         if(isset($message)) echo $message;
         ?>
-        <hr>
         <style>
             .form{
                 background-color: mintcream;

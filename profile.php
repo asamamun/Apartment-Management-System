@@ -7,6 +7,26 @@ $myfn = new myfn\myfn;
 $db = new MysqliDb();
 $db->where('id', $_SESSION['role']);
 $row = $db->getOne('users');
+
+if(isset($_POST['submit']) && $_POST['submit'] == 'cominsert'){
+  $data = [
+      'user_id'=> $_SESSION['userid'],
+      'title'=> $db->escape($_POST['title']),
+      'details'=> $db->escape($_POST['details']),
+  ];
+  if($db->insert("complain", $data)){
+    $message = "insert success!!";
+    $myfn->msg('msg', $message);
+    header("location: profile.php");
+    exit;
+  }else{
+      $message = "insert error!!";
+      $myfn->msg('msg', $message);
+      header("location: profile.php");
+      exit;
+  }
+}
+$rows = $db->get('complain');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,18 +36,35 @@ $row = $db->getOne('users');
     <title>Document</title>
     <link rel="stylesheet" href="<?= settings()['homepage'] ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= settings()['homepage'] ?>assets/profile.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+    label{
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+    </style>
 </head>
 <body>
 <div class="container">
     <div class="main-body">
     
           <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-            </ol>
-          </nav>
+          <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+          <div class="container-fluid">
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                
+              </ul>
+              <form class="d-flex" role="search">
+                <button class="btn btn-sm btn-outline-danger" type="submit">Logout</button>
+              </form>
+            </div>
+          </div>
+        </nav>
           <!-- /Breadcrumb -->
     
           <div class="row gutters-sm">
@@ -42,10 +79,12 @@ $row = $db->getOne('users');
                       <p class="text-secondary mb-1"><?=$myfn->only_date($row['created_at']); ?></p>
                       <p class="text-muted font-size-sm"><?=$row['address_one']; ?></p>
                       <a href="logout.php"><button class="btn btn-danger">Logout</button></a>
+                      <button class="btn btn-info" id="complainShow">Complain</button>
                     </div>
                   </div>
                 </div>
               </div>
+              
               <div class="card mt-3">
                 <ul class="list-group list-group-flush">
 <?php
@@ -56,20 +95,72 @@ foreach ($bills as $bill) {
 }
 $incomes = $db->where('user_id', $_SESSION['userid'])->where('status', 0)->get('incomes');
 foreach($incomes as $income){
-    $style = $income['status'] != 0 ? "green" : "red";
+    $style = $income['status'] != 0 ? "green" : "#ff6060";
     echo <<<html
 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color:{$style};">
     <h6 class="mb-0">{$billing[$income['bill_id']]}</h6>
     <small>{$myfn->only_date($income['created_at'])}</small>
-    <span class="text-secondary">{$income['amount']}</span>
+    <span class="text-dark">{$income['amount']}</span>
 </li>
 html;
 }
 ?>
                 </ul>
               </div>
+              <!-- complain decision -->
+              <div class="card mt-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Complain Decision</i></h5>
+                        <table class="table">
+                            <tr>
+                                <th>Title</th>
+                                <th>Decision</th>
+                            </tr>
+<?php
+$crows = $db->get('complain');
+foreach($crows as $crow){
+    echo <<<html
+<tr>
+    <td>{$crow['title']}</td>
+    <td>{$crow['decision']}</td>
+</tr>
+html;
+}
+?> 
+                        </table>         
+                    </div>
+                  </div>
+                </div>
+              <!-- complain decision end -->
             </div>
+
             <div class="col-md-8">
+              
+            <div class="col-sm mb-3" id="complainbox">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h4 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Complain</i></h4>
+                    <form action="" method="post" class="row g-3 form">                                                <div class="col-sm-3">
+                        <label for="title">Title :</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="col-sm-3">
+                        <label for="details">Details :</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="details" name="details"></textarea>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary mb-3" name="submit" value="cominsert">Submit</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+             
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="row">
@@ -141,7 +232,7 @@ html;
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Apartments</i></h6>
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Apartments</i></h5>
                         <table class="table">
                             <tr>
                                 <th>Apt No</th>
@@ -162,10 +253,11 @@ html;
                     </div>
                   </div>
                 </div>
+
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Garages</i></h6>
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Garages</i></h5>
                         <table class="table">
                             <tr>
                                 <th>Apt No</th>
@@ -180,19 +272,35 @@ foreach($gars as $gar){
 html;
 }
 ?> 
-                        </table>
-
+                        </table>         
                     </div>
                   </div>
                 </div>
-              </div>
+                <!-- complain -->   
+                  </div>
 
 
 
-            </div>
+
+                      
+
+
+
+                  </div>
+                </div>
           </div>
 
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+  $('#complainbox').hide();
+  $('#complainShow').click(function(){
+    $('#complainbox').toggle();
+  });
+});
+</script>
+<?= $myfn->msg('msg'); ?>
 </body>
 </html>

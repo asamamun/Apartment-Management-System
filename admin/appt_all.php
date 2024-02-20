@@ -1,4 +1,6 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -87,6 +89,7 @@ html;
                     </div>
                  </div>
                     <!-- changed content  ends-->
+                    <?=$myfn->msg('msg'); ?>
                 </main>
 <!-- footer -->
 <?php require __DIR__.'/components/footer.php'; ?>
