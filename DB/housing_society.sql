@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2024 at 07:36 AM
+-- Generation Time: Feb 21, 2024 at 04:27 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -372,10 +372,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `details`, `images`, `pinned`, `created_at`) VALUES
-(1, 'fgdfgdfgd', 'gdfgdfgd', 'stroage/img/1708244317128739760.', 1, '2024-02-18 08:18:37'),
-(2, 'dfhdfhdf', 'hdfhdfhdh', 'stroage/img/1708244455111592610.', 1, '2024-02-18 08:20:55'),
-(3, 'hgjghj', 'ghjghjg', 'stroage/img/1708244580267074968.jpg', 1, '2024-02-18 08:23:00'),
-(4, 'zxxzc', 'zxvzxvzx', 'stroage/img/1708405079682223383.', 0, '2024-02-20 04:57:35');
+(5, 'sdasd', 'asdasd', 'stroage/img/170849148338455482b11.jpg, stroage/img/1708491483395289311b12.jpg, stroage/img/1708491483374097360b13.jpg, stroage/img/1708491483729047676b14.jpg, stroage/img/170849148331741995b15.jpg, stroage/img/1708491483727969595b16.jpg, stroage/img/1708491483598454251b17.jpg', 1, '2024-02-21 04:58:03'),
+(6, 'afetvsd', 'fsdfsfsf', 'stroage/img/1708491724752724413pexels-alex-staudinger-1732414.jpg, stroage/img/1708491724743643925pexels-photo-1042594.jpeg, stroage/img/1708491724898503190pexels-photomix-company-565324.jpg, stroage/img/1708491724529541416skills.png, stroage/img/170849172437397850why-us.png', 1, '2024-02-21 05:02:04');
 
 -- --------------------------------------------------------
 
@@ -399,7 +397,8 @@ CREATE TABLE `expences` (
 --
 
 INSERT INTO `expences` (`id`, `cat_id`, `sub_id`, `smt_id`, `details`, `amount`, `payment_at`, `created_at`) VALUES
-(1, 2, 6, 12, 'fdsfsf', 324, '2024-02-17 03:07:01', '2024-02-17 03:07:01');
+(1, 2, 6, 12, 'fdsfsf', 324, '2024-02-17 03:07:01', '2024-02-17 03:07:01'),
+(2, 2, 6, 12, 'rererw', 34234, '2024-02-21 02:56:03', '2024-02-21 02:56:03');
 
 -- --------------------------------------------------------
 
@@ -523,7 +522,7 @@ CREATE TABLE `plot_info` (
 --
 
 INSERT INTO `plot_info` (`id`, `country`, `division`, `district`, `upazila`, `union`, `address`, `image`, `help_line`, `email`, `google_map`) VALUES
-(1, 'bangladesh', '1', '2', '4', '5', 'fdgsdfgdsfgdsfg', 'stroage/img/1708138583470945729pexels-eberhard-grossgasteiger-640781.jpg, stroage/img/170813859873514480pexels-pixabay-50594.jpg', '54453', 'isadf@gmail.com', 'dsafasdfas');
+(1, 'bangladesh', '1', '2', '4', '5', 'fdgsdfgdsfgdsfg', 'stroage/img/1708138583470945729pexels-eberhard-grossgasteiger-640781.jpg, stroage/img/170813859873514480pexels-pixabay-50594.jpg, stroage/img/1708490232567586219b7.png', '54453', 'isadf@gmail.com', 'dsafasdfas');
 
 -- --------------------------------------------------------
 
@@ -543,7 +542,7 @@ CREATE TABLE `rules` (
 --
 
 INSERT INTO `rules` (`id`, `title`, `details`, `create_at`) VALUES
-(1, 'hello sir', 'israt ahamed sabbir', '2024-02-11 12:49:42');
+(1, 'Dolor sit amet consectetur adipiscing elit', 'Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.', '2024-02-11 12:49:42');
 
 -- --------------------------------------------------------
 
@@ -5669,7 +5668,7 @@ CREATE TABLE `users` (
   `visited_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'last login date',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `role` int(11) NOT NULL DEFAULT 0 COMMENT 'prevalage setup 0=block 1=user 2=admin',
-  `status` int(11) NOT NULL DEFAULT 0 COMMENT 'active user'
+  `status` int(11) NOT NULL DEFAULT 0 COMMENT 'active user = 1 new user = 0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -5941,13 +5940,13 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `expences`
 --
 ALTER TABLE `expences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `garages`
