@@ -21,6 +21,16 @@
                                     <a class="nav-link" href="users_all.php?role=2">Admin</a>
                                     <a class="nav-link" href="users_all.php?role=1">User</a>
                                     <a class="nav-link" href="users_all.php?role=0">Block List</a>
+                                    <a class="nav-link" href="users_all.php?status=0">
+                                        New Registrar &nbsp;
+                                        <span class="badge text-bg-danger">
+<?php
+$db = new MysqliDb ();
+$db->where('status', 0);
+echo $db->getValue ("users", "count(*)");
+?>
+                                        </span>
+                                    </a>
                                     <a class="nav-link" href="users_create.php">Add</a>
                                 </nav>
                             </div>

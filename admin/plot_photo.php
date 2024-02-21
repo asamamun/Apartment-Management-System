@@ -45,7 +45,6 @@ if(isset($_GET['delete_image'])){
     $idtoupdate = $_GET['id'];
     $image_show = explode(', ', $row['image']);
     $key = array_search($rv, $image_show);
-    //unlink($_GET['delete_image']);
     unset($image_show[$key]);
     $update_image = implode(', ', $image_show);
     $data = [
@@ -54,7 +53,6 @@ if(isset($_GET['delete_image'])){
     $db->where('id', $idtoupdate);
     if ($db->update('plot_info', $data)){
         $message = "Photo Delete successfully";
-        //sleep(2);
         header("location: plot_photo.php");
     }else{
         $message = "Something went wrong, " . $db->getLastError();

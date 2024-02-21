@@ -18,6 +18,7 @@ if(isset($_POST['reg'])){
       'phone'=> $db->escape($_POST['phone']),
       'email'=> $db->escape($_POST['email']),
       'role'=> $db->escape($_POST['role']),
+      'status'=> 1,
       'address_one'=> $db->escape($_POST['address']),
       'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
   ];

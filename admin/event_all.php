@@ -35,7 +35,6 @@ $rows = $db->get('events');
                                    <th>ID</th>
                                    <th>Title</th>
                                    <th>Details</th>
-                                   <th>Images</th>
                                    <th>Pinned</th>
                                    <th>Created At</th>
                                    <th>Action</th>
@@ -46,7 +45,6 @@ $rows = $db->get('events');
                                 <th>ID</th>
                                    <th>Title</th>
                                    <th>Details</th>
-                                   <th>Images</th>
                                    <th>Pinned</th>
                                    <th>Created At</th>
                                    <th>Action</th>
@@ -61,7 +59,6 @@ $rows = $db->get('events');
       <td>{$row['id']}</td>
       <td>{$row['title']}</td>
       <td>{$row['details']}</td>
-      <td><img src="{$row['images']}" width="40" height="40"/></td>
       <td>{$pin}</td>
       <td>{$row['created_at']}</td>
       <td>

@@ -58,17 +58,27 @@ $row = $db->getOne("plot_info");
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-    <img src="<?= settings()['homepage'] ?>assets/maria/assets/img/b17.jpg" class="img-fluid " alt="">
-    </div>
-    <div class="carousel-item">
-    <img src="<?= settings()['homepage'] ?>assets/maria/assets/img/b13.jpg"  class="img-fluid " alt="">
-    </div>
-    <div class="carousel-item">
-      <!-- <img src="..." class="d-block w-100" alt="..."> -->
-      <img src="<?= settings()['homepage'] ?>assets/maria/assets/img/b15.jpg"  class="img-fluid " alt="">
-    </div>
+  <div class="carousel-inner" height="500px">
+<?php
+if($row['image'] != ''){
+  $image_show = explode(', ', $row['image']);
+  for ($i=0; $i < count($image_show); $i++) { 
+    if($i == 1){
+      echo <<<html
+<div class="carousel-item active">
+  <img src="admin/{$image_show[$i]}"  class="img-fluid" alt="" height="500px" width="100%"/>
+</div>
+html;
+    }else{
+      echo <<<html
+<div class="carousel-item">
+  <img src="admin/{$image_show[$i]}"  class="img-fluid" alt="" height="500px" width="100%"/>
+</div>
+html;
+    }
+  }
+}
+?> 
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -111,7 +121,7 @@ $row = $db->getOne("plot_info");
     
 
     <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about" style="display:none;">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -160,32 +170,20 @@ $row = $db->getOne("plot_info");
 
             <div class="accordion-list">
               <ul>
-                <li>
-                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                  <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
-                    <p>
-                      Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                    </p>
-                  </div>
-                </li>
-
-                <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                  <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                    <p>
-                      Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                    </p>
-                  </div>
-                </li>
-
-                <li>
-                  <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                  <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                    <p>
-                      Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                    </p>
-                  </div>
-                </li>
+<?php
+$rules = $db->get("rules");
+foreach ($rules as $key => $value) {
+  echo <<<html
+<li>
+  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-{$value['id']}">{$value['title']}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+  <div id="accordion-list-{$value['id']}" class="collapse show" data-bs-parent=".accordion-list">
+    <p>{$value['details']}</p>
+  </div>
+</li>
+html;
+}
+?>
+                
 
               </ul>
             </div>
@@ -202,7 +200,7 @@ $row = $db->getOne("plot_info");
     <!-- End Skills Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
+    <section id="services" class="services section-bg" style="display:none;">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -256,116 +254,28 @@ $row = $db->getOne("plot_info");
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Portfolio</h2>
+          <h2>Gallery</h2>
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, eos commodi ea dolorem assumenda modi adipisci, quam veniam cupiditate accusamus quo libero recusandae. Cum possimus deserunt asperiores dolorum ad nobis.</p>
         </div>
-
         <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-          <li data-filter="*" class="filter-active">All</li>
-          <li data-filter=".filter-app">App</li>
-          <li data-filter=".filter-card">Card</li>
-          <li data-filter=".filter-web">Web</li>
+<?php
+$events = $db->get('events');
+foreach ($events as $key => $value) {
+  echo <<<html
+    <li data-filter="{$value['id']}" onClick="getEvent(this)">{$value['title']}</li>
+html;
+}
+?>
         </ul>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/in1.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/in2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/in3.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="<?= settings()['homepage'] ?>assets/maria/assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
+        <div class='row' data-aos='fade-up' data-aos-delay='200' id="setEvent">
+          <img src="assets/photo-1606819717115-9159c900370b.avif" class="img-thumbnail"/>
         </div>
 
       </div>
     </section><!-- End Portfolio Section -->
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <section id="team" class="team section-bg" style="display:none;">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -456,7 +366,15 @@ $row = $db->getOne("plot_info");
     <?php require __DIR__ . '/components/contact.php';?>
   </main><!-- End #main -->
   <?php require __DIR__ . '/components/footer.php';?>
-
+<script>
+function getEvent(e) {
+  $id_send = e.getAttribute("data-filter");
+  fetch(`event_api.php?id=${$id_send}`).then(x => x.text()).then(y => myDisplay(y));
+}
+function myDisplay(data) {
+    document.getElementById("setEvent").innerHTML = data;
+}
+</script>
 </body>
 
 </html>

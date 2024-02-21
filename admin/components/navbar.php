@@ -13,15 +13,7 @@
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?=$_SESSION['photo']; ?>" width="30" height="30" style="border-radius: 50%;"/>
-                <span class="badge text-bg-primary">
-<?php
-$db = new MysqliDb ();
-$db->where('role', 0);
-echo $db->getValue ("users", "count(*)");
-?>
-                </span>
-            </a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?=$_SESSION['photo']; ?>" width="30" height="30" style="border-radius: 50%;"/></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="javascript:void(0)"><strong><?= $_SESSION['username'] ?></strong></a></li>
                 <li><a class="dropdown-item" href="#!">Settings</a></li>

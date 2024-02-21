@@ -38,19 +38,17 @@ $rows = $db->query($sql);
                 <main>
                     <!-- changed content -->
                     <div class="container-fluid px-4">
-                    <h1>All Visitors</h1><hr />
+                    <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1><hr />
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1" ></i>
-                         Date to date Search
-                            <form method="post" action="visitor_search.php" style="text-align:right;">
-        <label for="start_date">From:</label>
-        <input type="date" name="start_date" id="start_date">
-        <label for="end_date">To:</label>
-     <input type="date" name="end_date" id="end_date">
-     <label for="Search"></label>
-        <input type="submit" name="search" value="Search" style="text-align:right; border-radius: 10px; background-color:LavenderBlush;border-color: #FF1493; ">                                
-    </form>
+                            <form class="form" method="post" action="visitor_search.php" style="text-align:right;">
+                                <label for="start_date">From:</label>
+                                <input type="date" name="start_date" id="start_date">
+                                <label for="end_date">To:</label>
+                                <input type="date" name="end_date" id="end_date">
+                                <label for="Search"></label>
+                                <input type="submit" name="search" value="Search" style="text-align:right; border-radius: 10px; background-color:LavenderBlush;border-color: #FF1493; ">                                
+                            </form>
                         </div>
                         <div class="card-body">
                             <table class="table">

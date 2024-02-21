@@ -11,19 +11,31 @@ if(!Admin::Check()){
 }
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
-  $data = [
-    'title'=> $db->escape($_POST['title']),
-    'details'=> $db->escape($_POST['details']),
-    'images'=> $myfn->imageInsert('images'),
-    'pinned'=> $db->escape($_POST['role']),
-  ];
-  if($db->insert('events', $data)){
-    $myfn->msg('msg', 'done');
-    header("location: event_all.php");
-    exit;
-}else{
-    $myfn->msg('msg', 'fail');
-}
+    $image_path_array = null;
+    $images = $_FILES["images"];
+    $count = count($images['name']);
+    for($i=0; $i<$count; $i++){
+        $img_name = $images['name'][$i];
+        $img_size = $images['size'][$i];
+        $img_temp = $images['tmp_name'][$i];
+        $img_path = "stroage/img/".time().rand(1000000, 999999999).$img_name;
+        $image_path_array .=  $img_path.", ";
+        move_uploaded_file($img_temp, $img_path);
+    }
+    $image_path_trim = trim($image_path_array, ", ");
+    $data = [
+        'title'=> $db->escape($_POST['title']),
+        'details'=> $db->escape($_POST['details']),
+        'images'=> $image_path_trim,
+        'pinned'=> $db->escape($_POST['role']),
+    ];
+    if($db->insert('events', $data)){
+        $myfn->msg('msg', 'done');
+        header("location: event_all.php");
+        exit;
+    }else{
+        $myfn->msg('msg', 'fail');
+    }
 }
     ?>
 
@@ -78,7 +90,7 @@ if(isset($_POST['submit'])){
                                                     <label for="image">Image :</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <input type="file" class="form-control" id="images" name="images" required>
+                                                    <input type="file" class="form-control" id="images" name="images[]" multiple required>
                                                 </div>
                                                 <div class="col-sm-3">
                                                 <label for="role">Event Type :</label>

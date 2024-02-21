@@ -15,6 +15,9 @@ $db = new MysqliDb ();
 if(isset($_GET["role"])){
     $db->where('role', $_GET["role"]);
 }
+if(isset($_GET["status"])){
+    $db->where('status', $_GET["status"]);
+}
 $users = $db->get('users');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
