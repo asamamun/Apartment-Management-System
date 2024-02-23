@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2024 at 04:27 PM
+-- Generation Time: Feb 23, 2024 at 07:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,6 +31,7 @@ CREATE TABLE `apartments` (
   `id` int(11) NOT NULL,
   `apt_no` varchar(20) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'admin id who add this row.',
   `flat_size` varchar(20) NOT NULL,
   `info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -39,17 +40,17 @@ CREATE TABLE `apartments` (
 -- Dumping data for table `apartments`
 --
 
-INSERT INTO `apartments` (`id`, `apt_no`, `user_id`, `flat_size`, `info`) VALUES
-(1, 'A1', 1, '1600', 'empty'),
-(2, 'B2', 6, '1500', 'nothing'),
-(3, 'A2', 1, '1300', 'nothing'),
-(4, 'A3', 1, '1400', 'nothing'),
-(5, 'E3', 1, '1400', 'nothing'),
-(7, 'B3', 7, '1300', 'nothing'),
-(8, 'E1', 7, '1700', 'nothing'),
-(9, 'C3', 8, '1500', 'nothing'),
-(11, 'c4', 11, '2300', 'rewrw'),
-(13, 'g44', 1, '54855', 'gfg');
+INSERT INTO `apartments` (`id`, `apt_no`, `user_id`, `smt_id`, `flat_size`, `info`) VALUES
+(1, 'A1', 1, NULL, '1600', 'empty'),
+(2, 'B2', 6, NULL, '1500', 'nothing'),
+(3, 'A2', 1, NULL, '1300', 'nothing'),
+(4, 'A3', 1, NULL, '1400', 'nothing'),
+(5, 'E3', 1, NULL, '1400', 'nothing'),
+(7, 'B3', 7, NULL, '1300', 'nothing'),
+(8, 'E1', 7, NULL, '1700', 'nothing'),
+(9, 'C3', 8, NULL, '1500', 'nothing'),
+(11, 'c4', 11, NULL, '2300', 'rewrw'),
+(13, 'g44', 1, NULL, '54855', 'gfg');
 
 -- --------------------------------------------------------
 
@@ -59,6 +60,7 @@ INSERT INTO `apartments` (`id`, `apt_no`, `user_id`, `flat_size`, `info`) VALUES
 
 CREATE TABLE `apartment_members` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'admin id who add this row.',
   `apt_id` int(20) NOT NULL,
   `member_name` varchar(20) NOT NULL,
   `dob` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -72,17 +74,17 @@ CREATE TABLE `apartment_members` (
 -- Dumping data for table `apartment_members`
 --
 
-INSERT INTO `apartment_members` (`id`, `apt_id`, `member_name`, `dob`, `nid`, `images`, `created_at`, `status`) VALUES
-(2, 1, 'israt ahamed sabbir', '2017-07-01 18:00:00', '34234234', 'stroage/img/1708405242304075233.', '2024-02-09 05:20:29', 1),
-(3, 1, 'tanima Hasan', '2020-10-12 18:00:00', '34534534', 'stroage/img/1707457539734751235Screenshot_1.jpg', '2024-02-09 05:45:39', 1),
-(4, 2, 'jui', '2019-06-10 18:00:00', '545345', 'stroage/img/1707457723390203017Screenshot_2.jpg', '2024-02-09 05:48:43', 1),
-(5, 2, 'bijoy', '2011-10-08 18:00:00', '313123', 'stroage/img/1707457779581939774A Skull 2_e1.jpg', '2024-02-09 05:49:39', 1),
-(6, 4, 'sabber', '2020-06-09 18:00:00', '3231231', 'stroage/img/1707457854398513654deatheface_11eh7vkq_e1.jpg', '2024-02-09 05:50:54', 1),
-(7, 4, 'koli', '2022-06-08 18:00:00', '67576576', 'stroage/img/1707457899816776821RYUI.JPG', '2024-02-09 05:51:39', 1),
-(8, 3, 'sathi', '2024-02-12 18:00:00', '2312312', 'stroage/img/1707458439808317839Don\'t lie.JPG', '2024-02-09 06:00:39', 1),
-(9, 1, 'adib', '2024-02-14 18:00:00', '234234', 'stroage/img/1707458663710952189Harry_Potter_5_Wallpaper_09_e1.jpg', '2024-02-09 06:04:23', 1),
-(10, 9, 'ertertert', '2024-02-22 18:00:00', '43534534', 'stroage/img/1708236201333472413.webp', '2024-02-18 06:03:21', 1),
-(11, 4, 'jhgghghcgh', '2024-02-15 18:00:00', '564', 'stroage/img/1708241688109326953.jpg', '2024-02-18 07:34:48', 1);
+INSERT INTO `apartment_members` (`id`, `smt_id`, `apt_id`, `member_name`, `dob`, `nid`, `images`, `created_at`, `status`) VALUES
+(2, NULL, 1, 'israt ahamed sabbir', '2017-07-01 18:00:00', '34234234', 'stroage/img/1708405242304075233.', '2024-02-09 05:20:29', 1),
+(3, NULL, 1, 'tanima Hasan', '2020-10-12 18:00:00', '34534534', 'stroage/img/1707457539734751235Screenshot_1.jpg', '2024-02-09 05:45:39', 1),
+(4, NULL, 2, 'jui', '2019-06-10 18:00:00', '545345', 'stroage/img/1707457723390203017Screenshot_2.jpg', '2024-02-09 05:48:43', 1),
+(5, NULL, 2, 'bijoy', '2011-10-08 18:00:00', '313123', 'stroage/img/1707457779581939774A Skull 2_e1.jpg', '2024-02-09 05:49:39', 1),
+(6, NULL, 4, 'sabber', '2020-06-09 18:00:00', '3231231', 'stroage/img/1707457854398513654deatheface_11eh7vkq_e1.jpg', '2024-02-09 05:50:54', 1),
+(7, NULL, 4, 'koli', '2022-06-08 18:00:00', '67576576', 'stroage/img/1707457899816776821RYUI.JPG', '2024-02-09 05:51:39', 1),
+(8, NULL, 3, 'sathi', '2024-02-12 18:00:00', '2312312', 'stroage/img/1707458439808317839Don\'t lie.JPG', '2024-02-09 06:00:39', 1),
+(9, NULL, 1, 'adib', '2024-02-14 18:00:00', '234234', 'stroage/img/1707458663710952189Harry_Potter_5_Wallpaper_09_e1.jpg', '2024-02-09 06:04:23', 1),
+(10, NULL, 9, 'ertertert', '2024-02-22 18:00:00', '43534534', 'stroage/img/1708236201333472413.webp', '2024-02-18 06:03:21', 1),
+(11, NULL, 4, 'jhgghghcgh', '2024-02-15 18:00:00', '564', 'stroage/img/1708241688109326953.jpg', '2024-02-18 07:34:48', 1);
 
 -- --------------------------------------------------------
 
@@ -92,6 +94,7 @@ INSERT INTO `apartment_members` (`id`, `apt_id`, `member_name`, `dob`, `nid`, `i
 
 CREATE TABLE `bills` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'admin id who add this row.',
   `bill_name` text NOT NULL,
   `items_id` varchar(50) NOT NULL,
   `amount` int(11) NOT NULL,
@@ -102,11 +105,11 @@ CREATE TABLE `bills` (
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`id`, `bill_name`, `items_id`, `amount`, `created_at`) VALUES
-(1, 'januyari', '1, 2, 3', 6456, '2024-02-10 14:45:11'),
-(2, 'fabruary', '4', 500, '2024-02-10 14:45:36'),
-(3, 'bari vara', '1, 2, 3, 4', 6956, '2024-02-12 18:07:33'),
-(4, 'barivara', '1, 2, 3', 6456, '2024-02-13 07:18:33');
+INSERT INTO `bills` (`id`, `smt_id`, `bill_name`, `items_id`, `amount`, `created_at`) VALUES
+(1, NULL, 'januyari', '1, 2, 3', 6456, '2024-02-10 14:45:11'),
+(2, NULL, 'fabruary', '4', 500, '2024-02-10 14:45:36'),
+(3, NULL, 'bari vara', '1, 2, 3, 4', 6956, '2024-02-12 18:07:33'),
+(4, NULL, 'barivara', '1, 2, 3', 6456, '2024-02-13 07:18:33');
 
 -- --------------------------------------------------------
 
@@ -116,6 +119,7 @@ INSERT INTO `bills` (`id`, `bill_name`, `items_id`, `amount`, `created_at`) VALU
 
 CREATE TABLE `bill_items` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'admin id who add this row.',
   `cat_id` int(11) NOT NULL,
   `sub_id` int(11) NOT NULL,
   `details` text DEFAULT NULL,
@@ -128,11 +132,11 @@ CREATE TABLE `bill_items` (
 -- Dumping data for table `bill_items`
 --
 
-INSERT INTO `bill_items` (`id`, `cat_id`, `sub_id`, `details`, `amount`, `created_at`, `status`) VALUES
-(1, 1, 1, 'safaf', 2000, '2024-02-10 14:27:21', 1),
-(2, 1, 2, 'fsdf', 1000, '2024-02-10 14:42:23', 1),
-(3, 1, 3, 'sfsd', 3456, '2024-02-10 14:42:49', 1),
-(4, 1, 4, 'dfsdf', 500, '2024-02-10 14:43:14', 1);
+INSERT INTO `bill_items` (`id`, `smt_id`, `cat_id`, `sub_id`, `details`, `amount`, `created_at`, `status`) VALUES
+(1, NULL, 1, 1, 'safaf', 2000, '2024-02-10 14:27:21', 1),
+(2, NULL, 1, 2, 'fsdf', 1000, '2024-02-10 14:42:23', 1),
+(3, NULL, 1, 3, 'sfsd', 3456, '2024-02-10 14:42:49', 1),
+(4, NULL, 1, 4, 'dfsdf', 500, '2024-02-10 14:43:14', 1);
 
 -- --------------------------------------------------------
 
@@ -142,6 +146,7 @@ INSERT INTO `bill_items` (`id`, `cat_id`, `sub_id`, `details`, `amount`, `create
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'admin id who add this row.',
   `cat_name` varchar(40) NOT NULL,
   `type` int(11) NOT NULL COMMENT '(income=1/expanse=0)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -150,9 +155,9 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `cat_name`, `type`) VALUES
-(1, 'Bulding', 1),
-(2, 'salary', 0);
+INSERT INTO `categories` (`id`, `smt_id`, `cat_name`, `type`) VALUES
+(1, NULL, 'Bulding', 1),
+(2, NULL, 'salary', 0);
 
 -- --------------------------------------------------------
 
@@ -165,6 +170,7 @@ CREATE TABLE `complain` (
   `title` varchar(255) NOT NULL,
   `details` text NOT NULL,
   `user_id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who given decision.',
   `decision` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -173,15 +179,15 @@ CREATE TABLE `complain` (
 -- Dumping data for table `complain`
 --
 
-INSERT INTO `complain` (`id`, `title`, `details`, `user_id`, `decision`, `created_at`) VALUES
-(1, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, '2024-02-20 05:08:36'),
-(2, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, '2024-02-20 05:11:08'),
-(3, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, '2024-02-20 05:12:09'),
-(4, 'jjjjjj', 'kdsaafsad', 1, NULL, '2024-02-20 05:12:19'),
-(5, 'jjjjjj', 'kdsaafsad', 1, NULL, '2024-02-20 05:12:44'),
-(6, 'nsmkgsm', 'dgf ijsdgksd ', 1, NULL, '2024-02-20 05:12:52'),
-(7, 'nsmkgsm', 'dgf ijsdgksd ', 1, NULL, '2024-02-20 05:13:04'),
-(8, 'mgdsl', 'msdkfmksdkmfskdmf', 1, NULL, '2024-02-20 05:14:40');
+INSERT INTO `complain` (`id`, `title`, `details`, `user_id`, `smt_id`, `decision`, `created_at`) VALUES
+(1, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:08:36'),
+(2, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:11:08'),
+(3, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:12:09'),
+(4, 'jjjjjj', 'kdsaafsad', 1, NULL, NULL, '2024-02-20 05:12:19'),
+(5, 'jjjjjj', 'kdsaafsad', 1, NULL, NULL, '2024-02-20 05:12:44'),
+(6, 'nsmkgsm', 'dgf ijsdgksd ', 1, NULL, NULL, '2024-02-20 05:12:52'),
+(7, 'nsmkgsm', 'dgf ijsdgksd ', 1, NULL, NULL, '2024-02-20 05:13:04'),
+(8, 'mgdsl', 'msdkfmksdkmfskdmf', 1, NULL, NULL, '2024-02-20 05:14:40');
 
 -- --------------------------------------------------------
 
@@ -304,6 +310,7 @@ INSERT INTO `divisions` (`id`, `name`, `bn_name`, `url`) VALUES
 
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who add this employ.',
   `emp_name` varchar(40) NOT NULL,
   `designation` varchar(20) NOT NULL,
   `shift` varchar(11) NOT NULL,
@@ -323,12 +330,12 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `emp_name`, `designation`, `shift`, `nid`, `phone`, `image`, `joindate`, `salary`, `extra`, `option_one`, `option_two`, `created_at`, `status`) VALUES
-(1, 'MD. kamal', 'darowan', 'm', '12414', '4654', 'logo.png', '2024-02-16 14:08:59', '12000', '', '', '', '2024-02-16 14:08:59', 1),
-(2, 'Tanha gazi', 'suipar', 'N', '211241', '35252', 'sfa', '2024-02-16 15:00:31', '300000', NULL, NULL, NULL, '2024-02-16 15:00:31', 1),
-(3, 'ddffgfdg', 'dfgsdfgsdfg', 'sdfgsdfgsdf', '354353', '353453', 'stroage/img/1708403670644448083.', '2024-02-20 04:34:30', '56496', '54964', '1654', 'mjhguyf', '2024-02-20 04:34:30', 1),
-(4, 'ert', '5e6y5r', 'r7yu6', '18', '0145', 'stroage/img/1708410679596605759.', '2024-02-20 06:31:19', '456', 'ghjngj', 'jghkj', 'khuk', '2024-02-20 06:31:19', 1),
-(5, 'gyfvbhjn', '65rtrtfh', 'uii', '556625', '5555', 'stroage/img/1708410750635871724.jpg', '2024-02-20 06:32:30', '77888', 'uhh', 'gghgh', 'tg', '2024-02-20 06:32:30', 1);
+INSERT INTO `employees` (`id`, `smt_id`, `emp_name`, `designation`, `shift`, `nid`, `phone`, `image`, `joindate`, `salary`, `extra`, `option_one`, `option_two`, `created_at`, `status`) VALUES
+(1, NULL, 'MD. kamal', 'darowan', 'm', '12414', '4654', 'logo.png', '2024-02-16 14:08:59', '12000', '', '', '', '2024-02-16 14:08:59', 1),
+(2, NULL, 'Tanha gazi', 'suipar', 'N', '211241', '35252', 'sfa', '2024-02-16 15:00:31', '300000', NULL, NULL, NULL, '2024-02-16 15:00:31', 1),
+(3, NULL, 'ddffgfdg', 'dfgsdfgsdfg', 'sdfgsdfgsdf', '354353', '353453', 'stroage/img/1708403670644448083.', '2024-02-20 04:34:30', '56496', '54964', '1654', 'mjhguyf', '2024-02-20 04:34:30', 1),
+(4, NULL, 'ert', '5e6y5r', 'r7yu6', '18', '0145', 'stroage/img/1708410679596605759.', '2024-02-20 06:31:19', '456', 'ghjngj', 'jghkj', 'khuk', '2024-02-20 06:31:19', 1),
+(5, NULL, 'gyfvbhjn', '65rtrtfh', 'uii', '556625', '5555', 'stroage/img/1708410750635871724.jpg', '2024-02-20 06:32:30', '77888', 'uhh', 'gghgh', 'tg', '2024-02-20 06:32:30', 1);
 
 -- --------------------------------------------------------
 
@@ -338,6 +345,7 @@ INSERT INTO `employees` (`id`, `emp_name`, `designation`, `shift`, `nid`, `phone
 
 CREATE TABLE `emp_salary` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who entry salary.',
   `emp_id` int(11) NOT NULL,
   `details` text DEFAULT NULL,
   `amount` int(11) NOT NULL,
@@ -348,9 +356,9 @@ CREATE TABLE `emp_salary` (
 -- Dumping data for table `emp_salary`
 --
 
-INSERT INTO `emp_salary` (`id`, `emp_id`, `details`, `amount`, `created_at`) VALUES
-(0, 1, 'dfsf', 34234, '2024-02-16 14:21:35'),
-(0, 1, 'eweweq', 34234, '2024-02-16 14:57:10');
+INSERT INTO `emp_salary` (`id`, `smt_id`, `emp_id`, `details`, `amount`, `created_at`) VALUES
+(0, NULL, 1, 'dfsf', 34234, '2024-02-16 14:21:35'),
+(0, NULL, 1, 'eweweq', 34234, '2024-02-16 14:57:10');
 
 -- --------------------------------------------------------
 
@@ -360,6 +368,7 @@ INSERT INTO `emp_salary` (`id`, `emp_id`, `details`, `amount`, `created_at`) VAL
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who add event.',
   `title` text NOT NULL,
   `details` longtext NOT NULL,
   `images` text NOT NULL,
@@ -371,9 +380,9 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `details`, `images`, `pinned`, `created_at`) VALUES
-(5, 'sdasd', 'asdasd', 'stroage/img/170849148338455482b11.jpg, stroage/img/1708491483395289311b12.jpg, stroage/img/1708491483374097360b13.jpg, stroage/img/1708491483729047676b14.jpg, stroage/img/170849148331741995b15.jpg, stroage/img/1708491483727969595b16.jpg, stroage/img/1708491483598454251b17.jpg', 1, '2024-02-21 04:58:03'),
-(6, 'afetvsd', 'fsdfsfsf', 'stroage/img/1708491724752724413pexels-alex-staudinger-1732414.jpg, stroage/img/1708491724743643925pexels-photo-1042594.jpeg, stroage/img/1708491724898503190pexels-photomix-company-565324.jpg, stroage/img/1708491724529541416skills.png, stroage/img/170849172437397850why-us.png', 1, '2024-02-21 05:02:04');
+INSERT INTO `events` (`id`, `smt_id`, `title`, `details`, `images`, `pinned`, `created_at`) VALUES
+(5, NULL, 'sdasd', 'asdasd', 'stroage/img/170849148338455482b11.jpg, stroage/img/1708491483395289311b12.jpg, stroage/img/1708491483374097360b13.jpg, stroage/img/1708491483729047676b14.jpg, stroage/img/170849148331741995b15.jpg, stroage/img/1708491483727969595b16.jpg, stroage/img/1708491483598454251b17.jpg', 1, '2024-02-21 04:58:03'),
+(6, NULL, 'afetvsd', 'fsdfsfsf', 'stroage/img/1708491724752724413pexels-alex-staudinger-1732414.jpg, stroage/img/1708491724743643925pexels-photo-1042594.jpeg, stroage/img/1708491724898503190pexels-photomix-company-565324.jpg, stroage/img/1708491724529541416skills.png, stroage/img/170849172437397850why-us.png', 1, '2024-02-21 05:02:04');
 
 -- --------------------------------------------------------
 
@@ -385,7 +394,7 @@ CREATE TABLE `expences` (
   `id` int(11) NOT NULL,
   `cat_id` int(11) NOT NULL,
   `sub_id` int(11) NOT NULL,
-  `smt_id` int(11) DEFAULT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who add expences.',
   `details` text NOT NULL,
   `amount` int(11) NOT NULL,
   `payment_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -408,6 +417,7 @@ INSERT INTO `expences` (`id`, `cat_id`, `sub_id`, `smt_id`, `details`, `amount`,
 
 CREATE TABLE `garages` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who add garage',
   `gar_no` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -417,14 +427,14 @@ CREATE TABLE `garages` (
 -- Dumping data for table `garages`
 --
 
-INSERT INTO `garages` (`id`, `gar_no`, `user_id`, `created_at`) VALUES
-(1, 'g1', 11, '2024-02-11 14:14:11'),
-(2, 'g2', 1, '2024-02-11 14:14:11'),
-(3, 'g4', 7, '2024-02-11 14:14:11'),
-(4, 'g3', 8, '2024-02-11 14:14:11'),
-(5, 'g5', 10, '2024-02-11 14:14:11'),
-(6, 'g7', 9, '2024-02-11 14:14:11'),
-(7, 'g9', 9, '2024-02-11 14:14:11');
+INSERT INTO `garages` (`id`, `smt_id`, `gar_no`, `user_id`, `created_at`) VALUES
+(1, NULL, 'g1', 11, '2024-02-11 14:14:11'),
+(2, NULL, 'g2', 1, '2024-02-11 14:14:11'),
+(3, NULL, 'g4', 7, '2024-02-11 14:14:11'),
+(4, NULL, 'g3', 8, '2024-02-11 14:14:11'),
+(5, NULL, 'g5', 10, '2024-02-11 14:14:11'),
+(6, NULL, 'g7', 9, '2024-02-11 14:14:11'),
+(7, NULL, 'g9', 9, '2024-02-11 14:14:11');
 
 -- --------------------------------------------------------
 
@@ -469,6 +479,7 @@ INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `smt_id`, `type`, `info`, `am
 
 CREATE TABLE `meetings` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who arrange meeting.',
   `title` text NOT NULL,
   `meet_date` timestamp NULL DEFAULT NULL COMMENT 'meeting date',
   `members` text NOT NULL,
@@ -480,8 +491,8 @@ CREATE TABLE `meetings` (
 -- Dumping data for table `meetings`
 --
 
-INSERT INTO `meetings` (`id`, `title`, `meet_date`, `members`, `details`, `created_at`) VALUES
-(2, 'asdsadsad', '2024-03-01 04:59:00', 'asfasdasds', 'assads', '2024-02-20 04:56:27');
+INSERT INTO `meetings` (`id`, `smt_id`, `title`, `meet_date`, `members`, `details`, `created_at`) VALUES
+(2, NULL, 'asdsadsad', '2024-03-01 04:59:00', 'asfasdasds', 'assads', '2024-02-20 04:56:27');
 
 -- --------------------------------------------------------
 
@@ -491,6 +502,7 @@ INSERT INTO `meetings` (`id`, `title`, `meet_date`, `members`, `details`, `creat
 
 CREATE TABLE `notices` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who add notice.',
   `title` text NOT NULL,
   `details` longtext NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
@@ -532,6 +544,7 @@ INSERT INTO `plot_info` (`id`, `country`, `division`, `district`, `upazila`, `un
 
 CREATE TABLE `rules` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL COMMENT 'who add rule.',
   `title` text NOT NULL,
   `details` longtext NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -541,8 +554,8 @@ CREATE TABLE `rules` (
 -- Dumping data for table `rules`
 --
 
-INSERT INTO `rules` (`id`, `title`, `details`, `create_at`) VALUES
-(1, 'Dolor sit amet consectetur adipiscing elit', 'Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.', '2024-02-11 12:49:42');
+INSERT INTO `rules` (`id`, `smt_id`, `title`, `details`, `create_at`) VALUES
+(1, NULL, 'Dolor sit amet consectetur adipiscing elit', 'Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.', '2024-02-11 12:49:42');
 
 -- --------------------------------------------------------
 
@@ -552,6 +565,7 @@ INSERT INTO `rules` (`id`, `title`, `details`, `create_at`) VALUES
 
 CREATE TABLE `sub_categories` (
   `id` int(11) NOT NULL,
+  `smt_id` int(11) DEFAULT NULL,
   `sub_name` varchar(40) NOT NULL,
   `cat_id` int(11) NOT NULL,
   `type` int(11) NOT NULL COMMENT '(income=1/expanse=0)'
@@ -561,13 +575,13 @@ CREATE TABLE `sub_categories` (
 -- Dumping data for table `sub_categories`
 --
 
-INSERT INTO `sub_categories` (`id`, `sub_name`, `cat_id`, `type`) VALUES
-(1, 'current Bill', 1, 1),
-(2, 'Sequrity', 1, 1),
-(3, 'water', 1, 1),
-(4, 'clener', 1, 1),
-(5, 'maintenance', 1, 1),
-(6, 'Watchman', 2, 0);
+INSERT INTO `sub_categories` (`id`, `smt_id`, `sub_name`, `cat_id`, `type`) VALUES
+(1, NULL, 'current Bill', 1, 1),
+(2, NULL, 'Sequrity', 1, 1),
+(3, NULL, 'water', 1, 1),
+(4, NULL, 'clener', 1, 1),
+(5, NULL, 'maintenance', 1, 1),
+(6, NULL, 'Watchman', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -5703,7 +5717,9 @@ CREATE TABLE `visitors` (
   `persons` int(11) NOT NULL COMMENT 'number of visitors',
   `phone` varchar(15) NOT NULL,
   `purpose` text NOT NULL,
+  `entry_id` int(11) DEFAULT NULL COMMENT 'who enter entry ',
   `entry_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `exit_id` int(11) DEFAULT NULL COMMENT 'who enter exit',
   `exit_time` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -5711,11 +5727,11 @@ CREATE TABLE `visitors` (
 -- Dumping data for table `visitors`
 --
 
-INSERT INTO `visitors` (`id`, `apt_id`, `visitor_name`, `address`, `persons`, `phone`, `purpose`, `entry_time`, `exit_time`) VALUES
-(17, 3, 'fgbf', 'rwerwe', 234, '23423423', 'vcvbsd', '2024-02-13 03:56:27', NULL),
-(18, 2, 'rtert', 'ertert', 5, '5432453', 'gfhfh', '2024-02-13 03:56:56', NULL),
-(19, 2, 'gfdgd', 'gdfgd', 1, '4564', 'cdvdf', '2024-02-13 03:58:43', NULL),
-(20, 1, 'gdfgdfg', 'dfgdfg', 5, '52', 'fhhfg', '2024-02-13 03:59:47', NULL);
+INSERT INTO `visitors` (`id`, `apt_id`, `visitor_name`, `address`, `persons`, `phone`, `purpose`, `entry_id`, `entry_time`, `exit_id`, `exit_time`) VALUES
+(17, 3, 'fgbf', 'rwerwe', 234, '23423423', 'vcvbsd', NULL, '2024-02-13 03:56:27', NULL, NULL),
+(18, 2, 'rtert', 'ertert', 5, '5432453', 'gfhfh', NULL, '2024-02-13 03:56:56', NULL, NULL),
+(19, 2, 'gfdgd', 'gdfgd', 1, '4564', 'cdvdf', NULL, '2024-02-13 03:58:43', NULL, NULL),
+(20, 1, 'gdfgdfg', 'dfgdfg', 5, '52', 'fhhfg', NULL, '2024-02-13 03:59:47', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -5727,38 +5743,44 @@ INSERT INTO `visitors` (`id`, `apt_id`, `visitor_name`, `address`, `persons`, `p
 ALTER TABLE `apartments`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `apt_no` (`apt_no`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `apartments_ibfk_1` (`smt_id`);
 
 --
 -- Indexes for table `apartment_members`
 --
 ALTER TABLE `apartment_members`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `apt_id` (`apt_id`);
+  ADD KEY `apt_id` (`apt_id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `bills`
 --
 ALTER TABLE `bills`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bills_ibfk_1` (`smt_id`);
 
 --
 -- Indexes for table `bill_items`
 --
 ALTER TABLE `bill_items`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `complain`
 --
 ALTER TABLE `complain`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `districts`
@@ -5778,19 +5800,22 @@ ALTER TABLE `divisions`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `phone` (`phone`);
+  ADD UNIQUE KEY `phone` (`phone`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `emp_salary`
 --
 ALTER TABLE `emp_salary`
-  ADD KEY `emp_id` (`emp_id`);
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `expences`
@@ -5807,7 +5832,8 @@ ALTER TABLE `expences`
 ALTER TABLE `garages`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `gar_no` (`gar_no`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `incomes`
@@ -5822,13 +5848,15 @@ ALTER TABLE `incomes`
 -- Indexes for table `meetings`
 --
 ALTER TABLE `meetings`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `notices`
 --
 ALTER TABLE `notices`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `plot_info`
@@ -5840,14 +5868,16 @@ ALTER TABLE `plot_info`
 -- Indexes for table `rules`
 --
 ALTER TABLE `rules`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `cat_id` (`cat_id`);
+  ADD KEY `cat_id` (`cat_id`),
+  ADD KEY `smt_id` (`smt_id`);
 
 --
 -- Indexes for table `unions`
@@ -5876,7 +5906,9 @@ ALTER TABLE `users`
 --
 ALTER TABLE `visitors`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `apt_id` (`apt_id`);
+  ADD KEY `apt_id` (`apt_id`),
+  ADD KEY `entry_id` (`entry_id`),
+  ADD KEY `exit_id` (`exit_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -6022,13 +6054,39 @@ ALTER TABLE `visitors`
 -- Constraints for table `apartments`
 --
 ALTER TABLE `apartments`
-  ADD CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `apartments_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `apartments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `apartment_members`
 --
 ALTER TABLE `apartment_members`
-  ADD CONSTRAINT `apartment_members_ibfk_1` FOREIGN KEY (`apt_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `apartment_members_ibfk_1` FOREIGN KEY (`apt_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `apartment_members_ibfk_2` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bills`
+--
+ALTER TABLE `bills`
+  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bill_items`
+--
+ALTER TABLE `bill_items`
+  ADD CONSTRAINT `bill_items_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `complain`
+--
+ALTER TABLE `complain`
+  ADD CONSTRAINT `complain_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `districts`
@@ -6037,10 +6095,23 @@ ALTER TABLE `districts`
   ADD CONSTRAINT `districts_ibfk_2` FOREIGN KEY (`division_id`) REFERENCES `divisions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `employees`
+--
+ALTER TABLE `employees`
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `emp_salary`
 --
 ALTER TABLE `emp_salary`
-  ADD CONSTRAINT `emp_salary_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `emp_salary_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `emp_salary_ibfk_2` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `expences`
@@ -6054,7 +6125,8 @@ ALTER TABLE `expences`
 -- Constraints for table `garages`
 --
 ALTER TABLE `garages`
-  ADD CONSTRAINT `garages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `garages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `garages_ibfk_2` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `incomes`
@@ -6065,10 +6137,29 @@ ALTER TABLE `incomes`
   ADD CONSTRAINT `incomes_ibfk_3` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `meetings`
+--
+ALTER TABLE `meetings`
+  ADD CONSTRAINT `meetings_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notices`
+--
+ALTER TABLE `notices`
+  ADD CONSTRAINT `notices_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rules`
+--
+ALTER TABLE `rules`
+  ADD CONSTRAINT `rules_ibfk_1` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  ADD CONSTRAINT `sub_categories_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sub_categories_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sub_categories_ibfk_2` FOREIGN KEY (`smt_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `unions`
@@ -6086,7 +6177,9 @@ ALTER TABLE `upazillas`
 -- Constraints for table `visitors`
 --
 ALTER TABLE `visitors`
-  ADD CONSTRAINT `visitors_ibfk_1` FOREIGN KEY (`apt_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `visitors_ibfk_1` FOREIGN KEY (`apt_id`) REFERENCES `apartments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `visitors_ibfk_2` FOREIGN KEY (`entry_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `visitors_ibfk_3` FOREIGN KEY (`exit_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
