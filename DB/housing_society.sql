@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2024 at 07:20 PM
+-- Generation Time: Feb 24, 2024 at 09:13 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -50,7 +50,8 @@ INSERT INTO `apartments` (`id`, `apt_no`, `user_id`, `smt_id`, `flat_size`, `inf
 (8, 'E1', 7, NULL, '1700', 'nothing'),
 (9, 'C3', 8, NULL, '1500', 'nothing'),
 (11, 'c4', 11, NULL, '2300', 'rewrw'),
-(13, 'g44', 1, NULL, '54855', 'gfg');
+(13, 'g44', 1, NULL, '54855', 'gfg'),
+(14, 'b7', 6, 12, '1288', 'dfgsdf');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,9 @@ INSERT INTO `apartment_members` (`id`, `smt_id`, `apt_id`, `member_name`, `dob`,
 (8, NULL, 3, 'sathi', '2024-02-12 18:00:00', '2312312', 'stroage/img/1707458439808317839Don\'t lie.JPG', '2024-02-09 06:00:39', 1),
 (9, NULL, 1, 'adib', '2024-02-14 18:00:00', '234234', 'stroage/img/1707458663710952189Harry_Potter_5_Wallpaper_09_e1.jpg', '2024-02-09 06:04:23', 1),
 (10, NULL, 9, 'ertertert', '2024-02-22 18:00:00', '43534534', 'stroage/img/1708236201333472413.webp', '2024-02-18 06:03:21', 1),
-(11, NULL, 4, 'jhgghghcgh', '2024-02-15 18:00:00', '564', 'stroage/img/1708241688109326953.jpg', '2024-02-18 07:34:48', 1);
+(11, NULL, 4, 'jhgghghcgh', '2024-02-15 18:00:00', '564564', '', '2024-02-18 07:34:48', 1),
+(12, NULL, 11, 'r6yrty54etrrtfew', '2024-02-08 18:00:00', '745785', 'stroage/img/1708759301162771181.jpg', '2024-02-24 07:21:41', 1),
+(13, 12, 1, 'tyi', '2024-02-07 18:00:00', '785685', 'stroage/img/1708761128423781533.jpg', '2024-02-24 07:52:08', 1);
 
 -- --------------------------------------------------------
 
@@ -180,7 +183,7 @@ CREATE TABLE `complain` (
 --
 
 INSERT INTO `complain` (`id`, `title`, `details`, `user_id`, `smt_id`, `decision`, `created_at`) VALUES
-(1, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:08:36'),
+(1, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, 'dfgdfggfdgdfg', '2024-02-20 05:08:36'),
 (2, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:11:08'),
 (3, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:12:09'),
 (4, 'jjjjjj', 'kdsaafsad', 1, NULL, NULL, '2024-02-20 05:12:19'),
@@ -332,10 +335,11 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`id`, `smt_id`, `emp_name`, `designation`, `shift`, `nid`, `phone`, `image`, `joindate`, `salary`, `extra`, `option_one`, `option_two`, `created_at`, `status`) VALUES
 (1, NULL, 'MD. kamal', 'darowan', 'm', '12414', '4654', 'logo.png', '2024-02-16 14:08:59', '12000', '', '', '', '2024-02-16 14:08:59', 1),
-(2, NULL, 'Tanha gazi', 'suipar', 'N', '211241', '35252', 'sfa', '2024-02-16 15:00:31', '300000', NULL, NULL, NULL, '2024-02-16 15:00:31', 1),
+(2, NULL, 'Tanha gazi', 'gyjh', 'hfggn', '211241', '35252', 'stroage/img/170875998821987770.', '2024-02-24 07:33:08', '300000', 'fbgn', 'cbv', 'bcv', '2024-02-16 15:00:31', 1),
 (3, NULL, 'ddffgfdg', 'dfgsdfgsdfg', 'sdfgsdfgsdf', '354353', '353453', 'stroage/img/1708403670644448083.', '2024-02-20 04:34:30', '56496', '54964', '1654', 'mjhguyf', '2024-02-20 04:34:30', 1),
 (4, NULL, 'ert', '5e6y5r', 'r7yu6', '18', '0145', 'stroage/img/1708410679596605759.', '2024-02-20 06:31:19', '456', 'ghjngj', 'jghkj', 'khuk', '2024-02-20 06:31:19', 1),
-(5, NULL, 'gyfvbhjn', '65rtrtfh', 'uii', '556625', '5555', 'stroage/img/1708410750635871724.jpg', '2024-02-20 06:32:30', '77888', 'uhh', 'gghgh', 'tg', '2024-02-20 06:32:30', 1);
+(5, NULL, 'gyfvbhjn', '65rtrtfh', 'uii', '556625', '5555', 'stroage/img/1708410750635871724.jpg', '2024-02-20 06:32:30', '77888', 'uhh', 'gghgh', 'tg', '2024-02-20 06:32:30', 1),
+(6, 12, '4trt', 'rfet', 'rfwer2', '596', '+96', 'stroage/img/1708761270140424680.jpg', '2024-02-24 07:54:41', '569', '54/*', '5/', '=[]', '2024-02-24 07:54:30', 1);
 
 -- --------------------------------------------------------
 
@@ -381,8 +385,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `smt_id`, `title`, `details`, `images`, `pinned`, `created_at`) VALUES
-(5, NULL, 'sdasd', 'asdasd', 'stroage/img/170849148338455482b11.jpg, stroage/img/1708491483395289311b12.jpg, stroage/img/1708491483374097360b13.jpg, stroage/img/1708491483729047676b14.jpg, stroage/img/170849148331741995b15.jpg, stroage/img/1708491483727969595b16.jpg, stroage/img/1708491483598454251b17.jpg', 1, '2024-02-21 04:58:03'),
-(6, NULL, 'afetvsd', 'fsdfsfsf', 'stroage/img/1708491724752724413pexels-alex-staudinger-1732414.jpg, stroage/img/1708491724743643925pexels-photo-1042594.jpeg, stroage/img/1708491724898503190pexels-photomix-company-565324.jpg, stroage/img/1708491724529541416skills.png, stroage/img/170849172437397850why-us.png', 1, '2024-02-21 05:02:04');
+(5, NULL, 'sdasd', 'asdasd', 'stroage/img/1708759398726106512.jpg', 1, '2024-02-21 04:58:03'),
+(6, NULL, 'afetvsd', 'fsdfsfsf', '', 1, '2024-02-21 05:02:04');
 
 -- --------------------------------------------------------
 
@@ -407,7 +411,8 @@ CREATE TABLE `expences` (
 
 INSERT INTO `expences` (`id`, `cat_id`, `sub_id`, `smt_id`, `details`, `amount`, `payment_at`, `created_at`) VALUES
 (1, 2, 6, 12, 'fdsfsf', 324, '2024-02-17 03:07:01', '2024-02-17 03:07:01'),
-(2, 2, 6, 12, 'rererw', 34234, '2024-02-21 02:56:03', '2024-02-21 02:56:03');
+(2, 2, 6, 12, 'rererw', 34234, '2024-02-21 02:56:03', '2024-02-21 02:56:03'),
+(3, 2, 6, 12, 'dfsdfsdf', 45000, '2024-02-24 02:55:32', '2024-02-24 02:55:32');
 
 -- --------------------------------------------------------
 
@@ -462,11 +467,11 @@ CREATE TABLE `incomes` (
 
 INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `smt_id`, `type`, `info`, `amount`, `payment_at`, `pay_id`, `created_at`, `status`) VALUES
 (20, 4, 1, 12, 1, 'dsfads', 6456, '2024-02-13 02:18:02', 'txt23971707808739', '2024-02-13 07:18:33', 1),
-(21, 4, 6, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(21, 4, 6, NULL, NULL, NULL, 6456435, '2024-02-24 03:10:58', '', '2024-02-13 07:18:33', 1),
 (22, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
 (23, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
 (24, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
-(25, 4, 7, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
+(25, 4, 7, NULL, NULL, NULL, 6456, '2024-02-24 03:11:05', '', '2024-02-13 07:18:33', 1),
 (26, 4, 7, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
 (27, 4, 8, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
 (28, 4, 11, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0);
@@ -508,6 +513,14 @@ CREATE TABLE `notices` (
   `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`id`, `smt_id`, `title`, `details`, `status`, `created_at`) VALUES
+(1, NULL, 'gtuyruuyruyru', 'bhjfdytdfd', 1, '2024-02-24 05:22:45'),
+(2, NULL, 'vbnvbn', 'vbnvbnv', 1, '2024-02-24 05:24:19');
 
 -- --------------------------------------------------------
 
@@ -581,7 +594,8 @@ INSERT INTO `sub_categories` (`id`, `smt_id`, `sub_name`, `cat_id`, `type`) VALU
 (3, NULL, 'water', 1, 1),
 (4, NULL, 'clener', 1, 1),
 (5, NULL, 'maintenance', 1, 1),
-(6, NULL, 'Watchman', 2, 0);
+(6, NULL, 'Watchman', 2, 0),
+(7, NULL, 'bnmbnm', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5701,7 +5715,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `mobile`, `address_one`, `a
 (13, 'israt', 'israt@gmail.com', '5646546', NULL, 'ghfhghgfhg', NULL, '$2y$10$ykoqK9rXRLePmb9oB7mxFu1eN2XiofI1RHXjLVAg6eX8PzJvnwZh6', NULL, '2024-02-16 05:23:48', '2024-02-16 05:23:48', 2, 0),
 (14, 'admin@gmail.com', 'dkalkfjslk@gmail.com', '345345', NULL, 'sdfsdfs', NULL, '$2y$10$dXtECWSpLGNFIDjkDOz5UOueqymjpmb34qw3nMOjvcQACy6AgnWTS', NULL, '2024-02-20 04:12:43', '2024-02-20 04:12:43', 2, 0),
 (17, 'admin@gmail.com', 'vdfgdfg@gmail.com', '3123123', NULL, 'sedfsdfs', NULL, '$2y$10$pC4XZsilWt2SR2cGcdCl5O48z3HMmNWhsjV.8s2wAxYlRedqe4Ity', NULL, '2024-02-20 04:15:41', '2024-02-20 04:15:41', 2, 0),
-(18, 'israta', 'israta@gmail.com', '324234', NULL, 'dfdsfs', NULL, '$2y$10$8v/XiCz5VwX9I3YKod8Wnu./hcLPvokd83wg0LAw.udpoXamNL9te', NULL, '2024-02-20 04:17:40', '2024-02-20 04:17:40', 2, 0);
+(18, 'israta', 'israta@gmail.com', '324234', NULL, 'dfdsfs', NULL, '$2y$10$8v/XiCz5VwX9I3YKod8Wnu./hcLPvokd83wg0LAw.udpoXamNL9te', NULL, '2024-02-20 04:17:40', '2024-02-20 04:17:40', 2, 0),
+(19, 'admsdfmgklsdf lj ', 'round5rftgty7@gmail.com', '4194961', 2147483647, 'mkjhogfm', 'retert', '$2y$10$3/l5M0fiiCNuuTGSjG660.kKkij6WsgCc8ayWOI0GSGZNDT/Tnm2y', NULL, '2024-02-24 05:23:40', '2024-02-24 05:23:40', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -5731,7 +5746,8 @@ INSERT INTO `visitors` (`id`, `apt_id`, `visitor_name`, `address`, `persons`, `p
 (17, 3, 'fgbf', 'rwerwe', 234, '23423423', 'vcvbsd', NULL, '2024-02-13 03:56:27', NULL, NULL),
 (18, 2, 'rtert', 'ertert', 5, '5432453', 'gfhfh', NULL, '2024-02-13 03:56:56', NULL, NULL),
 (19, 2, 'gfdgd', 'gdfgd', 1, '4564', 'cdvdf', NULL, '2024-02-13 03:58:43', NULL, NULL),
-(20, 1, 'gdfgdfg', 'dfgdfg', 5, '52', 'fhhfg', NULL, '2024-02-13 03:59:47', NULL, NULL);
+(20, 1, 'gdfgdfg', 'dfgdfg', 5, '52', 'fhhfg', NULL, '2024-02-13 03:59:47', NULL, NULL),
+(21, 1, 'sdawewe', 'ewrwer', 8, '345345', 'dfgdfgdf', NULL, '2024-02-24 04:56:41', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -5918,13 +5934,13 @@ ALTER TABLE `visitors`
 -- AUTO_INCREMENT for table `apartments`
 --
 ALTER TABLE `apartments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `apartment_members`
 --
 ALTER TABLE `apartment_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `bills`
@@ -5966,7 +5982,7 @@ ALTER TABLE `divisions`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -5978,7 +5994,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `expences`
 --
 ALTER TABLE `expences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `garages`
@@ -6002,7 +6018,7 @@ ALTER TABLE `meetings`
 -- AUTO_INCREMENT for table `notices`
 --
 ALTER TABLE `notices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `plot_info`
@@ -6020,7 +6036,7 @@ ALTER TABLE `rules`
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `unions`
@@ -6038,13 +6054,13 @@ ALTER TABLE `upazillas`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

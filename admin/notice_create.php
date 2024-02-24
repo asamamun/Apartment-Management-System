@@ -12,8 +12,9 @@ if(!Admin::Check()){
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
   $data = [
-      'title'=> $db->escape($_POST['title']),
-      'details'=> $db->escape($_POST['details']),
+        'smt_id'=> $_SESSION["userid"],
+        'title'=> $db->escape($_POST['title']),
+        'details'=> $db->escape($_POST['details']),
   ];
     if($db->insert('notices', $data)){
         $myfn->msg('msg', 'done');

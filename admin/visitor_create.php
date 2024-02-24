@@ -12,6 +12,7 @@ if(!Admin::Check()){
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
     $data = [
+        'entry_id'=> $_SESSION["userid"],
         'visitor_name'=> $db->escape($_POST['visitor_name']),
         'apt_id'=> $db->escape($_POST['apt_id']),
         'address'=> $db->escape($_POST['address']),

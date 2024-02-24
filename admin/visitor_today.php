@@ -15,8 +15,6 @@ $vst_arr = array();
 foreach($vst_rows as $vst_value){
     $vst_arr[$vst_value['id']] = $vst_value['apt_no'];
 }
-$sql = "SELECT * FROM `visitors` WHERE entry_time >= curdate()";
-$rows = $db->query($sql);
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
 
@@ -67,6 +65,8 @@ $rows = $db->query($sql);
                                     </tfoot>
                                     <tbody>
 <?php
+$sql = "SELECT * FROM `visitors` WHERE entry_time >= curdate()";
+$rows = $db->query($sql);
 foreach($rows as $row){
     if($row['exit_time'] == null){
         $ifnull="style='background-color:#ff6060'";

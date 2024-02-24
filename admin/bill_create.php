@@ -23,6 +23,7 @@ try{
         $data = [
                 'bill_name'=> $db->escape($_POST['bill_name']),
                 'items_id'=> $items_string,
+                'smt_id'=> $_SESSION["userid"],
                 'amount'=> $amount
             ];
         if($db->insert("bills", $data)){
@@ -34,6 +35,7 @@ try{
                     $data = [
                         'bill_id'=> $lastInserId,
                         'user_id'=> $row['user_id'],
+                        'smt_id'=> $_SESSION["userid"],
                         'amount'=> $amount
                     ];
                     //mail($row['email'], "");

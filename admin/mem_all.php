@@ -95,6 +95,7 @@ html;
                         </div>
                     </div>
                     </div>
+                    <?= $myfn->msg('msg'); ?>
                     <!-- changed content  ends-->
                 </main>
 <!-- footer -->

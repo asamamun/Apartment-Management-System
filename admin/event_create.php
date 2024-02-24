@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
     }
     $image_path_trim = trim($image_path_array, ", ");
     $data = [
+        'smt_id'=> $_SESSION["userid"],
         'title'=> $db->escape($_POST['title']),
         'details'=> $db->escape($_POST['details']),
         'images'=> $image_path_trim,

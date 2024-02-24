@@ -13,6 +13,7 @@ $myfn = new myfn\myfn();
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
   $data = [
+        'smt_id'=> $_SESSION["userid"],
         'cat_id'=> $db->escape($_POST['cat_id']),
         'sub_id'=> $db->escape($_POST['sub_id']),
         'smt_id'=> $_SESSION['userid'],

@@ -12,6 +12,7 @@ if(!Admin::Check()){
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
     $data = [
+        'smt_id'=> $_SESSION["userid"],
         'emp_name'=> $db->escape($_POST['emp_name']),
         'designation'=> $db->escape($_POST['designation']),
         'shift'=> $db->escape($_POST['shift']),

@@ -15,6 +15,7 @@ $db = new MysqliDb ();
 if(isset($_POST['submit'])){
   $data = [
       'cat_name'=> $db->escape($_POST['cat_name']),
+      'smt_id'=> $_SESSION["userid"],
       'type'=> $db->escape($_POST['cat_type']),
   ];
   if($db->insert("categories",$data)){

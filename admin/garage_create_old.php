@@ -11,8 +11,9 @@ if(!Admin::Check()){
 $db = new MysqliDb ();
 if(isset($_POST['submit'])){
   $data = [
-      'gar_no'=> $db->escape($_POST['gar_no']),
-      'user_id'=> $db->escape($_POST['user_id']),
+        'smt_id'=> $_SESSION["userid"],
+        'gar_no'=> $db->escape($_POST['gar_no']),
+        'user_id'=> $db->escape($_POST['user_id']),
   ];
   if($db->insert("garages",$data)){
       header("location: garage_all.php");

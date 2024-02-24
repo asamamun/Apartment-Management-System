@@ -14,6 +14,7 @@ if(isset($_POST['submit'])){
     $idtoupdate = $_POST['id'];
     // $apt_no = $_POST['apt_no'];
     $data = [
+        'smt_id'=> $_SESSION["userid"],
         'decision' => $_POST['decision'],
     ];
     $db->where('id', $idtoupdate);
@@ -48,10 +49,6 @@ if(isset($_GET['id'])){
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <?php
-        if(isset($message)) echo $message;
-        ?>
-        <hr>
         <style> 
     .form{
         background-color: mintcream;
@@ -93,6 +90,7 @@ if(isset($_GET['id'])){
                                 </div>
                             </section>
         <!-- changed content  ends-->
+        <?=$myfn->msg('msg'); ?>
                 </main>
 <!-- footer -->
 <?php require __DIR__.'/components/footer.php'; ?>

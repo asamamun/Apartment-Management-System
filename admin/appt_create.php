@@ -13,6 +13,7 @@ $db = new MysqliDb ();
 if(isset($_POST['submit'])){
   $data = [
       'apt_no'=> $db->escape($_POST['apt_no']),
+      'smt_id'=> $_SESSION["userid"],
       'user_id'=> $db->escape($_POST['user_id']),
       'flat_size'=> $db->escape($_POST['flat_size']),
       'info'=> $db->escape($_POST['info'])

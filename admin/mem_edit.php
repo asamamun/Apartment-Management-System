@@ -13,8 +13,14 @@ if (!Admin::Check()) {
     exit;
 }
 $db = new MysqliDb();
+if(isset($_GET['id'])){
+    $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
+    if($id){
+        $db->where ('id', $id);
+        $row = $db->getOne('apartment_members');
+    }   
+}
 if (isset($_POST['submit'])) {
-    
     echo $_POST['dob'];
     $idtoupdate = $_POST['id'];
     $data = [
@@ -22,7 +28,8 @@ if (isset($_POST['submit'])) {
         'apt_id' => $db->escape($_POST['apt_id']),
         'dob' => $db->escape($_POST['dob']),
         'nid' => $db->escape($_POST['nid']),
-        'images' => $myfn->imageInsert('images'),
+        // 'images' => $myfn->imageInsert('images'),
+        'images'=> isset($_FILES['images']['name']) && $_FILES['images']['name'] != "" ? $myfn->imageInsert('images') : $row['images'],
     ];
     $db->where('id', $idtoupdate);
     if ($db->update('apartment_members', $data)) {
@@ -78,7 +85,8 @@ if (isset($_GET['id'])) {
                     </style>
                     <section class="p-3 p-md-3 p-xl-5">
                         <div class="container">
-                            <div class="col-sm-7">
+                        <div class="col-sm-7" style="display: inline-block;">
+                            <!-- <div class="col-sm-7"> -->
                                 <div class="card border-0 shadow-sm rounded-4">
                                     <div class="card-body">
                                         <div class="row">
@@ -110,10 +118,7 @@ if (isset($_GET['id'])) {
                                                 </div>
                                                 <div class="col-sm-8">             
                                                     <input type="text" class="form-control" id="member_name" name="member_name" value="<?= $row['member_name'] ?>" required>
-                                                </div>
-
-
-
+                                                </div>                                            
                                                 <div class="col-sm-3">
                                                     <label for="dob">Date of Birth:</label>        
                                                 </div>
@@ -126,6 +131,12 @@ if (isset($_GET['id'])) {
                                                 <div class="col-sm-8">
                                                 <input type="number" class="form-control" id="nid" name="nid" value="<?= $row['nid'] ?>" required>
                                                 </div>
+                                                <div class="col-sm-3">
+                                                    <label for="image">Image :</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="file" class="form-control" id="image" name="images">
+                                                </div>
                                                 <div class="col-sm-2">
                                                     <button type="submit" class="btn btn-secondary mb-3" name="submit" value="update">Update</button>
                                                 </div>
@@ -134,6 +145,13 @@ if (isset($_GET['id'])) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-sm-5 mt-3" style="float: right;">
+                                    <div class="card border-0 shadow-sm rounded-4">
+                                        <div class="card-body">
+                                            <img src="<?=$row['images'];?>" width="100%" height="300"/>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </section>
                 </div>

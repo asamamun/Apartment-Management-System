@@ -14,6 +14,7 @@ $db = new MysqliDb ();
 if(isset($_POST['submit']) && $_POST['date']>date('Y-m-d')){
     // if($_POST['date']>date('Y-m-d')){
         $data = [
+            'smt_id'=> $_SESSION["userid"],
             'title'=> $db->escape($_POST['title']),
             'meet_date'=> $db->escape($_POST['date']." ".$_POST['time']),
             'details'=> $db->escape($_POST['details']),

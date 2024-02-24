@@ -3,26 +3,26 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
+$myfn = new myfn\myfn;
 use App\auth\Admin;
 if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
-$myfn = new myfn\myfn;
 $db = new MysqliDb ();
 if(isset($_GET['id'])){
     $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
     if($id){
         $db->where ('id', $id);
         $row = $db->getOne('events');
-    }   
+    }     
 }
 if(isset($_POST['submit'])){
     $idtoupdate = $_POST['id'];
     $data = [
         'title'=> $db->escape($_POST['title']),
         'details'=> $db->escape($_POST['details']),
-        'images'=> isset($_FILES['images']['name']) && $_FILES['images']['name'] != "" ? $myfn->imageInsert('images') : $row['images'],
+        'images'=> isset($_FILES['images']['name']) && $_FILES['images']['name'] != "" ? $myfn->imageInsert('images') : $row['image'],
         'pinned'=> $db->escape($_POST['role']),
     ];
     $db->where ('id', $idtoupdate);
@@ -65,7 +65,7 @@ if(isset($_POST['submit'])){
 </style>
         <section class="p-3 p-md-3 p-xl-5">
                                 <div class="container">
-                                    <div class="col-sm-5" style="display: inline-block;">
+                                    <div class="col-sm-7" style="display: inline-block;">
                                     <div class="card border-0 shadow-sm rounded-4">
                                         <div class="card-body">
                                         <div class="row">
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
                                                     <label for="image">Image :</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <input type="file" class="form-control" id="image" name="images">
+                                                    <input type="file" class="form-control" id="image" name="image">
                                                 </div>
                                                 <div class="col-sm-3">
                                                 <label for="role">Event Type :</label>

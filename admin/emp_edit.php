@@ -12,6 +12,13 @@ if(!Admin::Check()){
 }
 $myfn = new myfn\myfn;
 $db = new MysqliDb ();
+if(isset($_GET['id'])){
+    $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
+    if($id){
+        $db->where ('id', $id);
+        $row = $db->getOne(' employees');
+    }   
+}
 if(isset($_POST['submit'])){ 
     $idtoupdate = $_POST['id'];
     $data = [
@@ -20,7 +27,8 @@ if(isset($_POST['submit'])){
         'shift'=> $db->escape($_POST['shift']),
         'nid'=> $db->escape($_POST['nid']),
         'phone'=> $db->escape($_POST['phone']),
-        'image'=> $myfn->imageInsert('image'),
+        // 'image'=> $myfn->imageInsert('image'),
+        'image'=> isset($_FILES['images']['name']) && $_FILES['images']['name'] != "" ? $myfn->imageInsert('images') : $row['image'],
         'salary'=> $db->escape($_POST['salary']),
         'extra'=> $db->escape($_POST['extra']),
         'option_one'=> $db->escape($_POST['option_one']),
@@ -81,7 +89,8 @@ if(isset($_GET['id'])){
         </style>
         <section class="p-3 p-md-3 p-xl-5">
                                 <div class="container">
-                                  <div class="col-sm-7">
+                                <div class="col-sm-7" style="display: inline-block;">
+                                  <!-- <div class="col-sm-7"> -->
                                     <div class="card border-0 shadow-sm rounded-4">
                                       <div class="card-body">
                                         <div class="row">
@@ -96,7 +105,7 @@ if(isset($_GET['id'])){
                                             <div class="col-sm-8">
                                             <input type="text" class="form-control" id="emp_name"  name="emp_name" value="<?= $row['emp_name'] ?>"required>
                                                                                  
-                         </div>
+                                                </div>
                                                 <div class="col-sm-3">
                                                     <label for="designation">Designation:</label>
                                                 </div>
@@ -124,11 +133,18 @@ if(isset($_GET['id'])){
                                                 <input type="text" class="form-control" id="phone"  name="phone" value="<?= $row['phone'] ?>"  required>
                                                 </div>
                                                 <div class="col-sm-3">
+                                                    <label for="image">Image :</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="file" class="form-control" id="image" name="images" >
+                                                </div>
+                                                <!-- <div class="col-sm-3">
                                                     <label for="image">Image:</label>
                                                 </div>
                                                 <div class="col-sm-8">
                                                 <input type="file" class="form-control" id="image"  name="images"  required>
-                                                </div>
+                                                </div> -->
+
                                                 <div class="col-sm-3">
                                                     <label for="salary">Salary:</label>
                                                 </div>
@@ -161,11 +177,20 @@ if(isset($_GET['id'])){
                                        </div>
                                      </div>
                                   </div>
+                                  <div class="col-sm-5 mt-3" style="float: right;">
+                                    <div class="card border-0 shadow-sm rounded-4">
+                                        <div class="card-body">
+                                            <img src="<?=$row['image']; ?>" width="100%" height="300"/>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </section>  
-        </div>
-        <!-- changed content  ends-->
-                </main>
+                            </div>
+                <?= $myfn->msg('msg'); ?>
+            
+                <!-- changed content  ends-->
+            </main>
 <!-- footer -->
 <?php require __DIR__.'/components/footer.php'; ?>
             </div>
