@@ -46,7 +46,6 @@ $users = $db->get('users');
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Role</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -56,7 +55,6 @@ $users = $db->get('users');
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Role</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -64,7 +62,6 @@ $users = $db->get('users');
                                     <tbody>
 <?php
 foreach($users as $user){
-    // echo $user['name']."(".$user['email'].")<br>";
     $isblock = null;
     if($user['role'] == 0){
         $isblock = "<a class='dropdown-item' href='users_func.php?block_id={$user['id']}&role=1'>Unblock</a>";
@@ -76,7 +73,6 @@ foreach($users as $user){
     <td>{$user['id']}</td>
     <td>{$user['name']}</td>
     <td>{$user['email']}</td>
-    <td>{$user['role']}</td>
     <td>{$user['created_at']}</td>
     <td>
         <div class="btn btn-group" role="group" aria-label="Button group with nested dropdown">

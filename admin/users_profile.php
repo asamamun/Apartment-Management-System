@@ -5,6 +5,26 @@ if (session_status() === PHP_SESSION_NONE) {
 require __DIR__ . '/../vendor/autoload.php';
 $myfn = new myfn\myfn;
 $db = new MysqliDb();
+if(isset($_POST['reg'])){
+  $bill_id = $_POST['bill_id'];
+  $bill_row = $db->where('id', $bill_id)->getOne('bills');
+  $data = [
+      'user_id'=> $db->escape($_POST['user_id']),
+      'bill_id'=> $db->escape($bill_id),
+      'amount'=> $bill_row['amount']
+  ];
+  if($db->insert("incomes",$data)){
+      $message = "Done";
+      $myfn->msg('msg', $message);
+      header("location: ".$_SERVER["HTTP_REFERER"]);
+      exit;
+  }else{
+      $message = "Regitration failed!!";
+      $myfn->msg('msg', $message);
+      header("location: ".$_SERVER["HTTP_REFERER"]);
+      exit;
+  }
+}
 $db->where('id', $_GET['id']);
 $row = $db->getOne('users');
 ?>
@@ -23,12 +43,21 @@ $row = $db->getOne('users');
     <div class="main-body">
     
           <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-              <li class="breadcrumb-item active" aria-current="page"><?=$row['role'] == 2 ? "Admin" : "User"; ?></li>
-            </ol>
+          <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+            <div class="container-fluid">
+              
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                  </li>
+                  
+                </ul>
+                <form class="d-flex" role="search">
+                  <button class="btn btn-sm btn-outline-danger" type="submit">Logout</button>
+                </form>
+              </div>
+            </div>
           </nav>
           <!-- /Breadcrumb -->
     
@@ -50,6 +79,26 @@ $row = $db->getOne('users');
                   </div>
                 </div>
               </div>
+              <div class="card mt-3 mb-3 p-4">
+                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Add Bills</i></h6>
+                <form action="" method="post" class="form">
+                  <input type="hidden" class="" id="user_id"  name="user_id" value="<?=$_GET['id']; ?>" >
+                  <div class="input-group">
+                      <label for="bill_id" class="btn btn-info">Bill Name:</label>
+                      <select class="form-control" id="bill_id"  name="bill_id"  required>
+                          <option>Select</option>
+<?php
+$db->where("status", 1);
+$bill_rows = $db->get("bills");
+foreach($bill_rows as $bill_row){
+    echo "<option value='{$bill_row['id']}'>{$bill_row['bill_name']}</option>";
+}
+?>                          
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2" name="reg" value="submit" onClick="return comfarm()">Submit</button>
+                </form>
+              </div>
               <div class="card mt-3">
                 <ul class="list-group list-group-flush">
 <?php
@@ -65,7 +114,8 @@ foreach($incomes as $income){
 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color:{$style};">
     <h6 class="mb-0">{$billing[$income['bill_id']]}</h6>
     <small>{$myfn->only_date($income['created_at'])}</small>
-    <span class="text-secondary">{$income['amount']}</span>
+    <span class="text-secondary">{$income['amount']} TK</span>
+    <a href="users_payment.php?incomes_id={$income['id']}" class="btn btn-danger">Payment</a>
 </li>
 html;
 }

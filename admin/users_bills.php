@@ -20,9 +20,14 @@ if(isset($_POST['reg'])){
     ];
     if($db->insert("incomes",$data)){
         $message = "Done";
-        //header("location: users_all.php");
+        $myfn->msg('msg', $message);
+        header("location: ".$_SERVER["HTTP_REFERER"]);
+        exit;
     }else{
         $message = "Regitration failed!!";
+        $myfn->msg('msg', $message);
+        header("location: ".$_SERVER["HTTP_REFERER"]);
+        exit;
     }
 }
 ?>
@@ -44,7 +49,7 @@ if(isset($_POST['reg'])){
                         </ol>
                         <div class="row mb-4">
                             <div class="col-md-2"></div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 border border-info rounded p-4">
                                 <form action="" method="post">
                                     <div class="mb-3 mt-3">
                                         <input type="hidden" class="form-control" id="user_id"  name="user_id" value="<?=$_GET['id']; ?>" >
@@ -52,8 +57,9 @@ if(isset($_POST['reg'])){
                                     <div class="mb-3 mt-3">
                                         <label for="bill_id" class="form-label">Bill Name:</label>
                                         <select class="form-control" id="bill_id"  name="bill_id"  required>
-                                            <option>select</option>
+                                            <option>Select</option>
 <?php
+$db->where("status", 1);
 $bill_rows = $db->get("bills");
 foreach($bill_rows as $bill_row){
     echo "<option value='{$bill_row['id']}'>{$bill_row['bill_name']}</option>";

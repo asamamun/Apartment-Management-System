@@ -11,6 +11,9 @@ if(!Admin::Check()){
 }
 $myfn = new myfn\myfn;
 $db = new MysqliDb ();
+if(isset($_GET["status"])){
+    $db->where('status', $_GET["status"]);
+}
 $rows = $db->get('bills');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
@@ -72,8 +75,8 @@ foreach($rows as $row){
     <td>{$row['items_id']}</td>
     <td>{$row['amount']}</td>
     <td>
-        <a class="btn btn-primary" href="bill.php?id={$row['id']}">view</a>
-        <button class="btn btn-danger">Block</button>
+        <a class="btn btn-primary" href="bill.php?id={$row['id']}">View</a>
+        <a class="btn btn-danger" href="bill_func.php?expire=1&id={$row['id']}">Expire</a>
     </td>
 </tr>
 html;

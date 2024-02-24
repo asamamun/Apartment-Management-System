@@ -67,9 +67,9 @@ $rows = $db->query($sql);
 foreach ($rows as $row) {
     $isblock = null;
     if($row['status'] == 0){
-        $isblock = "<a class='btn btn-danger' href='bill_func.php?block_id={$row['id']}&status=1'>Unblock</a>";
+        $isblock = "<a class='btn btn-danger' href='bill_item_func.php?block_id={$row['id']}&status=1'>Unblock</a>";
     }else{
-        $isblock = "<a class='btn btn-danger' href='bill_func.php?block_id={$row['id']}&status=0'>Block</a>";
+        $isblock = "<a class='btn btn-danger' href='bill_item_func.php?block_id={$row['id']}&status=0'>Block</a>";
     }
     echo <<<html
 <tr>
@@ -78,7 +78,7 @@ foreach ($rows as $row) {
     <td>{$row['sub_name']}</td>
     <td>{$row['amount']}</td>
     <td>
-        <a class='btn btn-success' href='bill_func.php?id={$row['id']}'>View</a>
+        <a class='btn btn-success d-none' href='bill_item_func.php?id={$row['id']}'>View</a>
         {$isblock}
     </td>
 </tr>

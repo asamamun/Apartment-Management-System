@@ -9,17 +9,17 @@ if(!Admin::Check()){
     header('HTTP/1.1 503 Service Unavailable');
     exit;
 }
-if(isset($_GET['id'])){
+if(isset($_GET['block'])){
     $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
     if($id){
         $db->where('id', $id);
-        if($db->delete('categories')){
-            header("location: cat_all.php");
+        if($db->update('sub_categories', ['status' => 0])){
+            header("location: subcat_all.php");
         }else{
             echo "something went wrong!! contact the administrator";
             exit;
         }
     }
-    $conn->close();
+    //$conn->close();
 }
 ?>

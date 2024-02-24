@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2024 at 09:13 AM
+-- Generation Time: Feb 24, 2024 at 08:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -101,18 +101,19 @@ CREATE TABLE `bills` (
   `bill_name` text NOT NULL,
   `items_id` varchar(50) NOT NULL,
   `amount` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bills`
 --
 
-INSERT INTO `bills` (`id`, `smt_id`, `bill_name`, `items_id`, `amount`, `created_at`) VALUES
-(1, NULL, 'januyari', '1, 2, 3', 6456, '2024-02-10 14:45:11'),
-(2, NULL, 'fabruary', '4', 500, '2024-02-10 14:45:36'),
-(3, NULL, 'bari vara', '1, 2, 3, 4', 6956, '2024-02-12 18:07:33'),
-(4, NULL, 'barivara', '1, 2, 3', 6456, '2024-02-13 07:18:33');
+INSERT INTO `bills` (`id`, `smt_id`, `bill_name`, `items_id`, `amount`, `created_at`, `status`) VALUES
+(1, 12, 'januyari', '1, 2, 3', 6456, '2024-02-10 14:45:11', 1),
+(2, 12, 'fabruary', '4', 500, '2024-02-10 14:45:36', 1),
+(3, 12, 'bari vara', '1, 2, 3, 4', 6956, '2024-02-12 18:07:33', 1),
+(4, 12, 'barivara', '1, 2, 3', 6456, '2024-02-13 07:18:33', 0);
 
 -- --------------------------------------------------------
 
@@ -138,8 +139,8 @@ CREATE TABLE `bill_items` (
 INSERT INTO `bill_items` (`id`, `smt_id`, `cat_id`, `sub_id`, `details`, `amount`, `created_at`, `status`) VALUES
 (1, NULL, 1, 1, 'safaf', 2000, '2024-02-10 14:27:21', 1),
 (2, NULL, 1, 2, 'fsdf', 1000, '2024-02-10 14:42:23', 1),
-(3, NULL, 1, 3, 'sfsd', 3456, '2024-02-10 14:42:49', 1),
-(4, NULL, 1, 4, 'dfsdf', 500, '2024-02-10 14:43:14', 1);
+(3, NULL, 1, 3, 'sfsd', 3456, '2024-02-10 14:42:49', 0),
+(4, NULL, 1, 4, 'dfsdf', 500, '2024-02-10 14:43:14', 0);
 
 -- --------------------------------------------------------
 
@@ -151,16 +152,17 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `smt_id` int(11) DEFAULT NULL COMMENT 'admin id who add this row.',
   `cat_name` varchar(40) NOT NULL,
-  `type` int(11) NOT NULL COMMENT '(income=1/expanse=0)'
+  `type` int(11) NOT NULL COMMENT '(income=1/expanse=0)',
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `smt_id`, `cat_name`, `type`) VALUES
-(1, NULL, 'Bulding', 1),
-(2, NULL, 'salary', 0);
+INSERT INTO `categories` (`id`, `smt_id`, `cat_name`, `type`, `status`) VALUES
+(1, 12, 'Bulding', 1, 1),
+(2, 12, 'salary', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -385,8 +387,10 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `smt_id`, `title`, `details`, `images`, `pinned`, `created_at`) VALUES
-(5, NULL, 'sdasd', 'asdasd', 'stroage/img/1708759398726106512.jpg', 1, '2024-02-21 04:58:03'),
-(6, NULL, 'afetvsd', 'fsdfsfsf', '', 1, '2024-02-21 05:02:04');
+(1, 12, 'New Year', 'China\\\'s Lunar New Year celebrations have got a new flavour as citizens are falling in love with pork-flavoured coffee which has been introduced by Starbucks, one of the largest coffee chains in the world.\\r\\n\\r\\nThe drink, which is strangely becoming everyone\\\'s favourite, has a combination of Dongpo Braised Pork Flavor Sauce with espresso and steamed milk and also contains extra pork sauce and pork breast meat for garnish. The drink is being sold across China at a price of ¥68 ($9.45).', 'stroage/img/1708784738887724316KAGAYA001.jpg, stroage/img/1708784738838162854KAGAYA012.jpg, stroage/img/1708784738462337154KAGAYA025.jpg, stroage/img/1708784738882927393KAGAYA026.jpg, stroage/img/1708784738374555340KAGAYA028.jpg, stroage/img/1708784738624799878KAGAYA033.jpg, stroage/img/1708784738715992255KAGAYA036.jpg, stroage/img/1708784738684572216KAGAYA040.jpg', 1, '2024-02-24 14:25:38'),
+(2, 12, 'Eid ul Adha', 'For those who practice the Islamic faith, this much-anticipated celebration comes after the last day of Ramadan — a holy month of fasting, worship, and prayer for Muslims. Keep watching to learn more ', 'stroage/img/1708785145202517452thequint_2023-06_68c5b8ed-6d42-4191-a948-0f2f2b72c658_iStock_1289327572.webp, stroage/img/1708785145862463206images.jpg, stroage/img/1708785145375347540eid-mubarak-PA.jpg, stroage/img/1708785145450643528eid-mubarak-pm-narendra-modi-greets-nation-on-eid-ul-adha-4162020.htm, stroage/img/1708785145731143147A_960x540px_1620788847541_1651176747507_1651176757143.webp, stroage/img/1708785145656031953Eid_al-Fitr_prayer,_Suleymaniye_Mosque,_Istanbul_-_Aug_30,_2011.jpg, stroage/img/1708785145184933041e2fd9d27314cfe86e97ea5cdb7f461c1.avif, stroage/img/1708785145459503326whats-eid-why-it-come-twice-a-year-and-what-happens-on-eid-here-is-everything-about-the-islamic-festival.webp, stroage/img/1708785145239455471eid.jpg, stroage/img/1708785145938441465eid_namaz_eid_jamat_3.jpeg', 1, '2024-02-24 14:32:25'),
+(3, 12, 'Birthday', 'Thank you my old friends!, It\\\'s a pleasure to welcome new friends!, Thanks all of you to give so much of love To \\\" Happy Birthday \\\". It\\\'s Your Support and Love that increase us to bring such', 'stroage/img/1708785375252841144medium_ways_to_say_happy_birthday_6c117b5e5d.jpg, stroage/img/1708785375206366292Birthdays.jpg, stroage/img/1708785375330481260maxresdefault.jpg, stroage/img/1708785375217123023images.jpg', 1, '2024-02-24 14:36:15'),
+(4, 12, 'Marrage', 'When giving permission to use their work, some copyright holders ask that you do this. In some cases, you may also need to credit the copyright holder if you plan to use their work in a way that you consider fair use or fair dealing. However, this doesn\\\'t automatically give you the right to use the content without permission.', 'stroage/img/1708785643973566924C Kalyan son marrage (10).JPG, stroage/img/1708785643553301395C Kalyan son marrage (1).JPG, stroage/img/1708785643390802053Marriage-certificate-compressed.webp, stroage/img/1708785643478510782Marrage-1-1.jpg, stroage/img/1708785643826663673wedding-bands-rings-marrage-legal.jpg, stroage/img/1708785643898803830360_F_708624833_F7akVtDizVeDCOBEboWZQ45pGtpTH0Uv.jpg, stroage/img/1708785643379187913istockphoto-1334542509-612x612.jpg', 1, '2024-02-24 14:40:43');
 
 -- --------------------------------------------------------
 
@@ -467,14 +471,21 @@ CREATE TABLE `incomes` (
 
 INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `smt_id`, `type`, `info`, `amount`, `payment_at`, `pay_id`, `created_at`, `status`) VALUES
 (20, 4, 1, 12, 1, 'dsfads', 6456, '2024-02-13 02:18:02', 'txt23971707808739', '2024-02-13 07:18:33', 1),
-(21, 4, 6, NULL, NULL, NULL, 6456435, '2024-02-24 03:10:58', '', '2024-02-13 07:18:33', 1),
-(22, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
-(23, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
-(24, 4, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
-(25, 4, 7, NULL, NULL, NULL, 6456, '2024-02-24 03:11:05', '', '2024-02-13 07:18:33', 1),
-(26, 4, 7, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
-(27, 4, 8, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0),
-(28, 4, 11, NULL, NULL, NULL, 6456, NULL, '', '2024-02-13 07:18:33', 0);
+(21, 4, 6, 12, NULL, NULL, 6456435, '2024-02-24 18:26:30', '', '2024-02-13 07:18:33', 1),
+(22, 4, 1, 12, 1, 'dasdasda', 6456, '2024-02-24 02:17:02', 'txt92201708802249', '2024-02-13 07:18:33', 1),
+(23, 4, 1, 12, NULL, NULL, 6456, '2024-02-24 18:26:37', '', '2024-02-13 07:18:33', 0),
+(24, 4, 1, 12, NULL, NULL, 6456, '2024-02-24 18:26:40', '', '2024-02-13 07:18:33', 0),
+(25, 4, 7, 12, NULL, NULL, 6456, '2024-02-24 18:26:44', '', '2024-02-13 07:18:33', 1),
+(26, 4, 7, 12, NULL, NULL, 6456, '2024-02-24 18:26:47', '', '2024-02-13 07:18:33', 0),
+(27, 4, 8, 12, NULL, NULL, 6456, '2024-02-24 18:26:50', '', '2024-02-13 07:18:33', 0),
+(28, 4, 11, 12, NULL, NULL, 6456, '2024-02-24 18:26:53', '', '2024-02-13 07:18:33', 0),
+(29, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:04:47', 0),
+(30, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:05:48', 0),
+(31, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:06:15', 0),
+(32, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:06:47', 0),
+(33, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:07:43', 0),
+(34, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:07:48', 0),
+(35, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:17:01', 0);
 
 -- --------------------------------------------------------
 
@@ -547,7 +558,7 @@ CREATE TABLE `plot_info` (
 --
 
 INSERT INTO `plot_info` (`id`, `country`, `division`, `district`, `upazila`, `union`, `address`, `image`, `help_line`, `email`, `google_map`) VALUES
-(1, 'bangladesh', '1', '2', '4', '5', 'fdgsdfgdsfgdsfg', 'stroage/img/1708138583470945729pexels-eberhard-grossgasteiger-640781.jpg, stroage/img/170813859873514480pexels-pixabay-50594.jpg, stroage/img/1708490232567586219b7.png', '54453', 'isadf@gmail.com', 'dsafasdfas');
+(1, 'bangladesh', '1', '2', '4', '5', 'College Road', 'stroage/img/1708138583470945729pexels-eberhard-grossgasteiger-640781.jpg, stroage/img/170813859873514480pexels-pixabay-50594.jpg, stroage/img/1708490232567586219b7.png', '999', 'support24x7@gmail.com', 'http://maps.google.ca/maps?q=14735+32A+AVE+Surrey+V4P+1Z8+bc&spn=0.012065,0.040770&iwloc=A&hl=en');
 
 -- --------------------------------------------------------
 
@@ -560,6 +571,7 @@ CREATE TABLE `rules` (
   `smt_id` int(11) DEFAULT NULL COMMENT 'who add rule.',
   `title` text NOT NULL,
   `details` longtext NOT NULL,
+  `pin` int(11) NOT NULL DEFAULT 0,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -567,8 +579,11 @@ CREATE TABLE `rules` (
 -- Dumping data for table `rules`
 --
 
-INSERT INTO `rules` (`id`, `smt_id`, `title`, `details`, `create_at`) VALUES
-(1, NULL, 'Dolor sit amet consectetur adipiscing elit', 'Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.\r\nFeugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.', '2024-02-11 12:49:42');
+INSERT INTO `rules` (`id`, `smt_id`, `title`, `details`, `pin`, `create_at`) VALUES
+(1, 12, 'Noise Control', 'Respect quiet hours between 10:00 PM and 7:00 AM. Keep music and TV volumes at a reasonable level, especially during late hours. Be mindful of your footsteps, particularly if you live in an upper floor apartment.', 1, '2024-02-11 12:49:42'),
+(2, 12, 'Common Area Etiquette', 'Clean up after yourself in shared spaces such as the lobby, hallways, and laundry room.\r\nDispose of trash and recycling properly in designated bins.\r\nDo not leave personal belongings in common areas for extended periods.', 0, '2024-02-24 15:13:26'),
+(3, 12, 'Guest Policy', 'Notify roommates or neighbors if you plan to have guests staying overnight.\r\nEnsure guests follow all apartment rules during their visit.\r\nLimit the number of guests to avoid overcrowding and disturbance.', 0, '2024-02-24 15:13:26'),
+(4, 12, 'Maintenance Requests', 'Report any maintenance issues or concerns promptly to the building management.\r\nAllow maintenance staff access to your apartment to address repairs or inspections.\r\nFollow any guidelines provided for maintenance or repairs, such as clearing space or moving furniture.', 0, '2024-02-24 15:13:26');
 
 -- --------------------------------------------------------
 
@@ -581,21 +596,22 @@ CREATE TABLE `sub_categories` (
   `smt_id` int(11) DEFAULT NULL,
   `sub_name` varchar(40) NOT NULL,
   `cat_id` int(11) NOT NULL,
-  `type` int(11) NOT NULL COMMENT '(income=1/expanse=0)'
+  `type` int(11) NOT NULL COMMENT '(income=1/expanse=0)',
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sub_categories`
 --
 
-INSERT INTO `sub_categories` (`id`, `smt_id`, `sub_name`, `cat_id`, `type`) VALUES
-(1, NULL, 'current Bill', 1, 1),
-(2, NULL, 'Sequrity', 1, 1),
-(3, NULL, 'water', 1, 1),
-(4, NULL, 'clener', 1, 1),
-(5, NULL, 'maintenance', 1, 1),
-(6, NULL, 'Watchman', 2, 0),
-(7, NULL, 'bnmbnm', 1, 1);
+INSERT INTO `sub_categories` (`id`, `smt_id`, `sub_name`, `cat_id`, `type`, `status`) VALUES
+(1, NULL, 'current Bill', 1, 1, 1),
+(2, NULL, 'Sequrity', 1, 1, 1),
+(3, NULL, 'water', 1, 1, 1),
+(4, NULL, 'clener', 1, 1, 1),
+(5, NULL, 'maintenance', 1, 1, 0),
+(6, NULL, 'Watchman', 2, 0, 1),
+(7, NULL, 'bnmbnm', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5713,7 +5729,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `mobile`, `address_one`, `a
 (11, 'rafi', 'rafi@gmail.com', '41241', NULL, 'kauyar cor', NULL, '$2y$10$eEPFR4n8FheuLFrsEDGkm.g8gMFw.zVY8gr.qX3IamAAnP0N4sC8S', NULL, '2024-02-09 04:57:23', '2024-02-09 04:57:23', 1, 0),
 (12, 'admin', 'admin@gmail.com', '3423423', 3423423, 'fgfdgdfg', NULL, '$2y$10$D.QrfO/uTesTAEwf6o3PmuB3GfKoED6hkBZXakdwptJGGeZU8fN3C', 'stroage/img/1707661501949850213.jpg', '2024-02-11 14:23:46', '2024-02-11 14:23:46', 2, 0),
 (13, 'israt', 'israt@gmail.com', '5646546', NULL, 'ghfhghgfhg', NULL, '$2y$10$ykoqK9rXRLePmb9oB7mxFu1eN2XiofI1RHXjLVAg6eX8PzJvnwZh6', NULL, '2024-02-16 05:23:48', '2024-02-16 05:23:48', 2, 0),
-(14, 'admin@gmail.com', 'dkalkfjslk@gmail.com', '345345', NULL, 'sdfsdfs', NULL, '$2y$10$dXtECWSpLGNFIDjkDOz5UOueqymjpmb34qw3nMOjvcQACy6AgnWTS', NULL, '2024-02-20 04:12:43', '2024-02-20 04:12:43', 2, 0),
 (17, 'admin@gmail.com', 'vdfgdfg@gmail.com', '3123123', NULL, 'sedfsdfs', NULL, '$2y$10$pC4XZsilWt2SR2cGcdCl5O48z3HMmNWhsjV.8s2wAxYlRedqe4Ity', NULL, '2024-02-20 04:15:41', '2024-02-20 04:15:41', 2, 0),
 (18, 'israta', 'israta@gmail.com', '324234', NULL, 'dfdsfs', NULL, '$2y$10$8v/XiCz5VwX9I3YKod8Wnu./hcLPvokd83wg0LAw.udpoXamNL9te', NULL, '2024-02-20 04:17:40', '2024-02-20 04:17:40', 2, 0),
 (19, 'admsdfmgklsdf lj ', 'round5rftgty7@gmail.com', '4194961', 2147483647, 'mkjhogfm', 'retert', '$2y$10$3/l5M0fiiCNuuTGSjG660.kKkij6WsgCc8ayWOI0GSGZNDT/Tnm2y', NULL, '2024-02-24 05:23:40', '2024-02-24 05:23:40', 2, 1);
@@ -5988,7 +6003,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `expences`
@@ -6006,7 +6021,7 @@ ALTER TABLE `garages`
 -- AUTO_INCREMENT for table `incomes`
 --
 ALTER TABLE `incomes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `meetings`
@@ -6030,7 +6045,7 @@ ALTER TABLE `plot_info`
 -- AUTO_INCREMENT for table `rules`
 --
 ALTER TABLE `rules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`

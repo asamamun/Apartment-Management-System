@@ -84,8 +84,7 @@ $users = $db->query($sql);
                     <li><a class="dropdown-item" href="users_img.php?id={$user['id']}">Photo</a></li>
                     <li><a class="dropdown-item" href="users_mail.php?id={$user['id']}">Send Mail</a></li>
                     <li><a class="dropdown-item" href="users_profile.php?id={$user['id']}">Profile</a></li>
-                    <li><a class="dropdown-item" href="users_payment.php?id={$user['id']}">Payment</a></li>
-                    <li><a class="dropdown-item" href="users_role.php?id={$user['id']}">Role</a></li>
+                    <li><a class="dropdown-item" href="users_bills.php?id={$user['id']}">All Bills</a></li>
                     <li><a class="dropdown-item" href="users_delete.php?id={$user['id']}">Delete</a></li>
                 </ul>
             </div>

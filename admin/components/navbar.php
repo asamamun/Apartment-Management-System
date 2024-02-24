@@ -15,9 +15,9 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?=$_SESSION['photo']; ?>" width="30" height="30" style="border-radius: 50%;"/></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="javascript:void(0)"><strong><?= $_SESSION['username'] ?></strong></a></li>
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                <li><a class="dropdown-item text-success" href="users_profile.php?id=<?=$_SESSION["userid"]; ?>"><strong><?= $_SESSION['username'] ?></strong></a></li>
+                <li><a class="dropdown-item" href="info.php">Plot Info</a></li>
+                <li><a class="dropdown-item" href="plot_photo.php">Plot Picture</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="<?=settings()['adminpage']?>logout.php">Logout</a></li>
             </ul>

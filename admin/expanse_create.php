@@ -73,7 +73,7 @@ foreach ($div_rows as $div_row) {
                                     </div>
                                     <div class="mb-3 mt-3">
                                         <!-- <label for="details" class="form-label">Details</label> -->
-                                        <textarea class="form-control" id="details"  name="details"></textarea>
+                                        <textarea class="form-control" id="textarea"  name="details"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit" value="category">Income Item Set</button>
                                 </form>

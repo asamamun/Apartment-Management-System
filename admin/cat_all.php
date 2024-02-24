@@ -15,6 +15,11 @@ $db = new MysqliDb ();
 if(isset($_GET["type"])){
     $db->where("type", $_GET["type"]);
 }
+if(isset($_GET["status"])){
+    $db->where("status", $_GET["status"]);
+}else{
+    $db->where("status", 1); 
+}
 $rows = $db->get('categories');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
@@ -57,18 +62,25 @@ $rows = $db->get('categories');
                                     <tbody>
 <?php
 foreach($rows as $row){
-    $type = $row['type'] == 1 ? 'Income' : 'expanse';
+    $isblock = null;
+    if($row['status'] == 0){
+        $isblock = "<a class='dropdown-item' href='cat_func.php?block=1&id={$row['id']}&role=1'>Unblock</a>";
+    }else{
+        $isblock = "<a class='dropdown-item' href='cat_func.php?block=1&id={$row['id']}&role=0'><i class='bi bi-ban'></i> block</a>";
+    }
+    $type = $row['type'] == 1 ? "<span class='text-success h6'>Income</span>" : "<span class='text-danger h6'>expanse</span>";
     echo <<<html
 <tr>
     <td>{$row['id']}</td>
     <td>{$row['cat_name']}</td>
     <td>{$type}</td>
-    <td>
+    <td class="text-center">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
-                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">option</span>
+                <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Option</span>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="cat_edit.php?id={$row['id']}">Edit</a></li>
+                    <li><li>{$isblock}</li></li>
                     <li><a class="dropdown-item" href="cat_delete.php?id={$row['id']}">Delete</a></li>
                 </ul>
             </div>

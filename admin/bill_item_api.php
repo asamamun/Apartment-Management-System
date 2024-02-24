@@ -10,7 +10,7 @@ if(!Admin::Check()){
 }
 $db = new MysqliDb ();
 if(isset($_GET['id']) && isset($_GET['get']) && isset($_GET['set'])){
-    $db->where('cat_id', $_GET['id']);
+    $db->where('cat_id', $_GET['id'])->where('status', 1);
     $rows = $db->get('sub_categories');
     echo "<option>select</option>";
     foreach ($rows as $row) {

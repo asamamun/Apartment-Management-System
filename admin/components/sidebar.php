@@ -104,6 +104,7 @@ echo $db->getValue ("users", "count(*)");
                                     <a class="nav-link" href="cat_all.php">All</a>
                                     <a class="nav-link" href="cat_all.php?type=1">incomes</a>
                                     <a class="nav-link" href="cat_all.php?type=0">expences</a>
+                                    <a class="nav-link" href="cat_all.php?status=0">Block</a>
                                     <a class="nav-link" href="cat_create.php">Add</a>
                                 </nav>
                             </div>
@@ -117,6 +118,7 @@ echo $db->getValue ("users", "count(*)");
                                     <a class="nav-link" href="subcat_all.php">All</a>
                                     <a class="nav-link" href="subcat_all.php?type=1">incomes</a>
                                     <a class="nav-link" href="subcat_all.php?type=0">expences</a>
+                                    <a class="nav-link" href="subcat_all.php?status=0">Block</a>
                                     <a class="nav-link" href="subcat_create.php">Add</a>
                                 </nav>
                             </div>
@@ -139,7 +141,8 @@ echo $db->getValue ("users", "count(*)");
                             </a>
                             <div class="collapse" id="collapseLayoutsubIncomeMaking" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="bill_all.php">All</a>
+                                    <a class="nav-link" href="bill_all.php?status=1">Active</a>
+                                    <a class="nav-link" href="bill_all.php?status=0">Expire</a>
                                     <a class="nav-link" href="bill_create.php">Add</a>
                                 </nav>
                             </div>
@@ -167,7 +170,7 @@ echo $db->getValue ("users", "count(*)");
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Others</div>
-                            <a class="nav-link" href="Info.php">
+                            <a class="nav-link" href="info.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Plot Info
                             </a>

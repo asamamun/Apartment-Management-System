@@ -1,11 +1,13 @@
 <?php
+$pagename = "jhdsfhkasj";
+$pagetitle = "";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\auth\Admin;
-
+$myfn = new myfn\myfn();
 if (!Admin::Check()) {
     header('HTTP/1.1 503 Service Unavailable');
     exit;
@@ -38,11 +40,12 @@ $row = $db->getOne('plot_info');
         <div id="layoutSidenav_content">
             <main>
                 <!-- changed content -->
-                <?php
-                if (isset($message)) echo $message;
-                ?>
-                <hr>
                 <div class="container p-4">
+                    <h1 class="mt-4"><?=$myfn->getPageName(__FILE__);?></h1>
+                    <hr />
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active"><h3><?=$pagetitle;?></h3></li>
+                    </ol>
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
@@ -101,6 +104,7 @@ $row = $db->getOne('plot_info');
                         <div class="col-md-2"></div>
                     </div>
                 </div>
+                <?=$myfn->msg('msg'); ?>
                 <!-- changed content  ends-->
             </main>
             <!-- footer -->

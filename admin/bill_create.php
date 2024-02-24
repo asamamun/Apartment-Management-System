@@ -64,10 +64,9 @@ try{
             <div id="layoutSidenav_content">
                 <main>
                     <!-- changed content -->
-                    <?php
+        <?php
         if(isset($message)) echo $message;
         ?>
-        <hr>
         <div class="container p-4">
             <div class="row">
                 <div class="col-md-2"></div>

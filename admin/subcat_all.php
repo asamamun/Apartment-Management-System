@@ -19,6 +19,11 @@ foreach($cat_rows as $cat_value){
 if(isset($_GET["type"])){
     $db->where("type", $_GET["type"]);
 }
+if(isset($_GET["status"])){
+    $db->where("status", $_GET["status"]);
+}else{
+    $db->where("status", 1); 
+}
 $rows = $db->get('sub_categories');
 ?>
 <?php require __DIR__.'/components/header.php'; ?>
@@ -63,7 +68,13 @@ $rows = $db->get('sub_categories');
                                     <tbody>
 <?php
 foreach($rows as $row){
-    $type = $row['type'] == 1 ? 'Income' : 'expanse';
+    $isblock = null;
+    if($row['status'] == 0){
+        $isblock = "<a class='dropdown-item' href='subcat_edit.php?id={$row['id']}&role=1'>Unblock</a>";
+    }else{
+        $isblock = "<a class='dropdown-item' href='subcat_edit.php?id={$row['id']}&role=0'><i class='bi bi-ban'></i> block</a>";
+    }
+    $type = $row['type'] == 1 ? "<span class='text-success h6'>Income</span>" : "<span class='text-danger h6'>expanse</span>";
     echo <<<html
 <tr>
     <td>{$row['id']}</td>
@@ -76,6 +87,7 @@ foreach($rows as $row){
                 <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">option</span>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="subcat_edit.php?id={$row['id']}">Edit</a></li>
+                    <li><li>{$isblock}</li></li>
                     <li><a class="dropdown-item" href="subcat_delete.php?id={$row['id']}">Delete</a></li>
                 </ul>
             </div>
