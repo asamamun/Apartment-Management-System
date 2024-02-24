@@ -14,18 +14,18 @@ $db = new MysqliDb();
 if (isset($_POST['submit'])) {
     $idtoupdate = $_POST['id'];
     $data = [
-        'title' => $_POST['title'],
-        'details' => $_POST['details']
+        'email' => $_POST['email'],
+        'google_map' => $_POST['google_map']
     ];
     $db->where('id', $idtoupdate);
-    if ($db->update('rules', $data))
+    if ($db->update('plot_info', $data))
         $message = "User Updated successfully";
     else {
         $message = "Something went wrong, " . $db->getLastError();
     }
 }
 $db->where('id', 1);
-$row = $db->getOne('rules');
+$row = $db->getOne('plot_info');
 ?>
 
 <?php require __DIR__ . '/components/header.php'; ?>

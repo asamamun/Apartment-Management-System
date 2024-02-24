@@ -7,7 +7,7 @@ if (!function_exists('settings')) {
             'root'  => $root,
             'companyname'=> 'Housing Society',
             'title'=> 'Housing Society',
-            'logo'=>$root."admin/stroage/VV-Society-Logo.avif",
+            'logo'=>$root."admin/stroage/VV-Society-Logo-removebg-preview.png",
             'homepage'=> $root,
             'adminpage'=>$root.'admin/',
             'hostname'=> 'localhost',

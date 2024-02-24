@@ -173,10 +173,15 @@ html;
 <?php
 $rules = $db->get("rules");
 foreach ($rules as $key => $value) {
+  if($value['pin'] == 1){
+    $pin = "show";
+  }else{
+    $pin = "";
+  }
   echo <<<html
 <li>
   <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-{$value['id']}">{$value['title']}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-  <div id="accordion-list-{$value['id']}" class="collapse show" data-bs-parent=".accordion-list">
+  <div id="accordion-list-{$value['id']}" class="collapse {$pin}" data-bs-parent=".accordion-list">
     <p>{$value['details']}</p>
   </div>
 </li>
@@ -190,7 +195,7 @@ html;
 
           </div>
 
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("<?= settings()['homepage'] ?>assets/maria/assets/img/pexels-photomix-company-565324.jpg");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("<?= settings()['logo'] ?>");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
         </div>
 
       </div>
@@ -268,7 +273,7 @@ html;
 ?>
         </ul>
         <div class='row' data-aos='fade-up' data-aos-delay='200' id="setEvent">
-          <img src="assets/photo-1606819717115-9159c900370b.avif" class="img-thumbnail"/>
+          <img src="assets/photo-1606819717115-9159c900370b.avif" class="img-thumbnail p-2" width="60%" height="400px"/>
         </div>
 
       </div>
