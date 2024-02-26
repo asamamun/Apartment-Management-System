@@ -111,6 +111,20 @@ if(isset($_POST['submit'])){
                                 <div class="col-sm-5 mt-3" style="float: right;">
                                     <div class="card border-0 shadow-sm rounded-4">
                                         <div class="card-body">
+<?php
+if($row['images'] != ''){
+$image_show = explode(', ', $row['images']);
+    for ($i=0; $i < count($image_show); $i++) { 
+        echo <<<html
+<div class="col mb-4">
+    <div class="card shadow-sm">
+    <img src="{$image_show[$i]}" alt="..." width="100%" height="225">
+    </div>
+</div>       
+html;
+    }
+}
+?> 
                                             <img src="<?=$row['images']; ?>" width="100%" height="300"/>
                                         </div>
                                     </div>

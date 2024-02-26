@@ -13,10 +13,11 @@ if(isset($_GET['block'])){
     $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
     if($id){
         $db->where('id', $id);
-        if($db->update('sub_categories', ['status' => 0])){
+        if($db->update('sub_categories', ['status' => $_GET['status']])){
             header("location: subcat_all.php");
+            exit;
         }else{
-            echo "something went wrong!! contact the administrator";
+            header("location: ".$_SERVER["HTTP_REFERER"]);
             exit;
         }
     }

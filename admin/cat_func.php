@@ -13,9 +13,9 @@ if(isset($_GET['block'])){
     $id = filter_var($_GET['id'],FILTER_VALIDATE_INT);
     if($id){
         $db->where('id', $id);
-        if($db->update('categories', ['status' => 0])){
+        if($db->update('categories', ['status' => $_GET['status']])){
             $db->where('cat_id', $id);
-            $db->update('sub_categories', ['status' => 0]);
+            $db->update('sub_categories', ['status' => $_GET['status']]);
             header("location: cat_all.php");
         }else{
             echo "something went wrong!! contact the administrator";

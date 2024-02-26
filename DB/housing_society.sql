@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2024 at 08:37 PM
+-- Generation Time: Feb 25, 2024 at 07:02 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,16 +41,16 @@ CREATE TABLE `apartments` (
 --
 
 INSERT INTO `apartments` (`id`, `apt_no`, `user_id`, `smt_id`, `flat_size`, `info`) VALUES
-(1, 'A1', 1, NULL, '1600', 'empty'),
-(2, 'B2', 6, NULL, '1500', 'nothing'),
-(3, 'A2', 1, NULL, '1300', 'nothing'),
-(4, 'A3', 1, NULL, '1400', 'nothing'),
-(5, 'E3', 1, NULL, '1400', 'nothing'),
-(7, 'B3', 7, NULL, '1300', 'nothing'),
-(8, 'E1', 7, NULL, '1700', 'nothing'),
-(9, 'C3', 8, NULL, '1500', 'nothing'),
-(11, 'c4', 11, NULL, '2300', 'rewrw'),
-(13, 'g44', 1, NULL, '54855', 'gfg'),
+(1, 'A1', 1, 12, '1600', 'empty'),
+(2, 'B2', 6, 12, '1500', 'nothing'),
+(3, 'A2', 1, 12, '1300', 'nothing'),
+(4, 'A3', 1, 12, '1400', 'nothing'),
+(5, 'E3', 1, 12, '1400', 'nothing'),
+(7, 'B3', 7, 12, '1300', 'nothing'),
+(8, 'E1', 7, 12, '1700', 'nothing'),
+(9, 'C3', 8, 12, '1500', 'nothing'),
+(11, 'c4', 11, 12, '2300', 'rewrw'),
+(13, 'g44', 1, 12, '54855', 'gfg'),
 (14, 'b7', 6, 12, '1288', 'dfgsdf');
 
 -- --------------------------------------------------------
@@ -76,18 +76,18 @@ CREATE TABLE `apartment_members` (
 --
 
 INSERT INTO `apartment_members` (`id`, `smt_id`, `apt_id`, `member_name`, `dob`, `nid`, `images`, `created_at`, `status`) VALUES
-(2, NULL, 1, 'israt ahamed sabbir', '2017-07-01 18:00:00', '34234234', 'stroage/img/1708405242304075233.', '2024-02-09 05:20:29', 1),
-(3, NULL, 1, 'tanima Hasan', '2020-10-12 18:00:00', '34534534', 'stroage/img/1707457539734751235Screenshot_1.jpg', '2024-02-09 05:45:39', 1),
-(4, NULL, 2, 'jui', '2019-06-10 18:00:00', '545345', 'stroage/img/1707457723390203017Screenshot_2.jpg', '2024-02-09 05:48:43', 1),
-(5, NULL, 2, 'bijoy', '2011-10-08 18:00:00', '313123', 'stroage/img/1707457779581939774A Skull 2_e1.jpg', '2024-02-09 05:49:39', 1),
-(6, NULL, 4, 'sabber', '2020-06-09 18:00:00', '3231231', 'stroage/img/1707457854398513654deatheface_11eh7vkq_e1.jpg', '2024-02-09 05:50:54', 1),
-(7, NULL, 4, 'koli', '2022-06-08 18:00:00', '67576576', 'stroage/img/1707457899816776821RYUI.JPG', '2024-02-09 05:51:39', 1),
-(8, NULL, 3, 'sathi', '2024-02-12 18:00:00', '2312312', 'stroage/img/1707458439808317839Don\'t lie.JPG', '2024-02-09 06:00:39', 1),
-(9, NULL, 1, 'adib', '2024-02-14 18:00:00', '234234', 'stroage/img/1707458663710952189Harry_Potter_5_Wallpaper_09_e1.jpg', '2024-02-09 06:04:23', 1),
-(10, NULL, 9, 'ertertert', '2024-02-22 18:00:00', '43534534', 'stroage/img/1708236201333472413.webp', '2024-02-18 06:03:21', 1),
-(11, NULL, 4, 'jhgghghcgh', '2024-02-15 18:00:00', '564564', '', '2024-02-18 07:34:48', 1),
-(12, NULL, 11, 'r6yrty54etrrtfew', '2024-02-08 18:00:00', '745785', 'stroage/img/1708759301162771181.jpg', '2024-02-24 07:21:41', 1),
-(13, 12, 1, 'tyi', '2024-02-07 18:00:00', '785685', 'stroage/img/1708761128423781533.jpg', '2024-02-24 07:52:08', 1);
+(2, 12, 1, 'israt ahamed sabbir', '2024-02-25 03:41:50', '34234234', 'stroage/img/1708832410967927383.webp', '2024-02-09 05:20:29', 1),
+(3, 12, 1, 'tanima Hasan', '2024-02-25 03:41:53', '34534534', 'stroage/img/1707457539734751235Screenshot_1.jpg', '2024-02-09 05:45:39', 1),
+(4, 12, 4, 'jui', '2024-02-25 04:19:45', '545345', 'stroage/img/1707457723390203017Screenshot_2.jpg', '2024-02-09 05:48:43', 1),
+(5, 12, 2, 'bijoy', '2024-02-25 03:41:59', '313123', 'stroage/img/1707457779581939774A Skull 2_e1.jpg', '2024-02-09 05:49:39', 1),
+(6, 12, 4, 'sabber', '2024-02-25 03:42:02', '3231231', 'stroage/img/1707457854398513654deatheface_11eh7vkq_e1.jpg', '2024-02-09 05:50:54', 1),
+(7, 12, 4, 'koli', '2024-02-25 03:42:07', '67576576', 'stroage/img/1707457899816776821RYUI.JPG', '2024-02-09 05:51:39', 1),
+(8, 12, 3, 'sathi', '2024-02-25 03:42:10', '2312312', 'stroage/img/1707458439808317839Don\'t lie.JPG', '2024-02-09 06:00:39', 1),
+(9, 12, 1, 'adib', '2024-02-25 03:42:13', '234234', 'stroage/img/1707458663710952189Harry_Potter_5_Wallpaper_09_e1.jpg', '2024-02-09 06:04:23', 1),
+(10, 12, 9, 'ertertert', '2024-02-25 03:42:16', '43534534', 'stroage/img/1708832438573771660.png', '2024-02-18 06:03:21', 1),
+(11, 12, 4, 'jhgghghcgh', '2024-02-25 03:42:19', '564564', 'stroage/img/1708832422725904794.jfif', '2024-02-18 07:34:48', 1),
+(12, 12, 11, 'r6yrty54etrrtfew', '2024-02-25 03:42:25', '745785', 'stroage/img/1708759301162771181.jpg', '2024-02-24 07:21:41', 1),
+(13, 12, 1, 'mamun sir', '2024-02-25 04:20:13', '785685', 'stroage/img/1708761128423781533.jpg', '2024-02-24 07:52:08', 1);
 
 -- --------------------------------------------------------
 
@@ -137,10 +137,10 @@ CREATE TABLE `bill_items` (
 --
 
 INSERT INTO `bill_items` (`id`, `smt_id`, `cat_id`, `sub_id`, `details`, `amount`, `created_at`, `status`) VALUES
-(1, NULL, 1, 1, 'safaf', 2000, '2024-02-10 14:27:21', 1),
-(2, NULL, 1, 2, 'fsdf', 1000, '2024-02-10 14:42:23', 1),
-(3, NULL, 1, 3, 'sfsd', 3456, '2024-02-10 14:42:49', 0),
-(4, NULL, 1, 4, 'dfsdf', 500, '2024-02-10 14:43:14', 0);
+(1, 12, 1, 1, 'safaf', 2000, '2024-02-10 14:27:21', 1),
+(2, 12, 1, 2, 'fsdf', 1000, '2024-02-10 14:42:23', 1),
+(3, 12, 1, 3, 'sfsd', 3456, '2024-02-10 14:42:49', 0),
+(4, 12, 1, 4, 'dfsdf', 500, '2024-02-10 14:43:14', 0);
 
 -- --------------------------------------------------------
 
@@ -185,14 +185,14 @@ CREATE TABLE `complain` (
 --
 
 INSERT INTO `complain` (`id`, `title`, `details`, `user_id`, `smt_id`, `decision`, `created_at`) VALUES
-(1, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, 'dfgdfggfdgdfg', '2024-02-20 05:08:36'),
-(2, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:11:08'),
-(3, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, NULL, NULL, '2024-02-20 05:12:09'),
-(4, 'jjjjjj', 'kdsaafsad', 1, NULL, NULL, '2024-02-20 05:12:19'),
-(5, 'jjjjjj', 'kdsaafsad', 1, NULL, NULL, '2024-02-20 05:12:44'),
-(6, 'nsmkgsm', 'dgf ijsdgksd ', 1, NULL, NULL, '2024-02-20 05:12:52'),
-(7, 'nsmkgsm', 'dgf ijsdgksd ', 1, NULL, NULL, '2024-02-20 05:13:04'),
-(8, 'mgdsl', 'msdkfmksdkmfskdmf', 1, NULL, NULL, '2024-02-20 05:14:40');
+(1, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, 12, 'dfgdfggfdgdfg', '2024-02-20 05:08:36'),
+(2, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, 12, NULL, '2024-02-20 05:11:08'),
+(3, 'adfdsfsdf', 'sdf dfsdf fsdf dsfsd dsfds ', 1, 12, NULL, '2024-02-20 05:12:09'),
+(4, 'jjjjjj', 'kdsaafsad', 1, 12, NULL, '2024-02-20 05:12:19'),
+(5, 'jjjjjj', 'kdsaafsad', 1, 12, NULL, '2024-02-20 05:12:44'),
+(6, 'nsmkgsm', 'dgf ijsdgksd ', 1, 12, NULL, '2024-02-20 05:12:52'),
+(7, 'nsmkgsm', 'dgf ijsdgksd ', 1, 12, NULL, '2024-02-20 05:13:04'),
+(8, 'mgdsl', 'msdkfmksdkmfskdmf', 1, 12, NULL, '2024-02-20 05:14:40');
 
 -- --------------------------------------------------------
 
@@ -336,11 +336,11 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `smt_id`, `emp_name`, `designation`, `shift`, `nid`, `phone`, `image`, `joindate`, `salary`, `extra`, `option_one`, `option_two`, `created_at`, `status`) VALUES
-(1, NULL, 'MD. kamal', 'darowan', 'm', '12414', '4654', 'logo.png', '2024-02-16 14:08:59', '12000', '', '', '', '2024-02-16 14:08:59', 1),
-(2, NULL, 'Tanha gazi', 'gyjh', 'hfggn', '211241', '35252', 'stroage/img/170875998821987770.', '2024-02-24 07:33:08', '300000', 'fbgn', 'cbv', 'bcv', '2024-02-16 15:00:31', 1),
-(3, NULL, 'ddffgfdg', 'dfgsdfgsdfg', 'sdfgsdfgsdf', '354353', '353453', 'stroage/img/1708403670644448083.', '2024-02-20 04:34:30', '56496', '54964', '1654', 'mjhguyf', '2024-02-20 04:34:30', 1),
-(4, NULL, 'ert', '5e6y5r', 'r7yu6', '18', '0145', 'stroage/img/1708410679596605759.', '2024-02-20 06:31:19', '456', 'ghjngj', 'jghkj', 'khuk', '2024-02-20 06:31:19', 1),
-(5, NULL, 'gyfvbhjn', '65rtrtfh', 'uii', '556625', '5555', 'stroage/img/1708410750635871724.jpg', '2024-02-20 06:32:30', '77888', 'uhh', 'gghgh', 'tg', '2024-02-20 06:32:30', 1),
+(1, 12, 'MD. kamal', 'darowan', 'm', '12414', '4654', 'logo.png', '2024-02-25 03:44:04', '12000', '', '', '', '2024-02-16 14:08:59', 1),
+(2, 12, 'Tanha gazi', 'gyjh', 'hfggn', '211241', '35252', 'stroage/img/170875998821987770.', '2024-02-25 03:44:34', '300000', 'fbgn', 'cbv', 'bcv', '2024-02-16 15:00:31', 1),
+(3, 12, 'ddffgfdg', 'sdad', 's', '354353', '353453', 'stroage/img/1708833086332984595.jpg', '2024-02-25 03:51:26', '56496', '54964', '1654', 'mjhguyf', '2024-02-20 04:34:30', 1),
+(4, 12, 'ert', '5e6y5r', 'r7yu6', '18', '0145', 'stroage/img/1708410679596605759.', '2024-02-25 03:44:39', '456', 'ghjngj', 'jghkj', 'khuk', '2024-02-20 06:31:19', 1),
+(5, 12, 'gyfvbhjn', '65rtrtfh', 'uii', '556625', '5555', 'stroage/img/1708410750635871724.jpg', '2024-02-25 03:44:43', '77888', 'uhh', 'gghgh', 'tg', '2024-02-20 06:32:30', 1),
 (6, 12, '4trt', 'rfet', 'rfwer2', '596', '+96', 'stroage/img/1708761270140424680.jpg', '2024-02-24 07:54:41', '569', '54/*', '5/', '=[]', '2024-02-24 07:54:30', 1);
 
 -- --------------------------------------------------------
@@ -437,13 +437,13 @@ CREATE TABLE `garages` (
 --
 
 INSERT INTO `garages` (`id`, `smt_id`, `gar_no`, `user_id`, `created_at`) VALUES
-(1, NULL, 'g1', 11, '2024-02-11 14:14:11'),
-(2, NULL, 'g2', 1, '2024-02-11 14:14:11'),
-(3, NULL, 'g4', 7, '2024-02-11 14:14:11'),
-(4, NULL, 'g3', 8, '2024-02-11 14:14:11'),
-(5, NULL, 'g5', 10, '2024-02-11 14:14:11'),
-(6, NULL, 'g7', 9, '2024-02-11 14:14:11'),
-(7, NULL, 'g9', 9, '2024-02-11 14:14:11');
+(1, 12, 'g1', 8, '2024-02-11 14:14:11'),
+(2, 12, 'g2', 1, '2024-02-11 14:14:11'),
+(3, 12, 'g4', 7, '2024-02-11 14:14:11'),
+(4, 12, 'g3', 8, '2024-02-11 14:14:11'),
+(5, 12, 'g5', 10, '2024-02-11 14:14:11'),
+(6, 12, 'g7', 9, '2024-02-11 14:14:11'),
+(7, 12, 'g9', 9, '2024-02-11 14:14:11');
 
 -- --------------------------------------------------------
 
@@ -479,13 +479,13 @@ INSERT INTO `incomes` (`id`, `bill_id`, `user_id`, `smt_id`, `type`, `info`, `am
 (26, 4, 7, 12, NULL, NULL, 6456, '2024-02-24 18:26:47', '', '2024-02-13 07:18:33', 0),
 (27, 4, 8, 12, NULL, NULL, 6456, '2024-02-24 18:26:50', '', '2024-02-13 07:18:33', 0),
 (28, 4, 11, 12, NULL, NULL, 6456, '2024-02-24 18:26:53', '', '2024-02-13 07:18:33', 0),
-(29, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:04:47', 0),
-(30, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:05:48', 0),
-(31, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:06:15', 0),
-(32, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:06:47', 0),
-(33, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:07:43', 0),
-(34, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:07:48', 0),
-(35, 1, 1, NULL, NULL, NULL, 6456, NULL, '', '2024-02-24 19:17:01', 0);
+(29, 1, 1, 12, NULL, NULL, 6456, '2024-02-25 03:45:39', '', '2024-02-24 19:04:47', 0),
+(30, 1, 1, 12, NULL, NULL, 6456, '2024-02-25 03:45:44', '', '2024-02-24 19:05:48', 0),
+(31, 1, 1, 12, NULL, NULL, 6456, '2024-02-25 03:45:47', '', '2024-02-24 19:06:15', 0),
+(32, 1, 1, 12, NULL, NULL, 6456, '2024-02-25 03:45:51', '', '2024-02-24 19:06:47', 0),
+(33, 1, 1, 12, NULL, NULL, 6456, '2024-02-25 03:45:54', '', '2024-02-24 19:07:43', 0),
+(34, 1, 1, 12, NULL, NULL, 6456, '2024-02-25 03:45:58', '', '2024-02-24 19:07:48', 0),
+(35, 1, 1, 12, NULL, NULL, 6456, '2024-02-25 03:46:00', '', '2024-02-24 19:17:01', 0);
 
 -- --------------------------------------------------------
 
@@ -508,7 +508,8 @@ CREATE TABLE `meetings` (
 --
 
 INSERT INTO `meetings` (`id`, `smt_id`, `title`, `meet_date`, `members`, `details`, `created_at`) VALUES
-(2, NULL, 'asdsadsad', '2024-03-01 04:59:00', 'asfasdasds', 'assads', '2024-02-20 04:56:27');
+(2, 12, 'asdsadsad', '2024-03-01 04:59:00', 'asfasdasds', 'assads', '2024-02-20 04:56:27'),
+(3, 12, 'hello', '2024-02-29 15:12:00', ',huidhufgi', 'jiodugf', '2024-02-25 03:08:54');
 
 -- --------------------------------------------------------
 
@@ -530,8 +531,8 @@ CREATE TABLE `notices` (
 --
 
 INSERT INTO `notices` (`id`, `smt_id`, `title`, `details`, `status`, `created_at`) VALUES
-(1, NULL, 'gtuyruuyruyru', 'bhjfdytdfd', 1, '2024-02-24 05:22:45'),
-(2, NULL, 'vbnvbn', 'vbnvbnv', 1, '2024-02-24 05:24:19');
+(1, 12, 'gtuyruuyruyru', 'bhjfdytdfd', 1, '2024-02-24 05:22:45'),
+(2, 12, 'vbnvbn', 'vbnvbnv', 1, '2024-02-24 05:24:19');
 
 -- --------------------------------------------------------
 
@@ -558,7 +559,7 @@ CREATE TABLE `plot_info` (
 --
 
 INSERT INTO `plot_info` (`id`, `country`, `division`, `district`, `upazila`, `union`, `address`, `image`, `help_line`, `email`, `google_map`) VALUES
-(1, 'bangladesh', '1', '2', '4', '5', 'College Road', 'stroage/img/1708138583470945729pexels-eberhard-grossgasteiger-640781.jpg, stroage/img/170813859873514480pexels-pixabay-50594.jpg, stroage/img/1708490232567586219b7.png', '999', 'support24x7@gmail.com', 'http://maps.google.ca/maps?q=14735+32A+AVE+Surrey+V4P+1Z8+bc&spn=0.012065,0.040770&iwloc=A&hl=en');
+(1, 'bangladesh', '1', '2', '4', '5', 'College Road', 'stroage/img/1708835076709606645b13.jpg, stroage/img/1708835100453645286b17.jpg, stroage/img/1708835110717016299b15.jpg', '999', 'support24x7@gmail.com', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621');
 
 -- --------------------------------------------------------
 
@@ -605,13 +606,13 @@ CREATE TABLE `sub_categories` (
 --
 
 INSERT INTO `sub_categories` (`id`, `smt_id`, `sub_name`, `cat_id`, `type`, `status`) VALUES
-(1, NULL, 'current Bill', 1, 1, 1),
-(2, NULL, 'Sequrity', 1, 1, 1),
-(3, NULL, 'water', 1, 1, 1),
-(4, NULL, 'clener', 1, 1, 1),
-(5, NULL, 'maintenance', 1, 1, 0),
-(6, NULL, 'Watchman', 2, 0, 1),
-(7, NULL, 'bnmbnm', 1, 1, 1);
+(1, 12, 'current Bill', 1, 1, 1),
+(2, 12, 'Sequrity', 1, 1, 1),
+(3, 12, 'water', 1, 1, 1),
+(4, 12, 'clener', 1, 1, 1),
+(5, 12, 'maintenance', 1, 1, 0),
+(6, 12, 'Watchman', 2, 0, 1),
+(7, 12, 'bnmbnm', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5720,18 +5721,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `mobile`, `address_one`, `address_two`, `password`, `image`, `visited_at`, `created_at`, `role`, `status`) VALUES
-(1, 'mr. user', 'user@gmail.com', '01776678594', 12, 'badda, dfgdfgdhaka345345', '435345345', '$2y$10$lgLzOpkG6xiRYWvQrJWZkevJG0SgixsXfv6DEnsvLhqZI3I4AcJbG', 'stroage/img/1708063449133972658.jpg', '2024-02-05 16:04:02', '2024-02-05 16:04:02', 1, 1),
-(6, 'tanha basar', 'tanha@gmail.com', '45345', NULL, 'kaji para, dhaka', NULL, '$2y$10$StlDZsKiwQkfV5OQVCQZOOS8M8q4YYU7onWOdbG4QlyvJKmV0g3ee', 'stroage/img/1708063481904991044.jpg', '2024-02-09 04:51:54', '2024-02-09 04:51:54', 1, 0),
-(7, 'maria', 'maria@gmail.com', '12314235', 0, 'basa jani na, koy nai.', '', '$2y$10$eEckc96GXgX2JngXbJJbJ.35Iosz9VKDLovbp2Sj6ooB7lw7Qto4G', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:54:07', '2024-02-09 04:54:07', 2, 0),
-(8, 'asif', 'asif@gmail.com', '231241', NULL, 'kaji para', NULL, '$2y$10$1Z9.O9PFYXrNhqe063pmpe5OP7c8JILrK4snZbhHkCujZVqLr7BHG', NULL, '2024-02-09 04:54:46', '2024-02-09 04:54:46', 1, 0),
-(9, 'towhid', 'towhid@gmail.com', '16515', NULL, 'seorapara', NULL, '$2y$10$avDi2Cxa4gwEGP3hHKJ0P.JUWCOHR4pq9aLHFAfIRQnFgOOv8l7ou', NULL, '2024-02-09 04:55:31', '2024-02-09 04:55:31', 0, 0),
-(10, 'sabbir', 'sabbir@gmail.com', '65195498', NULL, 'mirpur', NULL, '$2y$10$OjaE4aerGe0JUw3M9XCdze4tmASOiVHD28Ph1SBDuwNh3xQInCxKK', NULL, '2024-02-09 04:56:13', '2024-02-09 04:56:13', 1, 0),
-(11, 'rafi', 'rafi@gmail.com', '41241', NULL, 'kauyar cor', NULL, '$2y$10$eEPFR4n8FheuLFrsEDGkm.g8gMFw.zVY8gr.qX3IamAAnP0N4sC8S', NULL, '2024-02-09 04:57:23', '2024-02-09 04:57:23', 1, 0),
-(12, 'admin', 'admin@gmail.com', '3423423', 3423423, 'fgfdgdfg', NULL, '$2y$10$D.QrfO/uTesTAEwf6o3PmuB3GfKoED6hkBZXakdwptJGGeZU8fN3C', 'stroage/img/1707661501949850213.jpg', '2024-02-11 14:23:46', '2024-02-11 14:23:46', 2, 0),
-(13, 'israt', 'israt@gmail.com', '5646546', NULL, 'ghfhghgfhg', NULL, '$2y$10$ykoqK9rXRLePmb9oB7mxFu1eN2XiofI1RHXjLVAg6eX8PzJvnwZh6', NULL, '2024-02-16 05:23:48', '2024-02-16 05:23:48', 2, 0),
-(17, 'admin@gmail.com', 'vdfgdfg@gmail.com', '3123123', NULL, 'sedfsdfs', NULL, '$2y$10$pC4XZsilWt2SR2cGcdCl5O48z3HMmNWhsjV.8s2wAxYlRedqe4Ity', NULL, '2024-02-20 04:15:41', '2024-02-20 04:15:41', 2, 0),
-(18, 'israta', 'israta@gmail.com', '324234', NULL, 'dfdsfs', NULL, '$2y$10$8v/XiCz5VwX9I3YKod8Wnu./hcLPvokd83wg0LAw.udpoXamNL9te', NULL, '2024-02-20 04:17:40', '2024-02-20 04:17:40', 2, 0),
-(19, 'admsdfmgklsdf lj ', 'round5rftgty7@gmail.com', '4194961', 2147483647, 'mkjhogfm', 'retert', '$2y$10$3/l5M0fiiCNuuTGSjG660.kKkij6WsgCc8ayWOI0GSGZNDT/Tnm2y', NULL, '2024-02-24 05:23:40', '2024-02-24 05:23:40', 2, 1);
+(1, 'mr. user', 'user@gmail.com', '01776678594', 12, 'badda, dfgdfgdhaka345345', 'sdsd', '$2y$10$lgLzOpkG6xiRYWvQrJWZkevJG0SgixsXfv6DEnsvLhqZI3I4AcJbG', 'stroage/img/1708063449133972658.jpg', '2024-02-05 16:04:02', '2024-02-05 16:04:02', 1, 1),
+(6, 'tanha basar', 'tanha@gmail.com', '45345', 35463, 'kaji para, dhaka', 'dsads', '$2y$10$StlDZsKiwQkfV5OQVCQZOOS8M8q4YYU7onWOdbG4QlyvJKmV0g3ee', 'stroage/img/1708063481904991044.jpg', '2024-02-09 04:51:54', '2024-02-09 04:51:54', 1, 0),
+(7, 'maria', 'maria@gmail.com', '12314235', 4543, 'basa jani na, koy nai.', '', '$2y$10$eEckc96GXgX2JngXbJJbJ.35Iosz9VKDLovbp2Sj6ooB7lw7Qto4G', 'stroage/img/1708835774132372500.jpg', '2024-02-09 04:54:07', '2024-02-09 04:54:07', 2, 0),
+(8, 'asif', 'asif@gmail.com', '231241', 45456, 'kaji para', 'asdasd', '$2y$10$1Z9.O9PFYXrNhqe063pmpe5OP7c8JILrK4snZbhHkCujZVqLr7BHG', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:54:46', '2024-02-09 04:54:46', 1, 0),
+(9, 'towhid', 'towhid@gmail.com', '16515', 54645, 'seorapara', 'sadscx', '$2y$10$avDi2Cxa4gwEGP3hHKJ0P.JUWCOHR4pq9aLHFAfIRQnFgOOv8l7ou', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:55:31', '2024-02-09 04:55:31', 0, 0),
+(10, 'sabbir', 'sabbir@gmail.com', '65195498', 646456, 'mirpur', 'fdsafsad', '$2y$10$OjaE4aerGe0JUw3M9XCdze4tmASOiVHD28Ph1SBDuwNh3xQInCxKK', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:56:13', '2024-02-09 04:56:13', 1, 0),
+(11, 'rafi', 'rafi@gmail.com', '41241', 463464, 'kauyar cor', 'fsadfsdf', '$2y$10$eEPFR4n8FheuLFrsEDGkm.g8gMFw.zVY8gr.qX3IamAAnP0N4sC8S', 'stroage/img/1707763364831315026.jpg', '2024-02-09 04:57:23', '2024-02-09 04:57:23', 1, 0),
+(12, 'admin', 'admin@gmail.com', '3423423', 3423423, 'fgfdgdfg', 'sdfsdf', '$2y$10$D.QrfO/uTesTAEwf6o3PmuB3GfKoED6hkBZXakdwptJGGeZU8fN3C', 'stroage/img/1707661501949850213.jpg', '2024-02-11 14:23:46', '2024-02-11 14:23:46', 2, 0),
+(13, 'israt', 'israt@gmail.com', '5646546', 466456, 'ghfhghgfhg', 'sdfsdf', '$2y$10$ykoqK9rXRLePmb9oB7mxFu1eN2XiofI1RHXjLVAg6eX8PzJvnwZh6', 'stroage/img/1707763364831315026.jpg', '2024-02-16 05:23:48', '2024-02-16 05:23:48', 2, 0),
+(17, 'admin@gmail.com', 'vdfgdfg@gmail.com', '3123123', 456463, 'sedfsdfs', 'sdafsadf', '$2y$10$pC4XZsilWt2SR2cGcdCl5O48z3HMmNWhsjV.8s2wAxYlRedqe4Ity', 'stroage/img/1707763364831315026.jpg', '2024-02-20 04:15:41', '2024-02-20 04:15:41', 2, 0),
+(18, 'israta', 'israta@gmail.com', '324234', 546456, 'dfdsfs', 'asdfasd', '$2y$10$8v/XiCz5VwX9I3YKod8Wnu./hcLPvokd83wg0LAw.udpoXamNL9te', 'stroage/img/1707763364831315026.jpg', '2024-02-20 04:17:40', '2024-02-20 04:17:40', 2, 0),
+(19, 'admsdfmgklsdf lj ', 'round5rftgty7@gmail.com', '4194961', 2147483647, 'mkjhogfm', 'retert', '$2y$10$3/l5M0fiiCNuuTGSjG660.kKkij6WsgCc8ayWOI0GSGZNDT/Tnm2y', 'stroage/img/1707763364831315026.jpg', '2024-02-24 05:23:40', '2024-02-24 05:23:40', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -5758,11 +5759,12 @@ CREATE TABLE `visitors` (
 --
 
 INSERT INTO `visitors` (`id`, `apt_id`, `visitor_name`, `address`, `persons`, `phone`, `purpose`, `entry_id`, `entry_time`, `exit_id`, `exit_time`) VALUES
-(17, 3, 'fgbf', 'rwerwe', 234, '23423423', 'vcvbsd', NULL, '2024-02-13 03:56:27', NULL, NULL),
-(18, 2, 'rtert', 'ertert', 5, '5432453', 'gfhfh', NULL, '2024-02-13 03:56:56', NULL, NULL),
+(17, 3, 'fgbf', 'rwerwe', 234, '23423423', 'vcvbsd', NULL, '2024-02-25 03:56:33', 12, '2024-02-25 03:56:33'),
+(18, 2, 'rtert', 'ertert', 5, '5432453', 'gfhfh', NULL, '2024-02-25 03:56:37', 12, '2024-02-25 03:56:37'),
 (19, 2, 'gfdgd', 'gdfgd', 1, '4564', 'cdvdf', NULL, '2024-02-13 03:58:43', NULL, NULL),
 (20, 1, 'gdfgdfg', 'dfgdfg', 5, '52', 'fhhfg', NULL, '2024-02-13 03:59:47', NULL, NULL),
-(21, 1, 'sdawewe', 'ewrwer', 8, '345345', 'dfgdfgdf', NULL, '2024-02-24 04:56:41', NULL, NULL);
+(21, 1, 'sdawewe', 'ewrwer', 8, '345345', 'dfgdfgdf', NULL, '2024-02-25 03:54:14', 12, '2024-02-25 03:54:14'),
+(22, 1, 'kamla', 'dhaka', 5, '549', 'riu', 12, '2024-02-25 03:53:52', 12, '2024-02-25 03:53:52');
 
 --
 -- Indexes for dumped tables
@@ -6027,7 +6029,7 @@ ALTER TABLE `incomes`
 -- AUTO_INCREMENT for table `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `notices`
@@ -6075,7 +6077,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables

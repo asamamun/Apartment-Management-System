@@ -70,9 +70,9 @@ $rows = $db->get('sub_categories');
 foreach($rows as $row){
     $isblock = null;
     if($row['status'] == 0){
-        $isblock = "<a class='dropdown-item' href='subcat_edit.php?id={$row['id']}&role=1'>Unblock</a>";
+        $isblock = "<a class='dropdown-item' href='subcat_func.php?block=1&id={$row['id']}&status=1'> Unblock</a>";
     }else{
-        $isblock = "<a class='dropdown-item' href='subcat_edit.php?id={$row['id']}&role=0'><i class='bi bi-ban'></i> block</a>";
+        $isblock = "<a class='dropdown-item' href='subcat_func.php?block=1&id={$row['id']}&status=0'><i class='bi bi-ban'></i> block</a>";
     }
     $type = $row['type'] == 1 ? "<span class='text-success h6'>Income</span>" : "<span class='text-danger h6'>expanse</span>";
     echo <<<html

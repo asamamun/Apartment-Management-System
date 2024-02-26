@@ -81,7 +81,7 @@ if(!$incomes){
                                             </select>
                                         </div>
                                         <div class="mb-3 mt-3">
-                                            <textarea class="form-control" name="info" id="info"></textarea>
+                                            <textarea class="form-control" name="info" id="textarea"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary" name="payment" value="submit">Submit</button>
                                         <a class="btn btn-primary" href="bill.php?id=<?=$incomes['bill_id']; ?>">Bill View</a>

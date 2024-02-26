@@ -3,6 +3,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require __DIR__ . '/vendor/autoload.php';
+use App\auth\User;
+if (!User::Check()) {
+  //header('HTTP/1.1 503 Service Unavailable');
+  header('location: index.php');
+  exit;
+}
 $myfn = new myfn\myfn;
 $db = new MysqliDb();
 $db->where('id', $_SESSION['role']);
@@ -60,7 +66,7 @@ $rows = $db->get('complain');
                   
                 </ul>
                 <form class="d-flex" role="search">
-                  <button class="btn btn-sm btn-outline-danger" type="submit">Logout</button>
+                <a href="logout.php" class="btn btn-sm btn-outline-danger">Logout</a>
                 </form>
               </div>
             </div>
@@ -268,6 +274,58 @@ foreach($gars as $gar){
     echo <<<html
 <tr>
     <td>{$gar['gar_no']}</td>
+</tr>
+html;
+}
+?> 
+                        </table>         
+                    </div>
+                  </div>
+                </div>
+ <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Notices</i></h5>
+                        <table class="table">
+                            <tr>
+                                <th>Title</th>
+                                <th>Details</th>
+                                <th>Created At</th>
+                            </tr>
+<?php
+$nrows = $db->get('notices');
+foreach($nrows as $nrow){
+    echo <<<html
+<tr>
+    <td>{$nrow['title']}</td>
+    <td>{$nrow['details']}</td>
+    <td>{$nrow['created_at']}</td>
+</tr>
+html;
+}
+?>
+                        </table>         
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Meetings</i></h5>
+                        <table class="table">
+                            <tr>
+                            <th>Title</th>
+                            <th>Date & Time</th>
+                            <th>Details</th>
+                            </tr>
+<?php
+$mrows = $db->get('meetings');
+foreach($mrows as $mrow){
+    echo <<<html
+<tr>
+    <td>{$mrow['title']}</td>
+    <td>{$mrow['meet_date']}</td>
+    <td>{$mrow['details']}</td>
 </tr>
 html;
 }

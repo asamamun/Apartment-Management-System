@@ -31,7 +31,7 @@ $rows = $db->get('meetings');
                         <div class="card mb-4">
                             <div class="card-header">
                              <i class="fas fa-table me-1"></i>
-                                 DataTable
+                               Meetings Details
                             </div>
                         <div class="card-body">
                             <table class="table">

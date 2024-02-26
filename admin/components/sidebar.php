@@ -169,6 +169,10 @@ echo $db->getValue ("users", "count(*)");
                                     <a class="nav-link" href="expanse_salary.php">Salary</a>
                                 </nav>
                             </div>
+                            <a class="nav-link" href="report.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Report
+                            </a>
                             <div class="sb-sidenav-menu-heading">Others</div>
                             <a class="nav-link" href="info.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -225,11 +229,11 @@ echo $db->getValue ("users", "count(*)");
                                     <a class="nav-link" href="event_create.php">Add</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
+                            </a> -->
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseErrorCRWD" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -272,7 +276,7 @@ echo $db->getValue ("users", "count(*)");
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        Housing Society
                     </div>
                 </nav>
             </div>

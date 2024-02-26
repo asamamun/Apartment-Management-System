@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
                                     </div>
                                     <div class="mb-3 mt-3">
                                         <label for="details" class="form-label">Details:</label>
-                                        <textarea class="form-control" id="details"  name="details"><?=$row['details']; ?></textarea>
+                                        <textarea class="form-control" id="textarea"  name="details"><?=$row['details']; ?></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit" value="update">Update</button>
                                 </form>

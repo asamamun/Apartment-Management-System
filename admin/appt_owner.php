@@ -42,6 +42,17 @@ $users = $db->query($sql);
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>APPT NO</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Created At</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
                                 <tbody>
 <?php
 // foreach($users as $user){

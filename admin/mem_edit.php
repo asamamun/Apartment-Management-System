@@ -21,7 +21,6 @@ if(isset($_GET['id'])){
     }   
 }
 if (isset($_POST['submit'])) {
-    echo $_POST['dob'];
     $idtoupdate = $_POST['id'];
     $data = [
         'member_name' => $db->escape($_POST['member_name']),

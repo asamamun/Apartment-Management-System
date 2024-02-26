@@ -81,15 +81,20 @@ if(isset($_GET['id'])){
                                         <div class="row">
                                             <form action="" method="post" class="row g-3 form">
                                             <h2 class="h2">Update Garage info</h2><hr>
+                                            <input type="hidden" class="form-control" id="id" name="id" value="<?= $row['id'] ?>" required>
                                                 <div class="col-sm-3">
                                                 <label for="user_id" class="form-label">User Name:</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                <select class="form-control" id="user_id"  name="user_id"  required>
+                                                <select class="form-control" id="user_id"  name="user_id" required>
 <?php
 $user_rows = $db->get("users");
 foreach($user_rows as $user_row){
-    echo "<option value='{$user_row['id']}'>{$user_row['name']}</option>";
+    if($user_row['id'] == $row['user_id']){
+        echo "<option value='{$user_row['id']}' selected>{$user_row['name']}</option>";
+    }else{
+        echo "<option value='{$user_row['id']}'>{$user_row['name']}</option>";
+    }   
 }
 ?>
                                 
@@ -99,7 +104,7 @@ foreach($user_rows as $user_row){
                                                 <label for="gar_no" class="form-label">Garage No:</label>
                                                 </div>
                                                 <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="gar_no"  name="gar_no"  required>
+                                                <input type="text" class="form-control" id="gar_no"  name="gar_no"  value="<?= $row['gar_no'] ?>" required>
                                                 </div>
                                                 
                                                 

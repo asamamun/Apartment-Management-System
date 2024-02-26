@@ -6,7 +6,8 @@ require __DIR__ . '/../vendor/autoload.php';
 $myfn = new myfn\myfn;
 use App\auth\Admin;
 if(!Admin::Check()){
-    header('HTTP/1.1 503 Service Unavailable');
+    //header('HTTP/1.1 503 Service Unavailable');
+    header('location: https://coders24x7.com/apartment/');
     exit;
 }
 $db = new MysqliDb ();
@@ -300,11 +301,11 @@ Swal.fire({
   //title: "Custom width, padding, color, background.",
   width: 200,
   position: "top-end",
-  background: "#fff url(stroage/checkerboard-gradient.jpg",
-  timer: 2000,
+  background: "#fff url(stroage/LightGraySolid.jpg)",
+  timer: 3000,
   backdrop: `
     rgba(0,0,123,0.4)
-    url("stroage/585d0331234507.564a1d239ac5e.gif")
+    url("stroage/Hacker_new.gif")
     center center
     no-repeat
   `

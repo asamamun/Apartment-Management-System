@@ -2,7 +2,7 @@
 if (!function_exists('settings')) {
     function settings()
     {
-       $root = "http://localhost/Apartment-Management-System/"; 
+       $root = "https://coders24x7.com/apartment/"; 
         return [
             'root'  => $root,
             'companyname'=> 'Housing Society',

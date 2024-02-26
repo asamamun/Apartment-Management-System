@@ -44,6 +44,7 @@ $rows = $db->orderBy('entry_time', 'DESC')->get('visitors');
                                         <th>phone</th>
                                         <th>entry_time</th>
                                         <th>exit_time</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,9 +53,11 @@ foreach($rows as $row){
     if($row['exit_time'] == null){
         // $ifnull="style='background-color:red'"; 
         $ifnull="style='background-color:#ff6060'";
+        $extButton = "<td><a class='btn btn-sm btn-success' href='visitor_func.php?id={$row['id']}&func=exit_func'>Exit</a></td>";
     }else{
         // $ifnull="style='background-color:green'";
         $ifnull="style='background-color:#52bf91'";
+        $extButton = "<td></td>";
     }
     echo <<<html
 <tr {$ifnull}>
@@ -65,6 +68,7 @@ foreach($rows as $row){
     <td>{$row['phone']}</td>
     <td>{$row['entry_time']}</td>
     <td>{$row['exit_time']}</td>
+    {$extButton}
 </tr>
 html;
 }

@@ -37,7 +37,7 @@ $rows = $db->orderBy('emp_name', 'ASC')->get('employees');
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <a class="btn btn-primary" href="cat_create.php"><i class="fas fa-plus"></i></a>
+                                <a class="btn btn-primary" href="emp_create.php"><i class="fas fa-plus"></i></a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
